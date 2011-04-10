@@ -218,10 +218,10 @@ local function SetupChat(self)
 		var = 0
 	end
 	-- Remember last channel
-	ChatTypeInfo.WHISPER.sticky = var
-	ChatTypeInfo.BN_WHISPER.sticky = var
+	ChatTypeInfo.WHISPER.sticky = false
+	ChatTypeInfo.BN_WHISPER.sticky = false
 	ChatTypeInfo.OFFICER.sticky = var
-	ChatTypeInfo.RAID_WARNING.sticky = var
+	ChatTypeInfo.RAID_WARNING.sticky = false
 	ChatTypeInfo.CHANNEL.sticky = var
 end
 
