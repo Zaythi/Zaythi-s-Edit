@@ -7,7 +7,7 @@ DB["media"] = {
 	["dmgfont"] = "ElvUI Combat", -- general font of dmg / sct
 		
 	-- textures
-	["normTex"] = "ElvUI Norm", -- texture used for Elvui healthbar/powerbar/etc
+	["normTex"] = "ElvUI Gloss", -- texture used for Elvui healthbar/powerbar/etc
 	["glossTex"] = "ElvUI Gloss",
 	["glowTex"] = "ElvUI GlowBorder",
 	["blank"] = "ElvUI Blank",
@@ -30,7 +30,7 @@ DB["media"] = {
 
 DB["general"] = {
 	["autoscale"] = true,                  -- mainly enabled for users that don't want to mess with the config file
-	["uiscale"] = 0.78,                    -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
+	["uiscale"] = 0.66,                    -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 	["multisampleprotect"] = true,         -- i don't recommend this because of shitty border but, voila!
 	["classcolortheme"] = false,			--class colored theme for panels
 	["fontscale"] = 12,					--Master font
@@ -64,13 +64,13 @@ DB["unitframes"] = {
 	["showtotalhpmp"] = false,             -- change the display of info text on player and target with XXXX/Total.
 	["showsmooth"] = true,                 -- enable smooth bar
 	["charportrait"] = true,              -- enable character portrait
-	["charportraithealth"] = false,			-- portrait overlay healthbar
+	["charportraithealth"] = true,			-- portrait overlay healthbar
 	["classcolor"] = false,                  -- color unitframes by class
 	["healthcolor"] = DB["media"].bordercolor, --color of the unitframe
-	["healthcolorbyvalue"] = true,			-- color health by current health remaining
+	["healthcolorbyvalue"] = false,			-- color health by current health remaining
 	["healthbackdrop"] = false,				-- enable using custom healthbackdrop color
 	["healthbackdropcolor"] = DB["media"].backdropcolor,
-	["combatfeedback"] = false,             -- enable combattext on player and target.
+	["combatfeedback"] = true,             -- enable combattext on player and target.
 	["debuffhighlight"] = true,				--highlight frame with the debuff color if the frame is dispellable
 	["classbar"] = true,                    -- enable runebar/totembar/holypowerbar/soulshardbar/eclipsebar
 	["combat"] = false,						-- only show main unitframes when in combat/havetarget/or mouseover
@@ -84,7 +84,7 @@ DB["unitframes"] = {
 	
 	--frame sizes
 	["playtarwidth"] = 275,					--width of player/target frame
-	["playtarheight"] = 55,					--height of player/target frame
+	["playtarheight"] = 60,					--height of player/target frame
 	["smallwidth"] = 130,					--Width of TargetTarget, Focus, FocusTarget, Player's Pet frames
 	["smallheight"] = 35,					--Height of TargetTarget, Focus, FocusTarget, Player's Pet frames
 	["arenabosswidth"] = 212,				--Width of Arena/Boss Frames
@@ -116,8 +116,8 @@ DB["unitframes"] = {
 	["nointerruptcolor"] = { r = 0.78, g = 0.25, g = 0.25, a = 1 }, -- Color of target castbar
 	
 	--GPS Tracker
-	["targetgps"] = true,
-	["focusgps"] = true,
+	["targetgps"] = false,
+	["focusgps"] = false,
 	
 	["POWER_MANA"] = {r = 0.31, g = 0.45, b = 0.63},
 	["POWER_RAGE"] = {r = 0.78, g = 0.25, b = 0.25},
@@ -147,8 +147,8 @@ DB["raidframes"] = {
 	["raidunitbuffwatch"] = true,       -- track important spell to watch in pve for grid mode.
 	["buffindicatorsize"] = 6,				-- size of the buff indicator on raid/party frames	
 	["displayaggro"] = true,
-	["mini_powerbar"] = false,
-	["gridonly"] = false,
+	["mini_powerbar"] = true,
+	["gridonly"] = true,
 }
 
 DB["classtimer"] = {
@@ -208,17 +208,17 @@ DB["nameplate"] = {
 DB["datatext"] = {
 	["stat1"] = 11,						   -- Stat Based on your Role (Avoidance-Tank, AP-Melee, SP/HP-Caster)
 	["dur"] = 2,                           -- show your equipment durability on panels.
-	["stat2"] = 12, 						   -- Stat Based on your Role (Armor-Tank, Crit-Melee, Crit-Caster)
+	["stat2"] = 0, 						   -- Stat Based on your Role (Armor-Tank, Crit-Melee, Crit-Caster)
 	["system"] = 4,                        -- show fps and ms on panels, and total addon memory in tooltip
 	["wowtime"] = 8,                       -- show time on panels
-	["gold"] = 15,                          -- show your current gold on panels
+	["gold"] = 6,                          -- show your current gold on panels
 	["guild"] = 1,                         -- show number on guildmate connected on panels
 	["friends"] = 3,                       -- show number of friends connected.
-	["bags"] = 6,							-- show ammount of bag space available
-	["dps_text"] = 9,						-- show current dps
-	["hps_text"] = 10,						-- show current hps
+	["bags"] = 0,							-- show ammount of bag space available
+	["dps_text"] = 7,						-- show current dps
+	["hps_text"] = 0,						-- show current hps
 	["currency"] = 0,						-- show watched items in backpack
-	["specswitch"] = 13,					-- talent switch and Show current talent tree
+	["specswitch"] = 5,					-- talent switch and Show current talent tree
 	["range"] = 14,							-- show range to target
 	["hit"] = 0,
 	["haste"] = 0,
@@ -228,17 +228,17 @@ DB["datatext"] = {
 	["masteryspell"] = false,	
 	["battleground"] = true,               -- enable 3 stats in battleground only that replace stat1,stat2,stat3.
 	["time24"] = false,                     -- set time to 24h format.
-	["localtime"] = true,                 -- set time to local time instead of server time.
+	["localtime"] = false,                 -- set time to local time instead of server time.
 	["fontsize"] = 12,                     -- font size for panels.
-	["classcolor"] = false,
+	["classcolor"] = true,
 }
 
 DB["chat"] = {
 	["enable"] = true,                     -- blah
 	["whispersound"] = true,               -- play a sound when receiving whisper
 	["showbackdrop"] = true,				-- show a backdrop on the chat panels
-	["chatwidth"] = 368,					-- width of chat frame
-	["chatheight"] = 141,					-- height of chat frame
+	["chatwidth"] = 450,					-- width of chat frame
+	["chatheight"] = 125,					-- height of chat frame
 	["fadeoutofuse"] = true,				-- fade chat text when out of use
 	["sticky"] = true,						-- when opening the chat edit box resort to previous channel
 	["combathide"] = "NONE",			-- Set to "Left", "Right", "Both", or "NONE"
