@@ -1313,7 +1313,7 @@ local function LoadDPSLayout()
 
 	-- Focus
 	local focus = oUF:Spawn('focus', "ElvDPS_focus")
-	focus:Point("BOTTOMLEFT", ElvDPS_target, "TOPRIGHT", -35, 120)
+	focus:Point("LEFT", ElvDPS_target, "LEFT", 0, 215)
 	focus:Size(SMALL_WIDTH, SMALL_HEIGHT)
 
 	-- Target's Target
