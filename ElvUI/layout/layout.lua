@@ -201,14 +201,14 @@ if C["chat"].showbackdrop == true then
 	chatlbg:SetTemplate("Transparent")
 	chatlbg:SetAllPoints(chatlbgdummy)
 	chatlbg:SetFrameStrata("BACKGROUND")
-	
+
 	local chatltbg = CreateFrame("Frame", nil, chatlbg)
 	chatltbg:SetTemplate("Default", true)
 	chatltbg:SetPoint("BOTTOMLEFT", chatlbg, "TOPLEFT", 0, E.Scale(3))
-	chatltbg:SetPoint("BOTTOMRIGHT", chatlbg, "TOPRIGHT", -E.textbarheight, E.Scale(3))
-	chatltbg:SetHeight(E.textbarheight)
+	--chatltbg:SetPoint("BOTTOMRIGHT", chatlbg, "TOPRIGHT", -E.textbarheight, E.Scale(3))
+	--chatltbg:SetHeight(E.textbarheight)
 	chatltbg:SetFrameStrata("BACKGROUND")
-	
+
 	chatlbg:CreateShadow("Default")
 	chatltbg:CreateShadow("Default")
 end
@@ -223,8 +223,8 @@ if C["chat"].showbackdrop == true then
 	local chatrtbg = CreateFrame("Frame", nil, chatrbg)
 	chatrtbg:SetTemplate("Default", true)
 	chatrtbg:SetPoint("BOTTOMLEFT", chatrbg, "TOPLEFT", 0, E.Scale(3))
-	chatrtbg:SetPoint("BOTTOMRIGHT", chatrbg, "TOPRIGHT", -E.textbarheight, E.Scale(3))
-	chatrtbg:SetHeight(E.textbarheight)
+	--chatrtbg:SetPoint("BOTTOMRIGHT", chatrbg, "TOPRIGHT", -E.textbarheight, E.Scale(3))
+	--chatrtbg:SetHeight(E.textbarheight)
 	chatrtbg:SetFrameStrata("BACKGROUND")
 	chatrbg:CreateShadow("Default")
 	chatrtbg:CreateShadow("Default")

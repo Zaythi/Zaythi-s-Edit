@@ -63,14 +63,14 @@ local function SetChatStyle(frame)
 	tab.SetAlpha = UIFrameFadeRemoveFrame	
 	
 	-- always set alpha to 1, don't fade it anymore
-	if C["chat"].showbackdrop ~= true then
+	--if C["chat"].showbackdrop ~= true then
 		-- hide text when setting chat
 		_G[chat.."TabText"]:Hide()
 
 		-- now show text if mouse is found over tab.
 		tab:HookScript("OnEnter", function() _G[chat.."TabText"]:Show() end)
 		tab:HookScript("OnLeave", function() _G[chat.."TabText"]:Hide() end)
-	end
+	--end
 	
 	_G[chat.."TabText"]:SetTextColor(unpack(C["media"].valuecolor))
 	_G[chat.."TabText"]:SetFont(C["media"].font, C["datatext"].fontsize, "THINOUTLINE")
@@ -521,8 +521,8 @@ function E.ChatCopyButtons(id)
 		button:SetWidth(E.Scale(17) - 2)
 		button:SetAlpha(0)
 		button:SetPoint("TOPRIGHT", 0, 0)
-		button:SetTemplate("Default", true)
-		button:CreateShadow("Default")
+		--button:SetTemplate("Default", true) 	
+		--button:CreateShadow("Default")
 		
 		local buttontext = button:CreateFontString(nil,"OVERLAY",nil)
 		buttontext:SetFont(C["media"].font,C["datatext"].fontsize,"THINOUTLINE")
@@ -533,6 +533,7 @@ function E.ChatCopyButtons(id)
 		buttontext:SetJustifyH("CENTER")
 		buttontext:SetJustifyV("CENTER")
 		buttontext:SetTextColor(unpack(C["media"].valuecolor))
+		buttontext:SetAlpha(0)
 		
 		if id == 1 then
 			button:SetScript("OnMouseUp", function(self, btn)
@@ -548,10 +549,8 @@ function E.ChatCopyButtons(id)
 			end)		
 		end
 		
-		button:SetScript("OnEnter", function() 
-			button:SetAlpha(1) 
-		end)
-		button:SetScript("OnLeave", function() button:SetAlpha(0) end)
+		button:SetScript("OnEnter", function() button:SetAlpha(0) end)
+		button:SetScript("OnLeave", function() button:SetAlpha(1) end)
 	end
 
 end
