@@ -33,26 +33,14 @@ function ElvuiConfig:LoadDefaults()
 				DebuffWhiteList = E["DebuffWhiteList"],
 				ArenaBuffWhiteList = E["ArenaBuffWhiteList"],
 				PlateBlacklist = E["PlateBlacklist"],
-<<<<<<< HEAD
-=======
-				HealerBuffIDs = E["HealerBuffIDs"],
-				DPSBuffIDs = E["DPSBuffIDs"],
-				PetBuffs = E["PetBuffs"],
-				TRINKET_FILTER = TRINKET_FILTER,
-				CLASS_FILTERS = CLASS_FILTERS
->>>>>>> upstream/master
 			},
 		},
 	}
 end	
 
-<<<<<<< HEAD
 function ElvuiConfig:OnInitialize()
 	self:RegisterEvent("PLAYER_LOGIN")
 	
-=======
-function ElvuiConfig:OnInitialize()	
->>>>>>> upstream/master
 	ElvuiConfig:RegisterChatCommand("ec", "ShowConfig")
 	ElvuiConfig:RegisterChatCommand("elvui", "ShowConfig")
 	
@@ -64,19 +52,11 @@ function ElvuiConfig:ShowConfig(arg)
 	InterfaceOptionsFrame_OpenToCategory(self.optionsFrames.ElvuiConfig)
 end
 
-<<<<<<< HEAD
 function ElvuiConfig:PLAYER_LOGIN()
 	self:LoadDefaults()
 
 	-- Create savedvariables
 	self.db = LibStub("AceDB-3.0"):New("ElvConfig", defaults, true)
-=======
-function ElvuiConfig:Load()
-	self:LoadDefaults()
-
-	-- Create savedvariables
-	self.db = LibStub("AceDB-3.0"):New("ElvConfig", defaults)
->>>>>>> upstream/master
 	self.db.RegisterCallback(self, "OnProfileChanged", "OnProfileChanged")
 	self.db.RegisterCallback(self, "OnProfileCopied", "OnProfileChanged")
 	self.db.RegisterCallback(self, "OnProfileReset", "OnProfileChanged")
@@ -135,34 +115,12 @@ function ElvuiConfig.GenerateOptionsInternal()
 		timeout = 0,
 		whileDead = 1,
 	}
-<<<<<<< HEAD
-=======
-
-	if C["general"].upperpanel == true then
-		L["DATATEXT_POS"] = L["DATATEXT_POS2"]
-	end
-	
-	local RaidBuffs = {
-		["HealerBuffIDs"] = true,
-		["DPSBuffIDs"] = true,
-		["PetBuffs"] = true
-	}
-	
-	local ClassTimerShared = {
-		["TRINKET_FILTER"] = true,
-	}
-	
-	local ClassTimer = {
-		["CLASS_FILTERS"] = true
-	}
->>>>>>> upstream/master
 	
 	local function CreateFilterTable(tab)
 		local spelltable = db.spellfilter[tab]
 		if not spelltable then error("db.spellfilter could not find value 'tab'") return {} end
 		local newtable = {}
 		
-<<<<<<< HEAD
 		local ORDER = 1
 		if tab == "RaidDebuffs" then --RaidDebuffs require a reloadui
 			for spell, value in pairs(spelltable) do
@@ -177,297 +135,10 @@ function ElvuiConfig.GenerateOptionsInternal()
 					ORDER = ORDER + 1
 				end
 			end
-=======
-		if ClassTimer[tab] then
-			newtable["SelectSpellFilter"] = {
-				name = L["Choose Filter"],
-				desc = L["Choose the filter you want to modify."],
-				type = "select",
-				order = 1,
-				values = {
-					["target"] = TARGET,
-					["player"] = PLAYER,
-					["procs"] = L["Procs"],
-				},
-				set = function(info, value) 
-					db.spellfilter[ info[#info] ] = value;
-					local config = LibStub("AceConfigRegistry-3.0"):GetOptionsTable("ElvuiConfig", "dialog", "MyLib-1.2")
-					local curfilter = db.spellfilter.FilterPicker
-		
-					config.args.spellfilter.args.SpellListTable.args = CreateFilterTable(curfilter)
-				end,
-			}
-			local curfilter = db.spellfilter["SelectSpellFilter"]
-			if curfilter ~= nil then
-				newtable["SelectSpell"] = {
-					name = L["Select Spell"],
-					type = "select",
-					order = 2,
-					values = {},
-					set = function(info, value) 
-						db.spellfilter[ info[#info] ] = value;
-						local config = LibStub("AceConfigRegistry-3.0"):GetOptionsTable("ElvuiConfig", "dialog", "MyLib-1.2")
-						local curfilter = db.spellfilter.FilterPicker
-			
-						config.args.spellfilter.args.SpellListTable.args = CreateFilterTable(curfilter)
-					end,
-				}
-				
-				if not spelltable[E.myclass] then spelltable[E.myclass] = {} end
-				
-				for i, spell in pairs(spelltable[E.myclass][curfilter]) do
-					local id = spell["id"]
-					newtable["SelectSpell"]["values"][id] = GetSpellInfo(id)
-
-					if id == db.spellfilter["SelectSpell"] then
-						newtable["SpellGroup"] = {
-							order = 3,
-							type = "group",
-							name = GetSpellInfo(id).." ("..id..")",
-							guiInline = true,				
-							args = {
-								Enabled = {
-									type = "toggle",
-									order = 1,
-									name = L["Enabled"],
-									get = function(info) return db.spellfilter[tab][E.myclass][curfilter][i]["enabled"] end,
-									set = function(info, value) db.spellfilter[tab][E.myclass][curfilter][i]["enabled"] = value; StaticPopup_Show("CFG_RELOAD") end,										
-								},
-								CastByAnyone = {
-									type = "toggle",
-									order = 2,
-									name = L["Any Unit"],
-									desc = L["Display the buff if cast by anyone?"],
-									get = function(info) return db.spellfilter[tab][E.myclass][curfilter][i]["castByAnyone"] end,
-									set = function(info, value) db.spellfilter[tab][E.myclass][curfilter][i]["castByAnyone"] = value; StaticPopup_Show("CFG_RELOAD") end,									
-								},
-								Color = {
-									type = "color",
-									order = 3,
-									name = L["Color"],
-									hasAlpha = false,
-									get = function(info)
-										local t = db.spellfilter[tab][E.myclass][curfilter][i]["color"]
-										if not t then
-											t = {}
-											t.r = 0
-											t.g = 0
-											t.b = 0
-										end
-										
-										return t.r, t.g, t.b
-									end,
-									set = function(info, r, g, b)
-										db.spellfilter[tab][E.myclass][curfilter][i]["color"] = {}
-										local t = db.spellfilter[tab][E.myclass][curfilter][i]["color"]
-										t.r, t.g, t.b = r, g, b
-										StaticPopup_Show("CFG_RELOAD")
-									end,							
-								},
-								UnitType = {
-									type = "select",
-									order = 4,
-									name = L["Unit Type"],
-									desc = L["Only display on this type of unit"],
-									values = {
-										[0] = L["All"],
-										[1] = L["Friendly"],
-										[2] = L["Enemy"],
-									},
-									get = function(info) if db.spellfilter[tab][E.myclass][curfilter][i]["unitType"] == nil then return 0 else return db.spellfilter[tab][E.myclass][curfilter][i]["unitType"] end end,
-									set = function(info, value) db.spellfilter[tab][E.myclass][curfilter][i]["unitType"] = value; StaticPopup_Show("CFG_RELOAD") end,									
-								},
-								CastSpellID = {
-									type = "input",
-									order = 5,
-									name = L["Show Ticks"],
-									desc = L["Fill only if you want to see line on bar that indicates if its safe to start casting spell and not clip the last tick, also note that this can be different from aura id."],
-									get = function(info) if db.spellfilter[tab][E.myclass][curfilter][i]["castSpellId"] == nil then return "" else return db.spellfilter[tab][E.myclass][curfilter][i]["castSpellId"] end end,
-									set = function(info, value) db.spellfilter[tab][E.myclass][curfilter][i]["castSpellId"] = value; StaticPopup_Show("CFG_RELOAD") end,									
-								},
-							},
-						}					
-					end
-				end
-			end
-		elseif ClassTimerShared[tab] then
-			newtable["SelectSpell"] = {
-				name = L["Select Spell"],
-				type = "select",
-				order = 1,
-				values = {},
-				set = function(info, value) 
-					db.spellfilter[ info[#info] ] = value;
-					local config = LibStub("AceConfigRegistry-3.0"):GetOptionsTable("ElvuiConfig", "dialog", "MyLib-1.2")
-					local curfilter = db.spellfilter.FilterPicker
-		
-					config.args.spellfilter.args.SpellListTable.args = CreateFilterTable(curfilter)
-				end,
-			}
-			
-			for i, spell in pairs(spelltable) do
-				local id = spell["id"]
-
-				newtable["SelectSpell"]["values"][id] = GetSpellInfo(id)
-				
-				--{ enabled = true, id = id, castByAnyone = castByAnyone, color = color, unitType = unitType or 0, castSpellId = castSpellId }
-				if id == db.spellfilter["SelectSpell"] then
-					newtable["SpellGroup"] = {
-						order = 2,
-						type = "group",
-						name = GetSpellInfo(id).." ("..id..")",
-						guiInline = true,				
-						args = {
-							Enabled = {
-								type = "toggle",
-								order = 1,
-								name = L["Enabled"],
-								get = function(info) return db.spellfilter[tab][i]["enabled"] end,
-								set = function(info, value) db.spellfilter[tab][i]["enabled"] = value; StaticPopup_Show("CFG_RELOAD") end,										
-							},
-							CastByAnyone = {
-								type = "toggle",
-								order = 2,
-								name = L["Any Unit"],
-								desc = L["Display the buff if cast by anyone?"],
-								get = function(info) return db.spellfilter[tab][i]["castByAnyone"] end,
-								set = function(info, value) db.spellfilter[tab][i]["castByAnyone"] = value; StaticPopup_Show("CFG_RELOAD") end,									
-							},
-							Color = {
-								type = "color",
-								order = 3,
-								name = L["Color"],
-								hasAlpha = false,
-								get = function(info)
-									local t = db.spellfilter[tab][i]["color"]
-									if not t then
-										t = {}
-										t.r = 0
-										t.g = 0
-										t.b = 0
-									end
-									
-									return t.r, t.g, t.b
-								end,
-								set = function(info, r, g, b)
-									db.spellfilter[tab][i]["color"] = {}
-									local t = db.spellfilter[tab][i]["color"]
-									t.r, t.g, t.b = r, g, b
-									StaticPopup_Show("CFG_RELOAD")
-								end,							
-							},
-							UnitType = {
-								type = "select",
-								order = 4,
-								name = L["Unit Type"],
-								desc = L["Only display on this type of unit"],
-								values = {
-									[0] = L["All"],
-									[1] = L["Friendly"],
-									[2] = L["Enemy"],
-								},
-								get = function(info) if db.spellfilter[tab][i]["unitType"] == nil then return 0 else return db.spellfilter[tab][i]["unitType"] end end,
-								set = function(info, value) db.spellfilter[tab][i]["unitType"] = value; StaticPopup_Show("CFG_RELOAD") end,									
-							},
-							CastSpellID = {
-								type = "input",
-								order = 5,
-								name = L["Show Ticks"],
-								desc = L["Fill only if you want to see line on bar that indicates if its safe to start casting spell and not clip the last tick, also note that this can be different from aura id."],
-								get = function(info) if db.spellfilter[tab][i]["castSpellId"] == nil then return "" else return db.spellfilter[tab][i]["castSpellId"] end end,
-								set = function(info, value) db.spellfilter[tab][i]["castSpellId"] = value; StaticPopup_Show("CFG_RELOAD") end,									
-							},
-						},
-					}
-				end
-			end
-		elseif RaidBuffs[tab] then
-			if not spelltable[E.myclass] then spelltable[E.myclass] = {} end
-			newtable["SelectSpell"] = {
-				name = L["Select Spell"],
-				type = "select",
-				order = 1,
-				values = {},
-				set = function(info, value) 
-					db.spellfilter[ info[#info] ] = value;
-					local config = LibStub("AceConfigRegistry-3.0"):GetOptionsTable("ElvuiConfig", "dialog", "MyLib-1.2")
-					local curfilter = db.spellfilter.FilterPicker
-		
-					config.args.spellfilter.args.SpellListTable.args = CreateFilterTable(curfilter)
-				end,
-			}
-			
-			for i, spell in pairs(spelltable[E.myclass]) do
-				local id = spell["id"]
-				
-				newtable["SelectSpell"]["values"][id] = GetSpellInfo(id)
-				
-				if id == db.spellfilter["SelectSpell"] then
-					newtable["SpellGroup"] = {
-						order = 2,
-						type = "group",
-						name = GetSpellInfo(id).." ("..id..")",
-						guiInline = true,				
-						args = {
-							Enabled = {
-								type = "toggle",
-								order = 1,
-								name = L["Enabled"],
-								get = function(info) return db.spellfilter[tab][E.myclass][i]["enabled"] end,
-								set = function(info, value) db.spellfilter[tab][E.myclass][i]["enabled"] = value; StaticPopup_Show("CFG_RELOAD") end,										
-							},
-							Position = {
-								type = "select",
-								order = 2,
-								name = L["Position"],
-								desc = L["Position where the buff appears on the frame"],
-								get = function(info) return db.spellfilter[tab][E.myclass][i]["point"] end,
-								set = function(info, value) db.spellfilter[tab][E.myclass][i]["point"] = value; StaticPopup_Show("CFG_RELOAD") end,		
-								values = {
-									["TOPLEFT"] = "TOPLEFT",
-									["TOP"] = "TOP",
-									["TOPRIGHT"] = "TOPRIGHT",
-									["LEFT"] = "LEFT",
-									["RIGHT"] = "RIGHT",
-									["BOTTOMLEFT"] = "BOTTOMLEFT",
-									["BOTTOM"] = "BOTTOM",
-									["BOTTOMRIGHT"] = "BOTTOMRIGHT",
-								},
-							},
-							anyUnit = {
-								type = "toggle",
-								order = 3,
-								name = L["Any Unit"],
-								desc = L["Display the buff if cast by anyone?"],
-								get = function(info) return db.spellfilter[tab][E.myclass][i]["anyUnit"] end,
-								set = function(info, value) db.spellfilter[tab][E.myclass][i]["anyUnit"] = value; StaticPopup_Show("CFG_RELOAD") end,									
-							},
-							Color = {
-								type = "color",
-								order = 4,
-								name = L["Color"],
-								hasAlpha = false,
-								get = function(info)
-									local t = db.spellfilter[tab][E.myclass][i]["color"]
-									return t.r, t.g, t.b, t.a
-								end,
-								set = function(info, r, g, b)
-									db.spellfilter[tab][E.myclass][i]["color"] = {}
-									local t = db.spellfilter[tab][E.myclass][i]["color"]
-									t.r, t.g, t.b = r, g, b
-									StaticPopup_Show("CFG_RELOAD")
-								end,																	
-							},					
-						},
-					}
-				end
-			end	
->>>>>>> upstream/master
 		else
 			for spell, value in pairs(spelltable) do
 				if db.spellfilter[tab][spell] ~= nil then
 					newtable[spell] = {
-<<<<<<< HEAD
 						order = ORDER,
 						name = spell,
 						type = "toggle",
@@ -479,17 +150,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 			end		
 		end
 				
-=======
-						name = spell,
-						type = "toggle",
-						get = function(info) if db.spellfilter[tab][spell] then return true else return false end end,
-						set = function(info, value) db.spellfilter[tab][spell] = value; E[tab] = db.spellfilter[tab]; StaticPopup_Show("CFG_RELOAD") end,
-					}
-				end
-			end
-		end
-		
->>>>>>> upstream/master
 		return newtable
 	end		
 				
@@ -506,19 +166,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 			return L["These debuffs only get displayed on the target unit when the unit happens to be an enemy player."]
 		elseif db.spellfilter.FilterPicker == "RaidDebuffs" then
 			return L["These debuffs will be displayed on your raid frames in addition to any debuff that is dispellable."]
-<<<<<<< HEAD
-=======
-		elseif db.spellfilter.FilterPicker == "HealerBuffIDs" then
-			return L["These buffs are displayed on the healer raid and party layouts"]
-		elseif db.spellfilter.FilterPicker == "DPSBuffIDs" then
-			return L["These buffs are displayed on the DPS raid and party layouts"]
-		elseif db.spellfilter.FilterPicker == "PetBuffs" then
-			return L["These buffs are displayed on the pet frame"]
-		elseif db.spellfilter.FilterPicker == "TRINKET_FILTER" then
-			return L["These buffs are displayed no matter your class you must have a layout enabled that uses trinkets however for them to show"]
-		elseif db.spellfilter.FilterPicker == "CLASS_FILTERS" then
-			return L["These buffs/debuffs are displayed as a classtimer, where they get positioned is based on your layout option choice"]
->>>>>>> upstream/master
 		else
 			return ""
 		end
@@ -528,11 +175,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 		if db.spellfilter.FilterPicker == "PlateBlacklist" then
 			return L["Nameplate Names"]
 		else
-<<<<<<< HEAD
 			return L["Aura Names"]
-=======
-			return L["Auras"]
->>>>>>> upstream/master
 		end	
 	end
 	
@@ -543,15 +186,11 @@ function ElvuiConfig.GenerateOptionsInternal()
 		config.args.spellfilter.args.SpellListTable.args = CreateFilterTable(curfilter)
 		config.args.spellfilter.args.FilterDesc.name = GetFilterDesc()
 		config.args.spellfilter.args.SpellListTable.name = GetFilterName()
-<<<<<<< HEAD
 		
 		
 
 		
 		LibStub("AceConfigRegistry-3.0"):NotifyChange("ElvuiConfig")
-=======
-
->>>>>>> upstream/master
 		collectgarbage("collect") -- Memory dump
 	end
 	
@@ -644,11 +283,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 						order = 11,
 						type = "toggle",
 						name = L["Lower Frame"],
-<<<<<<< HEAD
 						desc = L["Enable the data text bar at the bottom of the screen, adding data text positions 11 through 15."],					
-=======
-						desc = L["Enable a bar accross the bottom of the screen, mostly for decoration."],					
->>>>>>> upstream/master
 					},
 				},
 			},
@@ -1109,7 +744,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 								name = L["Combat Fade"],
 								desc = L["Fade main unitframes out when not in combat, unless you cast or mouseover the frame"],								
 							},
-<<<<<<< HEAD
 							powerbar_offset = {
 								type = "range",
 								order = 18,
@@ -1120,24 +754,10 @@ function ElvuiConfig.GenerateOptionsInternal()
 							mini_powerbar = {
 								type = "toggle",
 								order = 19,
-=======
-							mini_powerbar = {
-								type = "toggle",
-								order = 18,
->>>>>>> upstream/master
 								name = L["Mini-Powerbar Theme"],
 								desc = L["Style the unitframes with a smaller powerbar"],		
 								disabled = function() return not db.unitframes.enable or db.unitframes.powerbar_offset ~= 0 end,	
 							},
-<<<<<<< HEAD
-=======
-							mini_classbar = {
-								type = "toggle",
-								order = 19,
-								name = L["Mini-Classbar Theme"],
-								desc = L["Make classbars smaller and restyle them"],
-							},
->>>>>>> upstream/master
 							arena = {
 								type = "toggle",
 								order = 20,
@@ -1161,22 +781,12 @@ function ElvuiConfig.GenerateOptionsInternal()
 								name = L["Display Aggro"],
 								desc = L["Enable red glow around the player frame when you have aggro"],
 							},
-<<<<<<< HEAD
 							autorepchange = {
 								type = "toggle",
 								order = 23,
 								name = L["Autmatically change tracked reputation"],
 								desc = L["Change the tracked reputation when the standing with a faction changes"],
 							},							
-=======
-							powerbar_offset = {
-								type = "range",
-								order = 24,
-								name = L["Powerbar Offset"],
-								desc = L["Detach and offset the power bar on the main unitframes"],
-								min = 0, max = 12, step = 1,	
-							},
->>>>>>> upstream/master
 						},
 					},
 					UFSizeGroup = {
@@ -1259,7 +869,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 						guiInline = true,
 						disabled = function() return not db.unitframes.enable end,	
 						args = {
-<<<<<<< HEAD
 							playerauras = {
 								type = "toggle",
 								order = 1,
@@ -1309,65 +918,11 @@ function ElvuiConfig.GenerateOptionsInternal()
 							totdebuffs = {
 								type = "toggle",
 								order = 10,
-=======
-							playerbuffs = {
-								type = "toggle",
-								order = 1,
-								name = L["Player Buffs"],
-								desc = L["Display auras on frame"],				
-							},
-							playerdebuffs = {
-								type = "toggle",
-								order = 2,
-								name = L["Player Debuffs"],
-								desc = L["Display auras on frame"],				
-							},
-							targetbuffs = {
-								type = "toggle",
-								order = 3,
-								name = L["Target Buffs"],
-								desc = L["Display auras on frame"],								
-							},
-							targetdebuffs = {
-								type = "toggle",
-								order = 4,
-								name = L["Target Debuffs"],
-								desc = L["Display auras on frame"],								
-							},
-							arenabuffs = {
-								type = "toggle",
-								order = 5,
-								name = L["Arena Buffs"],
-								desc = L["Display important buffs on the arena unit, these may be changed in the filter section of the config"],								
-							},
-							arenadebuffs = {
-								type = "toggle",
-								order = 6,
-								name = L["Arena Debuffs"],
-								desc = L["Display important debuffs on the arena unit, these may be changed in the filter section of the config"],								
-							},
-							bossbuffs = {
-								type = "toggle",
-								order = 7,
-								name = L["Boss Buffs"],
-								desc = L["Display auras on frame"],								
-							},
-							bossdebuffs = {
-								type = "toggle",
-								order = 8,
-								name = L["Boss Debuffs"],
-								desc = L["Display auras on frame"],
-							},
-							totdebuffs = {
-								type = "toggle",
-								order = 9,
->>>>>>> upstream/master
 								name = L["TargetTarget Debuffs"],
 								desc = L["Display auras on frame"],									
 							},
 							focusdebuffs = {
 								type = "toggle",
-<<<<<<< HEAD
 								order = 11,
 								name = L["Focus Debuffs"],
 								desc = L["Display auras on frame"],									
@@ -1375,27 +930,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 							playtarbuffperrow = {
 								type = "range",
 								order = 12,
-=======
-								order = 10,
-								name = L["Focus Debuffs"],
-								desc = L["Display auras on frame"],									
-							},
-							playerdebuffsonly = {
-								type = "toggle",
-								order = 11,
-								name = L["Player's Debuffs Only"],
-								desc = L["Only display debuffs on the target, targettarget, boss, and arena frames that are from yourself"],						
-							},
-							auratimer = {
-								type = "toggle",
-								order = 12,
-								name = L["Aura Timer"],
-								desc = L["Display aura timer"],								
-							},
-							playtarbuffperrow = {
-								type = "range",
-								order = 13,
->>>>>>> upstream/master
 								name = L["Player/Target Auras in Row"],
 								desc = L["The ammount of auras displayed in a single row"],
 								type = "range",
@@ -1403,26 +937,11 @@ function ElvuiConfig.GenerateOptionsInternal()
 							},
 							smallbuffperrow = {
 								type = "range",
-<<<<<<< HEAD
 								order = 13,
-=======
-								order = 14,
->>>>>>> upstream/master
 								name = L["Small Frames Auras in Row"],
 								desc = L["The ammount of auras displayed in a single row"],
 								type = "range",
 								min = 3, max = 9, step = 1,								
-<<<<<<< HEAD
-=======
-							},							
-							auratextscale = {
-								type = "range",
-								order = 15,
-								name = L["Aura Text Scale"],
-								desc = L["Controls the size of the aura font"],
-								type = "range",
-								min = 9, max = 15, step = 1,									
->>>>>>> upstream/master
 							},
 						},
 					},
@@ -1513,7 +1032,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 							},
 						},
 					},
-<<<<<<< HEAD
 					GPSGroup = {
 						order = 6,
 						type = "group",
@@ -1538,11 +1056,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 					PowerColors = {
 						type = "group",
 						order = 7,
-=======
-					PowerColors = {
-						type = "group",
-						order = 6,
->>>>>>> upstream/master
 						name = L["Power Colors"],
 						guiInline = true,
 						get = function(info)
@@ -1747,20 +1260,9 @@ function ElvuiConfig.GenerateOptionsInternal()
 								desc = L["Display special buffs on raidframes"],
 								disabled = function() return not db.raidframes.enable and not db.unitframes.enable end,
 							},
-<<<<<<< HEAD
 							buffindicatorsize = {
 								type = "range",
 								order = 21,
-=======
-							debuffs = {
-								type = "toggle",
-								order = 21,
-								name = L["Display Debuffs"],
-							},
-							buffindicatorsize = {
-								type = "range",
-								order = 22,
->>>>>>> upstream/master
 								name = L["Raid Buff Display Size"],
 								desc = L["Size of the buff icon on raidframes"],
 								disabled = function() return not db.raidframes.enable and not db.unitframes.enable end,
@@ -2140,139 +1642,90 @@ function ElvuiConfig.GenerateOptionsInternal()
 								type = "range",
 								name = L["Stat #1"],
 								desc = L["Display stat based on your role (Avoidance-Tank, AP-Melee, SP/HP-Caster)"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,
-=======
-								min = 0, max = 8, step = 1,
->>>>>>> upstream/master
 							},
 							dur = {
 								order = 2,
 								type = "range",
 								name = L["Durability"],
 								desc = L["Display your current durability"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,							
-=======
-								min = 0, max = 8, step = 1,							
->>>>>>> upstream/master
 							},
 							stat2 = {
 								order = 3,
 								type = "range",
 								name = L["Stat #2"],
 								desc = L["Display stat based on your role (Armor-Tank, Crit-Melee, Crit-Caster)"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,							
-=======
-								min = 0, max = 8, step = 1,							
->>>>>>> upstream/master
 							},
 							system = {
 								order = 4,
 								type = "range",
 								name = L["System"],
 								desc = L["Display FPS and Latency"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							wowtime = {
 								order = 5,
 								type = "range",
 								name = L["Time"],
 								desc = L["Display current time"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,									
-=======
-								min = 0, max = 8, step = 1,									
->>>>>>> upstream/master
 							},
 							gold = {
 								order = 6,
 								type = "range",
 								name = L["Gold"],
 								desc = L["Display current gold"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							guild = {
 								order = 7,
 								type = "range",
 								name = L["Guild"],
 								desc = L["Display current online people in guild"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							friends = {
 								order = 8,
 								type = "range",
 								name = L["Friends"],
 								desc = L["Display current online friends"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							bags = {
 								order = 9,
 								type = "range",
 								name = L["Bags"],
 								desc = L["Display ammount of bag space"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							dps_text = {
 								order = 10,
 								type = "range",
 								name = L["DPS"],
 								desc = L["Display ammount of DPS"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							hps_text = {
 								order = 11,
 								type = "range",
 								name = L["HPS"],
 								desc = L["Display ammount of HPS"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							currency = {
 								order = 12,
 								type = "range",
 								name = L["Currency"],
 								desc = L["Display current watched items in backpack"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							specswitch = {
 								order = 13,
 								type = "range",
 								name = L["Talent Spec"],
 								desc = L["Display current spec"]..L["DATATEXT_POS"],
-<<<<<<< HEAD
 								min = 0, max = 15, step = 1,								
 							},
 							range = {
@@ -2281,9 +1734,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 								name = L["Target Range"],
 								desc = L["Display the range to the current target"]..L["DATATEXT_POS"],
 								min = 0, max = 15, step = 1,								
-=======
-								min = 0, max = 8, step = 1,								
->>>>>>> upstream/master
 							},
 							mastery = {
 								order = 14,
@@ -2633,14 +2083,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 							["TargetPVPOnly"] = L["Target Debuffs (PvP Only)"],
 							["ArenaBuffWhiteList"] = L["Arena Buffs"],
 							["PlateBlacklist"] = L["Nameplate Blacklist"],
-<<<<<<< HEAD
-=======
-							["HealerBuffIDs"] = L["Raid Buffs (Heal)"],
-							["DPSBuffIDs"] = L["Raid Buffs (DPS)"],
-							["PetBuffs"] = L["Pet Buffs"],
-							["TRINKET_FILTER"] = L["Class Timer (Shared)"],
-							["CLASS_FILTERS"] = L["Class Timer (Player)"]
->>>>>>> upstream/master
 						},						
 					},			
 					spacer = {
@@ -2656,7 +2098,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 					},						
 					NewName = {
 						type = 'input',
-<<<<<<< HEAD
 						name = L["New name"],
 						desc = L["Add a new name to the list."],
 						get = function(info) return "" end,
@@ -2692,52 +2133,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 							end
 						end,
 						order = 6,
-=======
-						name = function() if ClassTimerShared[db.spellfilter.FilterPicker] or ClassTimer[db.spellfilter.FilterPicker] or RaidBuffs[db.spellfilter.FilterPicker] then return L["New ID"] else return L["New name"] end end,
-						desc = L["Add a new spell name / ID to the list."],
-						get = function(info) return "" end,
-						set = function(info, value)
-							if ClassTimer[db.spellfilter.FilterPicker] then
-								if not GetSpellInfo(value) then
-									print(L["Not valid spell id"])
-								elseif not db.spellfilter["SelectSpellFilter"] then
-									print(L["You must select a filter first"])
-								else
-									local curfilter = db.spellfilter["SelectSpellFilter"]
-									local num = #db.spellfilter[db.spellfilter.FilterPicker] + 1
-									db.spellfilter[db.spellfilter.FilterPicker][E.myclass][curfilter][num] = { enabled = true, id = tonumber(value), castByAnyone = false, color = nil, unitType = 0, castSpellId = nil }
-									UpdateSpellFilter()								
-									StaticPopup_Show("CFG_RELOAD")
-								end									
-							elseif ClassTimerShared[db.spellfilter.FilterPicker] then
-								if not GetSpellInfo(value) then
-									print(L["Not valid spell id"])
-								else
-									local num = #db.spellfilter[db.spellfilter.FilterPicker] + 1
-									db.spellfilter[db.spellfilter.FilterPicker][num] = { enabled = true, id = tonumber(value), castByAnyone = false, color = nil, unitType = 0, castSpellId = nil }
-									UpdateSpellFilter()								
-									StaticPopup_Show("CFG_RELOAD")
-								end							
-							elseif RaidBuffs[db.spellfilter.FilterPicker] then
-								if not GetSpellInfo(value) then
-									print(L["Not valid spell id"])
-								else
-									local num = #db.spellfilter[db.spellfilter.FilterPicker][E.myclass] + 1
-									db.spellfilter[db.spellfilter.FilterPicker][E.myclass][num] = {["enabled"] = true, ["id"] = tonumber(value), ["point"] = "TOPRIGHT", ["color"] = {["r"] = 1, ["g"] = 0, ["b"] = 0}, ["anyUnit"] = false}
-									UpdateSpellFilter()								
-									StaticPopup_Show("CFG_RELOAD")
-								end
-							else
-								local name_list = db.spellfilter[db.spellfilter.FilterPicker]
-								name_list[value] = true
-								UpdateSpellFilter()
-								E[name_list] = db.spellfilter[name_list]
-								
-								StaticPopup_Show("CFG_RELOAD")
-							end
-						end,
-						order = 5,
->>>>>>> upstream/master
 					},
 					SpellListTable = {
 						order = 7,
@@ -2834,15 +2229,12 @@ function ElvuiConfig.GenerateOptionsInternal()
 								name = L["Auto Repair"],
 								desc = L["Automatically repair when visiting a vendor"],							
 							},
-<<<<<<< HEAD
 							guildbankrepair = {
 								type = "toggle",
 								order = 4,
 								name = L["Use guild bank for Auto Repair"],
 								desc = L["Use the guild bank for auto repair when available."],							
 							},
-=======
->>>>>>> upstream/master
 						},
 					},
 					AurasGroup = {
@@ -2869,23 +2261,10 @@ function ElvuiConfig.GenerateOptionsInternal()
 								desc = L["Icons below minimap, displayed inside instances"],								
 							},
 							announceinterrupt = {
-<<<<<<< HEAD
 								type = "toggle",
 								order = 4,
 								name = L["Interrupt Announce"],
 								desc = L["Announce when you interrupt a spell"],								
-=======
-								type = "select",
-								order = 4,
-								name = L["Interrupt Announce"],
-								desc = L["Announce when you interrupt a spell"],
-								values = {
-									["NONE"] = L["None"],
-									["SAY"] = CHAT_MSG_SAY,
-									["PARTY"] = PARTY,
-									["RAID"] = RAID,
-								},
->>>>>>> upstream/master
 							},
 							showthreat = {
 								type = "toggle",
@@ -2904,19 +2283,5 @@ function ElvuiConfig.GenerateOptionsInternal()
 				},		
 			},
 		},
-<<<<<<< HEAD
 	}	
 end
-=======
-	}
-	
-	if C["general"].upperpanel == true then
-		for _, option in pairs(ElvuiConfig.Options.args.datatext.args.DataGroup.args) do
-			option.max = 10
-		end
-		L["DATATEXT_POS"] = L["DATATEXT_POS2"]
-	end
-end
-
-
->>>>>>> upstream/master

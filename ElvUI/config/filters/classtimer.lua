@@ -13,11 +13,7 @@
 local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
 CreateSpellEntry = function( id, castByAnyone, color, unitType, castSpellId )
-<<<<<<< HEAD
 	return { id = id, castByAnyone = castByAnyone, color = color, unitType = unitType or 0, castSpellId = castSpellId };
-=======
-	return { enabled = true, id = id, castByAnyone = castByAnyone, color = color, unitType = unitType or 0, castSpellId = castSpellId };
->>>>>>> upstream/master
 end
 
 TRINKET_FILTER = {
@@ -358,10 +354,7 @@ CLASS_FILTERS = {
 			CreateSpellEntry( 53563 ), -- Beacon of Light
 			CreateSpellEntry( 31821 ), -- Aura Mastery
 			CreateSpellEntry( 54428 ), -- Divine Plea
-<<<<<<< HEAD
 			CreateSpellEntry( 31482 ), -- Divine Favor
-=======
->>>>>>> upstream/master
 			CreateSpellEntry( 86659 ), --Guardian of Ancient Kings (Prot)
 			CreateSpellEntry( 86669 ), --Guardian of Ancient Kings (Holy)
 			CreateSpellEntry( 86698 ), --Guardian of Ancient Kings (Ret)

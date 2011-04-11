@@ -7,33 +7,21 @@ DB["media"] = {
 	["dmgfont"] = "ElvUI Combat", -- general font of dmg / sct
 		
 	-- textures
-<<<<<<< HEAD
 	["normTex"] = "ElvUI Gloss", -- texture used for Elvui healthbar/powerbar/etc
-=======
-	["normTex"] = "ElvUI Norm", -- texture used for Elvui healthbar/powerbar/etc
->>>>>>> upstream/master
 	["glossTex"] = "ElvUI Gloss",
 	["glowTex"] = "ElvUI GlowBorder",
 	["blank"] = "ElvUI Blank",
 	
 	["raidicons"] = [[Interface\AddOns\ElvUI\media\textures\raidicons.blp]], -- new raid icon textures by hankthetank
-<<<<<<< HEAD
 	["arrow"] = [[Interface\AddOns\ElvUI\media\textures\arrow.tga]],	-- arrow texture for target and focus gps
 
-=======
-	
->>>>>>> upstream/master
 	-- sound
 	["whisper"] = "ElvUI Whisper",
 	["warning"] = "ElvUI Warning",
 	["glossyTexture"] = false,	-- Use a glossy texture for all frames
 	
 	--colors
-<<<<<<< HEAD
 	["bordercolor"] = { r = .18,g = .18,b = .18 }, -- border color of Elvui panels
-=======
-	["bordercolor"] = { r = .23,g = .23,b = .23 }, -- border color of Elvui panels
->>>>>>> upstream/master
 	["backdropcolor"] = { r = .07,g = .07,b = .07 }, -- background color of Elvui panels
 	["backdropfadecolor"] = { r = .07,g = .07,b = .07, a = 0.9 }, --this is always the same as the backdrop color with an alpha of 0.8, see colors.lua
 	["valuecolor"] = {r = 23/255,g = 132/255,b = 209/255}, -- color for values of datatexts
@@ -41,28 +29,16 @@ DB["media"] = {
 
 
 DB["general"] = {
-<<<<<<< HEAD
 	["autoscale"] = false,                  -- mainly enabled for users that don't want to mess with the config file
 	["uiscale"] = 0.66,                    -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 	["multisampleprotect"] = false,         -- i don't recommend this because of shitty border but, voila!
-=======
-	["autoscale"] = true,                  -- mainly enabled for users that don't want to mess with the config file
-	["uiscale"] = 0.78,                    -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
-	["multisampleprotect"] = true,         -- i don't recommend this because of shitty border but, voila!
->>>>>>> upstream/master
 	["classcolortheme"] = false,			--class colored theme for panels
 	["fontscale"] = 12,					--Master font
 	["resolutionoverride"] = "NONE",		--override lowversion (Low, High)
 	["layoutoverride"] = "NONE",			--ovverride layout (DPS, Healer)
-<<<<<<< HEAD
 	["sharpborders"] = false,
 	["upperpanel"] = false,
 	["lowerpanel"] = true,
-=======
-	["sharpborders"] = true,
-	["upperpanel"] = false,
-	["lowerpanel"] = false,
->>>>>>> upstream/master
 }
 
 DB["skin"] = {
@@ -80,18 +56,13 @@ DB["skin"] = {
 DB["unitframes"] = {
 	-- general options
 	["enable"] = true,                     -- do i really need to explain this?
-<<<<<<< HEAD
 	["fontsize"] = 11,						-- default font height for unitframes
-=======
-	["fontsize"] = 12,						-- default font height for unitframes
->>>>>>> upstream/master
 	["lowThreshold"] = 20,                 -- global low threshold, for low mana warning.
 	["targetpowerplayeronly"] = true,         -- enable power text on pvp target only
 	["showfocustarget"] = false,           -- show focus's target
 	["pettarget"] = true,					-- show player's pet's target (DPS)
 	["showtotalhpmp"] = false,             -- change the display of info text on player and target with XXXX/Total.
 	["showsmooth"] = true,                 -- enable smooth bar
-<<<<<<< HEAD
 	["charportrait"] = false,              -- enable character portrait
 	["charportraithealth"] = false,			-- portrait overlay healthbar
 	["classcolor"] = false,                  -- color unitframes by class
@@ -100,41 +71,20 @@ DB["unitframes"] = {
 	["healthbackdrop"] = false,				-- enable using custom healthbackdrop color
 	["healthbackdropcolor"] = DB["media"].backdropcolor,
 	["combatfeedback"] = true,             -- enable combattext on player and target.
-=======
-	["charportrait"] = true,              -- enable character portrait
-	["charportraithealth"] = false,			-- portrait overlay healthbar
-	["classcolor"] = false,                  -- color unitframes by class
-	["healthcolor"] = DB["media"].bordercolor, --color of the unitframe
-	["healthcolorbyvalue"] = true,			-- color health by current health remaining
-	["healthbackdrop"] = false,				-- enable using custom healthbackdrop color
-	["healthbackdropcolor"] = DB["media"].backdropcolor,
-	["combatfeedback"] = false,             -- enable combattext on player and target.
->>>>>>> upstream/master
 	["debuffhighlight"] = true,				--highlight frame with the debuff color if the frame is dispellable
 	["classbar"] = true,                    -- enable runebar/totembar/holypowerbar/soulshardbar/eclipsebar
 	["combat"] = false,						-- only show main unitframes when in combat/havetarget/or mouseover
 	["mini_powerbar"] = false,
-<<<<<<< HEAD
-=======
-	["mini_classbar"] = false,
->>>>>>> upstream/master
 	["powerbar_offset"] = 0,
 	["showboss"] = true,                   -- enable boss unit frames for PVELOL encounters.
 	["arena"] = true,                 -- enable elvui arena unitframes (requirement : Elvui unitframes enabled)	
 	["swing"] = false,
 	["displayaggro"] = true,
-<<<<<<< HEAD
 	["autorepchange"] = false,					-- Enable automitic change of reputation tracking on faction standing change
 	
 	--frame sizes
 	["playtarwidth"] = 275,					--width of player/target frame
 	["playtarheight"] = 60,					--height of player/target frame
-=======
-	
-	--frame sizes
-	["playtarwidth"] = 275,					--width of player/target frame
-	["playtarheight"] = 55,					--height of player/target frame
->>>>>>> upstream/master
 	["smallwidth"] = 130,					--Width of TargetTarget, Focus, FocusTarget, Player's Pet frames
 	["smallheight"] = 35,					--Height of TargetTarget, Focus, FocusTarget, Player's Pet frames
 	["arenabosswidth"] = 212,				--Width of Arena/Boss Frames
@@ -145,53 +95,29 @@ DB["unitframes"] = {
 	--auras
 	["auratimer"] = true,                  -- enable timers on buffs/debuffs
 	["auratextscale"] = 11,                -- the font size of buffs/debuffs timers on unitframes
-<<<<<<< HEAD
 	["playerauras"] = true,               -- enable auras
 	["playershowonlydebuffs"] = true, 		-- only show the players debuffs over the player frame, not buffs (playerauras must be true)
 	["playerdebuffsonly"] = true,			-- show the players debuffs on target, and any debuff in the whitelist (see debuffFilter.lua)
 	["targetauras"] = true,                -- enable auras on target unit frame
 	["arenadebuffs"] = true, 				-- enable debuff filter for arena frames
-=======
-	["playerbuffs"] = false,
-	["playerdebuffs"] = true,
-	["targetbuffs"] = true,
-	["targetdebuffs"] = true,
-	["arenabuffs"] = true,
-	["bossbuffs"] = true,
-	["arenadebuffs"] = true,
-	["bossdebuffs"] = true,
-	["playershowonlydebuffs"] = true, 		-- only show the players debuffs over the player frame, not buffs (playerauras must be true)
-	["playerdebuffsonly"] = true,			-- show the players debuffs on target, and any debuff in the whitelist (see debuffFilter.lua)
->>>>>>> upstream/master
 	["totdebuffs"] = true,                -- enable tot debuffs (high reso only)
 	["focusdebuffs"] = true,              -- enable focus debuffs 
 	["playtarbuffperrow"] = 8,				-- buffs/debuffs per row on player/target frames
 	["smallbuffperrow"] = 5,				-- debuffs per row on targettarget/focus frames
 	
-<<<<<<< HEAD
 	--castbar
 	["unitcastbar"] = true, -- enable Elvui castbar
 	["cblatency"] = true, -- enable castbar latency
-=======
-	
-	--castbar
-	["unitcastbar"] = true, -- enable Elvui castbar
-	["cblatency"] = false, -- enable castbar latency
->>>>>>> upstream/master
 	["cbicons"] = true, -- enable icons on castbar
 	["castplayerwidth"] = 275,
 	["casttargetwidth"] = 275,
 	["castfocuswidth"] = 275,
 	["castbarcolor"] = DB["media"].bordercolor, -- Color of player castbar
-<<<<<<< HEAD
 	["nointerruptcolor"] = { r = 0.78, g = 0.25, g = 0.25, a = 1 }, -- Color of target castbar
 	
 	--GPS Tracker
 	["targetgps"] = false,
 	["focusgps"] = false,
-=======
-	["nointerruptcolor"] = {r = 0.78, g = 0.25, b = 0.25}, -- Color of target castbar
->>>>>>> upstream/master
 	
 	["POWER_MANA"] = {r = 0.31, g = 0.45, b = 0.63},
 	["POWER_RAGE"] = {r = 0.78, g = 0.25, b = 0.25},
@@ -219,18 +145,10 @@ DB["raidframes"] = {
 	["partytarget"]	= false,				--display party members targets (DPS ONLY)
 	["mouseglow"] = true,					--glow the class/reaction color of the unit that you mouseover
 	["raidunitbuffwatch"] = true,       -- track important spell to watch in pve for grid mode.
-<<<<<<< HEAD
 	["buffindicatorsize"] = 6,				-- size of the buff indicator on raid/party frames	
 	["displayaggro"] = true,
 	["mini_powerbar"] = true,
 	["gridonly"] = true,
-=======
-	["buffindicatorsize"] = 6,				-- size of the buff indicator on raid/party frames
-	["debuffs"] = true,
-	["displayaggro"] = true,
-	["mini_powerbar"] = false,
-	["gridonly"] = false,
->>>>>>> upstream/master
 }
 
 DB["classtimer"] = {
@@ -250,13 +168,8 @@ DB["classtimer"] = {
 
 DB["actionbar"] = {
 	["enable"] = true,                     -- enable elvui action bars
-<<<<<<< HEAD
 	["hotkey"] = false,                     -- enable hotkey display because it was a lot requested
 	["rightbarmouseover"] = true,         -- enable right bars on mouse over
-=======
-	["hotkey"] = true,                     -- enable hotkey display because it was a lot requested
-	["rightbarmouseover"] = false,         -- enable right bars on mouse over
->>>>>>> upstream/master
 	["shapeshiftmouseover"] = false,       -- enable shapeshift or totembar on mouseover
 	["hideshapeshift"] = false,            -- hide shapeshift or totembar because it was a lot requested.
 	["showgrid"] = true,                   -- show grid on empty button
@@ -293,7 +206,6 @@ DB["nameplate"] = {
 }
 
 DB["datatext"] = {
-<<<<<<< HEAD
 	["stat1"] = 11,						   -- Stat Based on your Role (Avoidance-Tank, AP-Melee, SP/HP-Caster)
 	["dur"] = 2,                           -- show your equipment durability on panels.
 	["stat2"] = 0, 						   -- Stat Based on your Role (Armor-Tank, Crit-Melee, Crit-Caster)
@@ -308,21 +220,6 @@ DB["datatext"] = {
 	["currency"] = 0,						-- show watched items in backpack
 	["specswitch"] = 5,					-- talent switch and Show current talent tree
 	["range"] = 14,							-- show range to target
-=======
-	["stat1"] = 1,						   -- Stat Based on your Role (Avoidance-Tank, AP-Melee, SP/HP-Caster)
-	["dur"] = 2,                           -- show your equipment durability on panels.
-	["stat2"] = 3, 						   -- Stat Based on your Role (Armor-Tank, Crit-Melee, Crit-Caster)
-	["system"] = 4,                        -- show fps and ms on panels, and total addon memory in tooltip
-	["wowtime"] = 5,                       -- show time on panels
-	["gold"] = 6,                          -- show your current gold on panels
-	["guild"] = 7,                         -- show number on guildmate connected on panels
-	["friends"] = 8,                       -- show number of friends connected.
-	["bags"] = 0,							-- show ammount of bag space available
-	["dps_text"] = 0,						-- show current dps
-	["hps_text"] = 0,						-- show current hps
-	["currency"] = 0,						-- show watched items in backpack
-	["specswitch"] = 0,
->>>>>>> upstream/master
 	["hit"] = 0,
 	["haste"] = 0,
 	["mastery"] = 0,
@@ -331,28 +228,17 @@ DB["datatext"] = {
 	["masteryspell"] = false,	
 	["battleground"] = true,               -- enable 3 stats in battleground only that replace stat1,stat2,stat3.
 	["time24"] = false,                     -- set time to 24h format.
-<<<<<<< HEAD
 	["localtime"] = false,                 -- set time to local time instead of server time.
 	["fontsize"] = 12,                     -- font size for panels.
 	["classcolor"] = true,
-=======
-	["localtime"] = true,                 -- set time to local time instead of server time.
-	["fontsize"] = 12,                     -- font size for panels.
-	["classcolor"] = false,
->>>>>>> upstream/master
 }
 
 DB["chat"] = {
 	["enable"] = true,                     -- blah
 	["whispersound"] = true,               -- play a sound when receiving whisper
 	["showbackdrop"] = true,				-- show a backdrop on the chat panels
-<<<<<<< HEAD
 	["chatwidth"] = 450,					-- width of chat frame
 	["chatheight"] = 125,					-- height of chat frame
-=======
-	["chatwidth"] = 348,					-- width of chat frame
-	["chatheight"] = 111,					-- height of chat frame
->>>>>>> upstream/master
 	["fadeoutofuse"] = true,				-- fade chat text when out of use
 	["sticky"] = true,						-- when opening the chat edit box resort to previous channel
 	["combathide"] = "NONE",			-- Set to "Left", "Right", "Both", or "NONE"
@@ -367,47 +253,27 @@ DB["tooltip"] = {
 	["hideuf"] = false,                    -- hide tooltip on unitframes
 	["cursor"] = false,                    -- show anchored to cursor
 	["colorreaction"] = false,				-- always color border of tooltip by unit reaction
-<<<<<<< HEAD
 	["itemid"] = false,						--display itemid on item tooltips 
-=======
-	["itemid"] = true,						--display itemid on item tooltips 
->>>>>>> upstream/master
 	["whotargetting"] = true,				--show who is targetting the unit (in raid or party)
 }
 
 DB["others"] = {
-<<<<<<< HEAD
 	["pvpautorelease"] = true,            -- enable auto-release in bg or wintergrasp.
-=======
-	["pvpautorelease"] = false,            -- enable auto-release in bg or wintergrasp.
->>>>>>> upstream/master
 	["errorenable"] = true,                     -- true to enable this mod, false to disable
 	["autoacceptinv"] = true,                 -- auto-accept invite from guildmate and friends.
 	["enablemap"] = true,                     -- reskin the map to fit Elvui
 	["enablebag"] = true,                     -- enable an all in one bag mod that fit Elvui perfectly
-<<<<<<< HEAD
-=======
-	
-
->>>>>>> upstream/master
 	["lootframe"] = true,                  -- reskin the loot frame to fit Elvui
 	["rolllootframe"] = true,              -- reskin the roll frame to fit Elvui
 	["autogreed"] = true,                  -- auto-dez or auto-greed item at max level.	
 	["sellgrays"] = true,                  -- automaticly sell grays?
 	["autorepair"] = true,                 -- automaticly repair?
-<<<<<<< HEAD
 	["guildbankrepair"] = true,						 -- use guildbank for auto repair (when available)
-=======
->>>>>>> upstream/master
 	
 	["buffreminder"] = true,                     -- this is now the new innerfire warning script for all armor/aspect class.
 	["remindersound"] = true,                      -- enable warning sound notification for reminder.
 	["raidbuffreminder"] = true,			-- buffbar below the minimap, important missing buffs	
-<<<<<<< HEAD
 	["announceinterrupt"] = true,			-- announce in party/raid when you interrupt
-=======
-	["announceinterrupt"] = "PARTY",			-- announce in party/raid when you interrupt
->>>>>>> upstream/master
 	["showthreat"] = true,                 -- enable the threat bar anchored to info right panel.
 	["minimapauras"] = true,				-- enable minimap auras		
 }

@@ -1,10 +1,7 @@
 ﻿<Ui xmlns="http://www.blizzard.com/wow/ui/">	
 	<Script file="autodez.lua"/>
 	<Script file="autorelease.lua"/>
-<<<<<<< HEAD
 	<Script file="autorepchange.lua"/>
-=======
->>>>>>> upstream/master
 	<Script file="announce.lua"/>
 	<Script file="error.lua"/>
 	<Script file="invite.lua"/>

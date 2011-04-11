@@ -59,11 +59,7 @@ local function SkinBars(self)
 					frame:SetScale(1)
 					frame.SetScale=E.dummy
 					frame:SetHeight(buttonsize)
-<<<<<<< HEAD
 					frame:SetTemplate("Default")
-=======
-					frame:SetTemplate("Transparent")
->>>>>>> upstream/master
 					frame.styled=true
 				end
 
@@ -183,11 +179,7 @@ local SkinBoss=function()
 
 		if not bar.styled then
 			bar:SetHeight(buttonsize)
-<<<<<<< HEAD
 			bar:SetTemplate("Default")
-=======
-			bar:SetTemplate("Transparent")
->>>>>>> upstream/master
 			background:SetNormalTexture(nil)
 			bar.styled=true
 		end	
@@ -229,11 +221,7 @@ hooksecurefunc(DBM.BossHealth,"UpdateSettings",SkinBoss)
 DBM.RangeCheck:Show()
 DBM.RangeCheck:Hide()
 DBMRangeCheck:HookScript("OnShow",function(self)
-<<<<<<< HEAD
 	self:SetTemplate("Default")
-=======
-	self:SetTemplate("Transparent")
->>>>>>> upstream/master
 end)
 
 

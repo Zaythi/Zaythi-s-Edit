@@ -7,11 +7,7 @@ if not C["datatext"].gold or C["datatext"].gold == 0 then return end
 
 local Stat = CreateFrame("Frame")
 Stat:EnableMouse(true)
-<<<<<<< HEAD
 Stat:SetFrameStrata("BACKGROUND")
-=======
-Stat:SetFrameStrata("MEDIUM")
->>>>>>> upstream/master
 Stat:SetFrameLevel(3)
 
 local Text  = ElvuiInfoLeft:CreateFontString(nil, "OVERLAY")
@@ -120,11 +116,7 @@ Stat:RegisterEvent("SEND_MAIL_COD_CHANGED")
 Stat:RegisterEvent("PLAYER_TRADE_MONEY")
 Stat:RegisterEvent("TRADE_MONEY_CHANGED")
 Stat:RegisterEvent("PLAYER_ENTERING_WORLD")
-<<<<<<< HEAD
 Stat:SetScript("OnMouseDown", function() ToggleCharacter("TokenFrame") end)
-=======
-Stat:SetScript("OnMouseDown", function() OpenAllBags() end)
->>>>>>> upstream/master
 Stat:SetScript("OnEvent", OnEvent)
 
 -- reset gold data

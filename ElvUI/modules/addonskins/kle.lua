@@ -21,11 +21,7 @@ local movers = {
 
 local function SkinKLEBar(bar)
 	-- The main bar
-<<<<<<< HEAD
 	bar:SetTemplate("Default")
-=======
-	bar:SetTemplate("Transparent")
->>>>>>> upstream/master
 	bar.bg:SetTexture(nil)
 	bar.border:Kill()
 	bar.statusbar:SetStatusBarTexture(C["media"].normTex)
@@ -65,20 +61,12 @@ KLE.NotifyBackgroundColorChanged = E.dummy
 KLE.CreateWindow_ = KLE.CreateWindow
 KLE.CreateWindow = function(self, name, width, height)
 	local win = self:CreateWindow_(name, width, height)
-<<<<<<< HEAD
 	win:SetTemplate("Default")
-=======
-	win:SetTemplate("Transparent")
->>>>>>> upstream/master
 	return win
 end
 
 -- Skin the pane
-<<<<<<< HEAD
 KLE.Pane:SetTemplate("Default")
-=======
-KLE.Pane:SetTemplate("Transparent")
->>>>>>> upstream/master
 
 -- Hook Health frames (Skin & spacing)
 KLE.LayoutHealthWatchers_ = KLE.LayoutHealthWatchers
@@ -87,11 +75,7 @@ KLE.LayoutHealthWatchers = function(self)
 	self:LayoutHealthWatchers_()
 	for i,hw in ipairs(self.HW) do
 		if hw:IsShown() then
-<<<<<<< HEAD
 			hw:SetTemplate("Default")
-=======
-			hw:SetTemplate("Transparent")
->>>>>>> upstream/master
 			hw.border:Kill()
 			hw.healthbar:SetStatusBarTexture(C["media"].normTex)
 		end

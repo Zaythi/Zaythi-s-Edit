@@ -38,10 +38,6 @@ _G.CHAT_YELL_GET = "%s:\32"
 _G.CHAT_FLAG_AFK = "|cffFF0000"..L.chat_FLAG_AFK.."|r "
 _G.CHAT_FLAG_DND = "|cffE7E716"..L.chat_FLAG_DND.."|r "
 _G.CHAT_FLAG_GM = "|cff4154F5"..L.chat_FLAG_GM.."|r "
-<<<<<<< HEAD
-=======
- 
->>>>>>> upstream/master
 
 -- don't replace this with custom colors, since many addons
 -- use these strings to detect if friends come on-line or go off-line 
@@ -67,37 +63,22 @@ local function SetChatStyle(frame)
 	tab.SetAlpha = UIFrameFadeRemoveFrame	
 	
 	-- always set alpha to 1, don't fade it anymore
-<<<<<<< HEAD
 	--if C["chat"].showbackdrop ~= true then
-=======
-	if C["chat"].showbackdrop ~= true then
->>>>>>> upstream/master
 		-- hide text when setting chat
 		_G[chat.."TabText"]:Hide()
 
 		-- now show text if mouse is found over tab.
 		tab:HookScript("OnEnter", function() _G[chat.."TabText"]:Show() end)
 		tab:HookScript("OnLeave", function() _G[chat.."TabText"]:Hide() end)
-<<<<<<< HEAD
 	--end
 	
 	_G[chat.."TabText"]:SetTextColor(unpack(C["media"].valuecolor))
 	_G[chat.."TabText"]:SetFont(C["media"].font, C["datatext"].fontsize, "THINOUTLINE")
-=======
-	end
-	
-	_G[chat.."TabText"]:SetTextColor(unpack(C["media"].valuecolor))
-	_G[chat.."TabText"]:SetFont(C["media"].font,C["general"].fontscale,"THINOUTLINE")
->>>>>>> upstream/master
 	_G[chat.."TabText"]:SetShadowColor(0, 0, 0, 0.4)
 	_G[chat.."TabText"]:SetShadowOffset(E.mult, -E.mult)
 	_G[chat.."TabText"].SetTextColor = E.dummy
 	local originalpoint = select(2, _G[chat.."TabText"]:GetPoint())
-<<<<<<< HEAD
 	_G[chat.."TabText"]:SetPoint("LEFT", originalpoint, "RIGHT", 0, -((E.Scale(27) - E.textbarheight) / 2))
-=======
-	_G[chat.."TabText"]:SetPoint("LEFT", originalpoint, "RIGHT", 0, -E.mult*2)
->>>>>>> upstream/master
 	_G[chat]:SetMinResize(250,70)
 	
 	--Reposition the "New Message" orange glow so its aligned with the bottom of the chat tab
@@ -237,17 +218,10 @@ local function SetupChat(self)
 		var = 0
 	end
 	-- Remember last channel
-<<<<<<< HEAD
 	ChatTypeInfo.WHISPER.sticky = false
 	ChatTypeInfo.BN_WHISPER.sticky = false
 	ChatTypeInfo.OFFICER.sticky = var
 	ChatTypeInfo.RAID_WARNING.sticky = false
-=======
-	ChatTypeInfo.WHISPER.sticky = var
-	ChatTypeInfo.BN_WHISPER.sticky = var
-	ChatTypeInfo.OFFICER.sticky = var
-	ChatTypeInfo.RAID_WARNING.sticky = var
->>>>>>> upstream/master
 	ChatTypeInfo.CHANNEL.sticky = var
 end
 
@@ -266,15 +240,9 @@ local function SetupChatFont(self)
 		
 		local _, fontSize = FCF_GetChatWindowInfo(id)
 		
-<<<<<<< HEAD
 		--font under fontsize 10 is unreadable.
 		if fontSize < 10 then		
 			FCF_SetChatWindowFontSize(nil, chat, 10)
-=======
-		--font under fontsize 12 is unreadable.
-		if fontSize < 12 then		
-			FCF_SetChatWindowFontSize(nil, chat, 12)
->>>>>>> upstream/master
 		else
 			FCF_SetChatWindowFontSize(nil, chat, fontSize)
 		end
@@ -329,10 +297,6 @@ ElvuiChat:SetScript("OnUpdate", function(self, elapsed)
 			if ChatRBG then ChatRBG:SetAlpha(0) end
 			E.RightChatWindowID = nil
 		end
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/master
 		
 		for i = 1, CreatedFrames do
 			chat = _G[format("ChatFrame%d", i)]
@@ -553,7 +517,6 @@ function E.ChatCopyButtons(id)
 	
 	if not button then
 		local button = CreateFrame("Button", format("ButtonCF%d", id), cf)
-<<<<<<< HEAD
 		button:SetHeight(E.textbarheight)
 		button:SetWidth(E.Scale(17) - 2)
 		button:SetAlpha(0)
@@ -563,17 +526,6 @@ function E.ChatCopyButtons(id)
 		
 		local buttontext = button:CreateFontString(nil,"OVERLAY",nil)
 		buttontext:SetFont(C["media"].font,C["datatext"].fontsize,"THINOUTLINE")
-=======
-		button:SetHeight(E.Scale(22))
-		button:SetWidth(E.Scale(20))
-		button:SetAlpha(0)
-		button:SetPoint("TOPRIGHT", 0, 0)
-		button:SetTemplate("Default", true)
-		button:CreateShadow("Default")
-		
-		local buttontext = button:CreateFontString(nil,"OVERLAY",nil)
-		buttontext:SetFont(C["media"].font,C["general"].fontscale,"THINOUTLINE")
->>>>>>> upstream/master
 		buttontext:SetShadowColor(0, 0, 0, 0.4)
 		buttontext:SetShadowOffset(E.mult, -E.mult)
 		buttontext:SetText("C")
@@ -581,11 +533,7 @@ function E.ChatCopyButtons(id)
 		buttontext:SetJustifyH("CENTER")
 		buttontext:SetJustifyV("CENTER")
 		buttontext:SetTextColor(unpack(C["media"].valuecolor))
-<<<<<<< HEAD
 		buttontext:SetAlpha(0)
-=======
-		
->>>>>>> upstream/master
 		
 		if id == 1 then
 			button:SetScript("OnMouseUp", function(self, btn)
@@ -601,15 +549,8 @@ function E.ChatCopyButtons(id)
 			end)		
 		end
 		
-<<<<<<< HEAD
 		button:SetScript("OnEnter", function() button:SetAlpha(0) end)
 		button:SetScript("OnLeave", function() button:SetAlpha(1) end)
-=======
-		button:SetScript("OnEnter", function() 
-			button:SetAlpha(1) 
-		end)
-		button:SetScript("OnLeave", function() button:SetAlpha(0) end)
->>>>>>> upstream/master
 	end
 
 end

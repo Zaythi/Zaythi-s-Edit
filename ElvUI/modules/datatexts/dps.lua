@@ -24,11 +24,7 @@ if C["datatext"].dps_text and C["datatext"].dps_text > 0 then
 	E.PP(C["datatext"].dps_text, dText)
 
 	DPS_FEED:EnableMouse(true)
-<<<<<<< HEAD
 	DPS_FEED:SetFrameStrata("BACKGROUND")
-=======
-	DPS_FEED:SetFrameStrata("MEDIUM")
->>>>>>> upstream/master
 	DPS_FEED:SetFrameLevel(3)
 	DPS_FEED:SetHeight(E.Scale(20))
 	DPS_FEED:SetWidth(E.Scale(100))
