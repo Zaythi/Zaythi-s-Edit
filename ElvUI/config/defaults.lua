@@ -21,7 +21,7 @@ DB["media"] = {
 	["glossyTexture"] = false,	-- Use a glossy texture for all frames
 	
 	--colors
-	["bordercolor"] = { r = .23,g = .23,b = .23 }, -- border color of Elvui panels
+	["bordercolor"] = { r = .18,g = .18,b = .18 }, -- border color of Elvui panels
 	["backdropcolor"] = { r = .07,g = .07,b = .07 }, -- background color of Elvui panels
 	["backdropfadecolor"] = { r = .07,g = .07,b = .07, a = 0.9 }, --this is always the same as the backdrop color with an alpha of 0.8, see colors.lua
 	["valuecolor"] = {r = 23/255,g = 132/255,b = 209/255}, -- color for values of datatexts
@@ -29,15 +29,15 @@ DB["media"] = {
 
 
 DB["general"] = {
-	["autoscale"] = true,                  -- mainly enabled for users that don't want to mess with the config file
+	["autoscale"] = false,                  -- mainly enabled for users that don't want to mess with the config file
 	["uiscale"] = 0.66,                    -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
-	["multisampleprotect"] = true,         -- i don't recommend this because of shitty border but, voila!
+	["multisampleprotect"] = false,         -- i don't recommend this because of shitty border but, voila!
 	["classcolortheme"] = false,			--class colored theme for panels
 	["fontscale"] = 12,					--Master font
 	["resolutionoverride"] = "NONE",		--override lowversion (Low, High)
 	["layoutoverride"] = "NONE",			--ovverride layout (DPS, Healer)
-	["sharpborders"] = true,
-	["upperpanel"] = true,
+	["sharpborders"] = false,
+	["upperpanel"] = false,
 	["lowerpanel"] = true,
 }
 
@@ -63,8 +63,8 @@ DB["unitframes"] = {
 	["pettarget"] = true,					-- show player's pet's target (DPS)
 	["showtotalhpmp"] = false,             -- change the display of info text on player and target with XXXX/Total.
 	["showsmooth"] = true,                 -- enable smooth bar
-	["charportrait"] = true,              -- enable character portrait
-	["charportraithealth"] = true,			-- portrait overlay healthbar
+	["charportrait"] = false,              -- enable character portrait
+	["charportraithealth"] = false,			-- portrait overlay healthbar
 	["classcolor"] = false,                  -- color unitframes by class
 	["healthcolor"] = DB["media"].bordercolor, --color of the unitframe
 	["healthcolorbyvalue"] = false,			-- color health by current health remaining
@@ -76,11 +76,11 @@ DB["unitframes"] = {
 	["combat"] = false,						-- only show main unitframes when in combat/havetarget/or mouseover
 	["mini_powerbar"] = false,
 	["powerbar_offset"] = 0,
-	["showboss"] = false,                   -- enable boss unit frames for PVELOL encounters.
+	["showboss"] = true,                   -- enable boss unit frames for PVELOL encounters.
 	["arena"] = true,                 -- enable elvui arena unitframes (requirement : Elvui unitframes enabled)	
 	["swing"] = false,
 	["displayaggro"] = true,
-	["autorepchange"] = true,					-- Enable automitic change of reputation tracking on faction standing change
+	["autorepchange"] = false,					-- Enable automitic change of reputation tracking on faction standing change
 	
 	--frame sizes
 	["playtarwidth"] = 275,					--width of player/target frame
@@ -168,8 +168,8 @@ DB["classtimer"] = {
 
 DB["actionbar"] = {
 	["enable"] = true,                     -- enable elvui action bars
-	["hotkey"] = true,                     -- enable hotkey display because it was a lot requested
-	["rightbarmouseover"] = false,         -- enable right bars on mouse over
+	["hotkey"] = false,                     -- enable hotkey display because it was a lot requested
+	["rightbarmouseover"] = true,         -- enable right bars on mouse over
 	["shapeshiftmouseover"] = false,       -- enable shapeshift or totembar on mouseover
 	["hideshapeshift"] = false,            -- hide shapeshift or totembar because it was a lot requested.
 	["showgrid"] = true,                   -- show grid on empty button
