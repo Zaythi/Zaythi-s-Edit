@@ -30,7 +30,11 @@ L["General Settings"] = true
 	L["Upper Frame"] = true
 		L["Enable a bar accross the top of the screen, doing this will move the location and coords texts to that bar, and also allow for spaces nine and ten of the datatexts to be used."] = true
 	L["Lower Frame"] = true
+<<<<<<< HEAD
 		L["Enable the data text bar at the bottom of the screen, adding data text positions 11 through 15."] = true
+=======
+		L["Enable a bar accross the bottom of the screen, mostly for decoration."] = true
+>>>>>>> upstream/master
 		
 --Media
 L["Media"] = true
@@ -141,8 +145,13 @@ L["Unit Frames"] = true
 	L["Display Aggro"] = true
 		L["Enable red glow around the player frame when you have aggro"] = true
 		L["Change the frame's border to red when a unit has aggro"] = true
+<<<<<<< HEAD
 	L["Autmatically change tracked reputation"] = true
 		L["Change the tracked reputation when the standing with a faction changes"] = true
+=======
+	L["Mini-Classbar Theme"] = true
+		L["Make classbars smaller and restyle them"] = true
+>>>>>>> upstream/master
 	
 L["Frame Sizes"] = true
 	L["Controls the size of the frame"] = true
@@ -156,6 +165,7 @@ L["Frame Sizes"] = true
 	L["Assist/Tank Height"] = true
 
 L["Auras"] = true
+<<<<<<< HEAD
 	L["Player Auras"] = true
 		L["Display auras on frame"] = true
 	L["Hide Player's Buffs"] = true
@@ -163,6 +173,21 @@ L["Auras"] = true
 	L["Target Auras"] = true
 	L["Player's Debuffs Only"] = true
 		L["Only display debuffs on the targetframe that are from yourself"] = true
+=======
+	L["Display auras on frame"] = true
+	L["Player Buffs"] = true
+	L["Player Debuffs"] = true
+	L["Target Buffs"] = true
+	L["Target Debuffs"] = true
+	L["Boss Buffs"] = true
+	L["Boss Debuffs"] = true
+	L["Arena Buffs"] = true
+		L["Display important buffs on the arena unit, these may be changed in the filter section of the config"] = true
+	L["Arena Debuffs"] = true
+		L["Display important debuffs on the arena unit, these may be changed in the filter section of the config"] = true
+	L["Player's Debuffs Only"] = true
+		L["Only display debuffs on the target, targettarget, boss, and arena frames that are from yourself"] = true
+>>>>>>> upstream/master
 	L["Aura Timer"] = true
 		L["Display aura timer"] = true
 	L["Aura Text Scale"] = true
@@ -197,6 +222,7 @@ L["Power Colors"] = true
 	L["Focus"] = true
 	L["Energy"] = true
 	L["Runic Power"] = true
+<<<<<<< HEAD
 
 L["GPS Tracking"]=true
 	L["Show target GPS"] = true
@@ -204,6 +230,9 @@ L["GPS Tracking"]=true
 	L["Show focus GPS"] = true
 		L["Display a tracker arrow and range next to the focus frame"] = true
 
+=======
+		
+>>>>>>> upstream/master
 --Raidframe
 L["Raid Frames"] = true
 	L["Enable Raidframes"] = true
@@ -238,7 +267,12 @@ L["Raid Frames"] = true
 		L["Glow the unitframe to the unit's Reaction/Class when mouseover'd"] = true
 	L["25 Man Layout Party"] = true
 		L["Use the 25 man layout inside a party group"] = true
+<<<<<<< HEAD
 
+=======
+	L["Display Debuffs"] = true
+	
+>>>>>>> upstream/master
 --Classtimer		
 L["Class Timers"] = true
 	L["CLASSTIMER_DESC"] = "Adjust settings for classtimers"
@@ -298,7 +332,12 @@ L["Action Bars"] = true
 --Datatext
 L["Data Texts"] = true
 	L["DATATEXT_DESC"] = "Edit display of informational text on panels"
+<<<<<<< HEAD
 	L["DATATEXT_POS"] = "\n\n0 - Disabled\n1 - LEFT PANEL, LEFT\n2 - LEFT PANEL, CENTER\n3 - LEFT PANEL, RIGHT\n4 - RIGHT PANEL, LEFT\n5 - RIGHT PANEL, CENTER\n6 - RIGHT PANEL, RIGHT\n7 - MINIMAP LEFT\n8 - MINIMAP RIGHT\n9 - TOPBAR LEFT\n10 - TOPBAR RIGHT\n11 - 15 BOTTOM CENTER BAR"
+=======
+	L["DATATEXT_POS"] = "\n\n0 - Disabled\n1 - LEFT PANEL, LEFT\n2 - LEFT PANEL, CENTER\n3 - LEFT PANEL, RIGHT\n4 - RIGHT PANEL, LEFT\n5 - RIGHT PANEL, CENTER\n6 - RIGHT PANEL, RIGHT\n7 - MINIMAP LEFT\n8 - MINIMAP RIGHT"
+	L["DATATEXT_POS2"] = "\n\n0 - Disabled\n1 - LEFT PANEL, LEFT\n2 - LEFT PANEL, CENTER\n3 - LEFT PANEL, RIGHT\n4 - RIGHT PANEL, LEFT\n5 - RIGHT PANEL, CENTER\n6 - RIGHT PANEL, RIGHT\n7 - MINIMAP LEFT\n8 - MINIMAP RIGHT\n9 - TOPBAR LEFT\n10 - TOPBAR RIGHT"
+>>>>>>> upstream/master
 	L["Text Positions"] = true
 	L["Mastery Spell"] = true
 		L["Display the mastery spell on the mastery datatext"] = true
@@ -336,8 +375,11 @@ L["Data Texts"] = true
 		L["Display current watched items in backpack"] = true
 	L["Talent Spec"] = true	
 		L["Display current spec"] = true
+<<<<<<< HEAD
 	L["Target Range"] = true
 		L["Display the range to the current target"] = true
+=======
+>>>>>>> upstream/master
 	L["Mastery"] = true
 		L["Display Mastery Rating"] = true
 	L["Hit Rating"] = true
@@ -348,7 +390,12 @@ L["Data Texts"] = true
 		L["Display Critical Strike Rating"] = true
 	L["Mana Regen"] = true
 		L["Display Mana Regen Rate"] = true
+<<<<<<< HEAD
 
+=======
+	
+	
+>>>>>>> upstream/master
 --chat
 L["Chat"] = true
 	L["CHAT_DESC"] = "Adjust chat settings"
@@ -423,8 +470,11 @@ L["Misc"] = true
 		L["Automatically sell gray items when visiting a vendor"] = true
 	L["Auto Repair"] = true
 		L["Automatically repair when visiting a vendor"] = true
+<<<<<<< HEAD
 	L["Use guild bank for Auto Repair"] = true
 		L["Use the guild bank for auto repair when available."] = true
+=======
+>>>>>>> upstream/master
 	L["Combat"] = true
 	L["Buff Reminder"] = true
 		L["Icon at center of screen when you are missing a buff, or you have a buff you shouldn't have"] = true
@@ -445,7 +495,11 @@ L["Misc"] = true
 		
 L["Filters"] = true
 L["SPELL_FILTER_DESC"] = "Filter everything from spell names to nameplate names."
+<<<<<<< HEAD
 	L["Aura Names"] = true
+=======
+	L["Auras"] = true
+>>>>>>> upstream/master
 	L["Nameplate Names"] = true
 	L["Choose Filter"] = true
 		L["Choose the filter you want to modify."] = true
@@ -455,6 +509,14 @@ L["SPELL_FILTER_DESC"] = "Filter everything from spell names to nameplate names.
 		L["Arena Buffs"] = true
 		L["Target Debuffs (PvP Only)"] = true
 		L["Nameplate Blacklist"] = true
+<<<<<<< HEAD
+=======
+		L["Raid Buffs (Heal)"] = true
+		L["Raid Buffs (DPS)"] = true
+		L["Pet Buffs"] = true
+		L["Class Timer (Shared)"] = true
+		L["Class Timer (Player)"] = true
+>>>>>>> upstream/master
 		
 	L["Filter whether or not a nameplate is shown by the name of the nameplate"] = true
 	L["Filter the buffs that get displayed on arena units."] = true
@@ -462,6 +524,7 @@ L["SPELL_FILTER_DESC"] = "Filter everything from spell names to nameplate names.
 	L["These debuffs will always get displayed on the Target Frame, Arena Frames, and Nameplates."] = true
 	L["These debuffs only get displayed on the target unit when the unit happens to be an enemy player."] = true
 	L["These debuffs will be displayed on your raid frames in addition to any debuff that is dispellable."] = true
+<<<<<<< HEAD
 	
 	L["New name"] = true
 		L["Add a new name to the list."] = true
@@ -469,6 +532,39 @@ L["SPELL_FILTER_DESC"] = "Filter everything from spell names to nameplate names.
 		L["Remove a name from the list."] = true
 	L["You may only delete spells that you have added. Default spells can be disabled by unchecking the option"] = true
 	L["Spell not found in list"] = true
+=======
+	L["These buffs are displayed on the healer raid and party layouts"] = true
+	L["These buffs are displayed on the DPS raid and party layouts"] = true
+	L["These buffs are displayed on the pet frame"] = true
+	L["These buffs are displayed no matter your class you must have a layout enabled that uses trinkets however for them to show"] = true
+	L["These buffs/debuffs are displayed as a classtimer, where they get positioned is based on your layout option choice"] = true
+	
+	L["New name"] = true
+		L["Add a new spell name / ID to the list."] = true
+	L["New ID"] = true
+	L["Not valid spell id"] = true
+	
+	L["You may only delete spells that you have added. Default spells can be disabled by unchecking the option"] = true
+	L["Spell not found in list"] = true
+	L["Select Spell"] = true
+	L["Enabled"] = true
+	L["Color"] = true
+	L["Position"] = true
+		L["Position where the buff appears on the frame"] = true
+	L["Any Unit"] = true
+		L["Display the buff if cast by anyone?"] = true
+	L["Unit Type"] = true
+		L["Only display on this type of unit"] = true
+		L["All"] = true
+		L["Enemy"] = true
+		L["Friendly"] = true
+	L["Show Ticks"] = true
+		L["Fill only if you want to see line on bar that indicates if its safe to start casting spell and not clip the last tick, also note that this can be different from aura id."] = true
+	L["Procs"] = true
+	L["You must select a filter first"] = true
+	
+	
+>>>>>>> upstream/master
 	
 --Profiles
 L["Profiles"] = true

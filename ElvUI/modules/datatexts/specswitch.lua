@@ -61,6 +61,7 @@ end)
 
 Stat:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
+<<<<<<< HEAD
 Stat:SetScript("OnMouseDown", function(self, button)
 	if button == "LeftButton" then
 		SetActiveTalentGroup(active == 1 and 2 or 1)
@@ -69,6 +70,8 @@ Stat:SetScript("OnMouseDown", function(self, button)
 	end
 end)
 
+=======
+>>>>>>> upstream/master
 local function OnEvent(self, event, ...)
 	if event == "PLAYER_ENTERING_WORLD" then
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
@@ -91,4 +94,12 @@ Stat:RegisterEvent("CHARACTER_POINTS_CHANGED");
 Stat:RegisterEvent("PLAYER_TALENT_UPDATE");
 Stat:RegisterEvent("ACTIVE_TALENT_GROUP_CHANGED")
 Stat:SetScript("OnEvent", OnEvent)
+<<<<<<< HEAD
 Stat:SetScript("OnUpdate", Update)
+=======
+Stat:SetScript("OnUpdate", Update)
+
+Stat:SetScript("OnMouseDown", function()
+	SetActiveTalentGroup(active == 1 and 2 or 1)
+end)
+>>>>>>> upstream/master

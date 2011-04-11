@@ -21,7 +21,11 @@ if C["datatext"].hps_text and C["datatext"].hps_text > 0 then
 	E.PP(C["datatext"].hps_text, hText)
  
 	HPS_FEED:EnableMouse(true)
+<<<<<<< HEAD
 	HPS_FEED:SetFrameStrata("BACKGROUND")
+=======
+	HPS_FEED:SetFrameStrata("MEDIUM")
+>>>>>>> upstream/master
 	HPS_FEED:SetFrameLevel(3)
 	HPS_FEED:SetHeight(E.Scale(20))
 	HPS_FEED:SetWidth(E.Scale(100))

@@ -123,6 +123,7 @@ local function setup()
 	WatchFrameTitle:Hide()
 	WatchFrameTitle.Show = E.dummy
 	WatchFrameCollapseExpandButton.Disable = E.dummy
+<<<<<<< HEAD
 	
 	-- skin watchframe collapse expand button
 	WatchFrameCollapseExpandButton:SetFrameStrata(WatchFrameHeader:GetFrameStrata())
@@ -142,6 +143,8 @@ local function setup()
 			self.text:SetText("X")
 		end 
 	end)	
+=======
+>>>>>>> upstream/master
 end
 
 ElvuiWatchFrame:RegisterEvent("PLAYER_ENTERING_WORLD")

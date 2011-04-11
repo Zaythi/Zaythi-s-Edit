@@ -15,7 +15,11 @@ local freebg = {}
 -- styling functions
 local createbg = function()
 	local bg = CreateFrame("Frame")
+<<<<<<< HEAD
 	bg:SetTemplate("Default")
+=======
+	bg:SetTemplate("Transparent")
+>>>>>>> upstream/master
 	return bg
 end
 

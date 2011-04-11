@@ -105,7 +105,11 @@ local function Shared(self, unit)
 		local LFDRole = self:CreateTexture(nil, "OVERLAY")
 		LFDRole:Size(6, 6)
 		if C["raidframes"].griddps ~= true then
+<<<<<<< HEAD
 			LFDRole:Point("BOTTOMRIGHT", health, "BOTTOMRIGHT", -2, -2)
+=======
+			LFDRole:Point("TOPRIGHT", self.Health, "TOPRIGHT", -2, -2)
+>>>>>>> upstream/master
 		else
 			LFDRole:Point("TOP", self.Name, "BOTTOM", 0, -1)
 		end
@@ -159,7 +163,11 @@ local function Shared(self, unit)
 		self.DebuffHighlightAlpha = 0.35
 	end
 	
+<<<<<<< HEAD
 	if C["raidframes"].griddps ~= true then
+=======
+	if C["raidframes"].griddps ~= true and C["raidframes"].debuffs == true then
+>>>>>>> upstream/master
 		local debuffs = CreateFrame('Frame', nil, self)
 		debuffs:SetPoint('LEFT', self, 'RIGHT', E.Scale(6), 0)
 		debuffs:SetHeight(RAID_HEIGHT)
@@ -175,7 +183,11 @@ local function Shared(self, unit)
 		
 		-- Debuff Aura Filter
 		self.Debuffs.CustomFilter = E.AuraFilter		
+<<<<<<< HEAD
 	else
+=======
+	elseif C["raidframes"].debuffs == true then
+>>>>>>> upstream/master
 		-- Raid Debuffs (big middle icon)
 		local RaidDebuffs = CreateFrame('Frame', nil, self)
 		RaidDebuffs:Height(RAID_HEIGHT*0.6)

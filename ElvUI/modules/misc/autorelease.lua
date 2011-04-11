@@ -9,6 +9,7 @@ if C["others"].pvpautorelease ~= true then return end
 local autoreleasepvp = CreateFrame("frame")
 autoreleasepvp:RegisterEvent("PLAYER_DEAD")
 autoreleasepvp:SetScript("OnEvent", function(self, event)
+<<<<<<< HEAD
 	local inInstance, instanceType = IsInInstance()
 	if (inInstance and (instanceType == "pvp")) then
 		local soulstone = GetSpellInfo(20707)
@@ -24,5 +25,10 @@ autoreleasepvp:SetScript("OnEvent", function(self, event)
 		if (GetRealZoneText() == localizedName and isActive) then
 			RepopMe()
 		end
+=======
+	local soulstone = GetSpellInfo(20707)
+	if ((E.myclass ~= "SHAMAN") and not (soulstone and UnitBuff("player", soulstone))) and MiniMapBattlefieldFrame.status == "active" then
+		RepopMe()
+>>>>>>> upstream/master
 	end
 end)

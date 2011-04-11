@@ -43,7 +43,11 @@ GOLDSPAM:RegisterEvent("ZONE_CHANGED_INDOORS")
 GOLDSPAM:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 GOLDSPAM:SetScript("OnEvent", GOLDSPAM_FILTER)
 
+<<<<<<< HEAD
 --if E.myname == "Elv" then
+=======
+if E.myname == "Elv" then
+>>>>>>> upstream/master
 	----------------------------------------------------------------------------------
 	-- Trade Chat Stuff
 	----------------------------------------------------------------------------------
@@ -89,4 +93,8 @@ GOLDSPAM:SetScript("OnEvent", GOLDSPAM_FILTER)
 		end
 	end
 	ChatFrame_AddMessageEventFilter("CHAT_MSG_WHISPER", NOOB_FILTER)	
+<<<<<<< HEAD
 --end
+=======
+end
+>>>>>>> upstream/master

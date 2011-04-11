@@ -6,7 +6,11 @@ local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config
 if not C["datatext"].manaregen or C["datatext"].manaregen == 0 then return end
 
 local Stat = CreateFrame("Frame")
+<<<<<<< HEAD
 Stat:SetFrameStrata("BACKGROUND")
+=======
+Stat:SetFrameStrata("MEDIUM")
+>>>>>>> upstream/master
 Stat:SetFrameLevel(3)
 
 local Text  = ElvuiInfoLeft:CreateFontString(nil, "LOW")

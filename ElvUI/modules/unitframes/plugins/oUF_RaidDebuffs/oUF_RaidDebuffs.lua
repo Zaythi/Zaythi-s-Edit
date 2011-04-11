@@ -34,8 +34,15 @@ local function add(spell)
 end
 
 function addon:RegisterDebuffs(t)
+<<<<<<< HEAD
 	for _, v in next, t do
 		add(v)
+=======
+	for spell, value in pairs(t) do
+		if value == true then
+			add(spell)
+		end
+>>>>>>> upstream/master
 	end
 end
 

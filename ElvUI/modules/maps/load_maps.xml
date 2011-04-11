@@ -2,5 +2,8 @@
 	<Script file='minimap.lua'/>
 	<Script file='map.lua'/>
 	<Script file='tinymap.lua'/>
+<<<<<<< HEAD
 	<script file='direction.lua'/>
+=======
+>>>>>>> upstream/master
 </Ui>
