@@ -21,7 +21,7 @@ DB["media"] = {
 	["glossyTexture"] = false,	-- Use a glossy texture for all frames
 	
 	--colors
-	["bordercolor"] = { r = .18,g = .18,b = .18 }, -- border color of Elvui panels
+	["bordercolor"] = { r = .16,g = .16,b = .16 }, -- border color of Elvui panels
 	["backdropcolor"] = { r = .07,g = .07,b = .07 }, -- background color of Elvui panels
 	["backdropfadecolor"] = { r = .07,g = .07,b = .07, a = 0.9 }, --this is always the same as the backdrop color with an alpha of 0.8, see colors.lua
 	["valuecolor"] = {r = 23/255,g = 132/255,b = 209/255}, -- color for values of datatexts
@@ -75,16 +75,17 @@ DB["unitframes"] = {
 	["classbar"] = true,                    -- enable runebar/totembar/holypowerbar/soulshardbar/eclipsebar
 	["combat"] = false,						-- only show main unitframes when in combat/havetarget/or mouseover
 	["mini_powerbar"] = false,
+	["mini_classbar"] = true,
 	["powerbar_offset"] = 0,
 	["showboss"] = true,                   -- enable boss unit frames for PVELOL encounters.
 	["arena"] = true,                 -- enable elvui arena unitframes (requirement : Elvui unitframes enabled)	
 	["swing"] = false,
 	["displayaggro"] = true,
-	["autorepchange"] = false,					-- Enable automitic change of reputation tracking on faction standing change
+	["autorepchange"] = true,					-- Enable automitic change of reputation tracking on faction standing change
 	
 	--frame sizes
 	["playtarwidth"] = 275,					--width of player/target frame
-	["playtarheight"] = 60,					--height of player/target frame
+	["playtarheight"] = 55,					--height of player/target frame
 	["smallwidth"] = 130,					--Width of TargetTarget, Focus, FocusTarget, Player's Pet frames
 	["smallheight"] = 35,					--Height of TargetTarget, Focus, FocusTarget, Player's Pet frames
 	["arenabosswidth"] = 212,				--Width of Arena/Boss Frames
@@ -95,11 +96,16 @@ DB["unitframes"] = {
 	--auras
 	["auratimer"] = true,                  -- enable timers on buffs/debuffs
 	["auratextscale"] = 11,                -- the font size of buffs/debuffs timers on unitframes
-	["playerauras"] = true,               -- enable auras
+	["playerbuffs"] = false,
+	["playerdebuffs"] = true,
+	["targetbuffs"] = true,
+	["targetdebuffs"] = true,
+	["arenabuffs"] = true,
+	["bossbuffs"] = true,
+	["arenadebuffs"] = true,
+	["bossdebuffs"] = true,
 	["playershowonlydebuffs"] = true, 		-- only show the players debuffs over the player frame, not buffs (playerauras must be true)
 	["playerdebuffsonly"] = true,			-- show the players debuffs on target, and any debuff in the whitelist (see debuffFilter.lua)
-	["targetauras"] = true,                -- enable auras on target unit frame
-	["arenadebuffs"] = true, 				-- enable debuff filter for arena frames
 	["totdebuffs"] = true,                -- enable tot debuffs (high reso only)
 	["focusdebuffs"] = true,              -- enable focus debuffs 
 	["playtarbuffperrow"] = 8,				-- buffs/debuffs per row on player/target frames
@@ -109,11 +115,15 @@ DB["unitframes"] = {
 	["unitcastbar"] = true, -- enable Elvui castbar
 	["cblatency"] = true, -- enable castbar latency
 	["cbicons"] = true, -- enable icons on castbar
+	["cbticks"] = true,
 	["castplayerwidth"] = 275,
+	["castplayerheight"] = 20,
 	["casttargetwidth"] = 275,
+	["casttargetheight"] = 20,
 	["castfocuswidth"] = 275,
+	["castfocusheight"] = 20,
 	["castbarcolor"] = DB["media"].bordercolor, -- Color of player castbar
-	["nointerruptcolor"] = { r = 0.78, g = 0.25, g = 0.25, a = 1 }, -- Color of target castbar
+	["nointerruptcolor"] = {r = 0.78, g = 0.25, b = 0.25}, -- Color of target castbar
 	
 	--GPS Tracker
 	["targetgps"] = false,
@@ -145,7 +155,8 @@ DB["raidframes"] = {
 	["partytarget"]	= false,				--display party members targets (DPS ONLY)
 	["mouseglow"] = true,					--glow the class/reaction color of the unit that you mouseover
 	["raidunitbuffwatch"] = true,       -- track important spell to watch in pve for grid mode.
-	["buffindicatorsize"] = 6,				-- size of the buff indicator on raid/party frames	
+	["buffindicatorsize"] = 6,				-- size of the buff indicator on raid/party frames
+	["debuffs"] = true,
 	["displayaggro"] = true,
 	["mini_powerbar"] = true,
 	["gridonly"] = true,
@@ -214,8 +225,8 @@ DB["datatext"] = {
 	["gold"] = 6,                          -- show your current gold on panels
 	["guild"] = 1,                         -- show number on guildmate connected on panels
 	["friends"] = 3,                       -- show number of friends connected.
-	["bags"] = 0,							-- show ammount of bag space available
-	["dps_text"] = 7,						-- show current dps
+	["bags"] = 7,							-- show ammount of bag space available
+	["dps_text"] = 12,						-- show current dps
 	["hps_text"] = 0,						-- show current hps
 	["currency"] = 0,						-- show watched items in backpack
 	["specswitch"] = 5,					-- talent switch and Show current talent tree
@@ -238,7 +249,7 @@ DB["chat"] = {
 	["whispersound"] = true,               -- play a sound when receiving whisper
 	["showbackdrop"] = true,				-- show a backdrop on the chat panels
 	["chatwidth"] = 450,					-- width of chat frame
-	["chatheight"] = 125,					-- height of chat frame
+	["chatheight"] = 120,					-- height of chat frame
 	["fadeoutofuse"] = true,				-- fade chat text when out of use
 	["sticky"] = true,						-- when opening the chat edit box resort to previous channel
 	["combathide"] = "NONE",			-- Set to "Left", "Right", "Both", or "NONE"
@@ -273,7 +284,7 @@ DB["others"] = {
 	["buffreminder"] = true,                     -- this is now the new innerfire warning script for all armor/aspect class.
 	["remindersound"] = true,                      -- enable warning sound notification for reminder.
 	["raidbuffreminder"] = true,			-- buffbar below the minimap, important missing buffs	
-	["announceinterrupt"] = true,			-- announce in party/raid when you interrupt
+	["announceinterrupt"] = "PARTY",			-- announce in party/raid when you interrupt
 	["showthreat"] = true,                 -- enable the threat bar anchored to info right panel.
 	["minimapauras"] = true,				-- enable minimap auras		
 }

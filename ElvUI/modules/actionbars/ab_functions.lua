@@ -126,7 +126,7 @@ function E.PositionAllPanels()
 
 	local yOffSet = 0	
 	if C["general"].lowerpanel == true then	
-		yOffSet = E.textbarheight + E.Scale(4)
+		yOffSet = E.textbarheight + E.Scale(5)
 	end
 	
 	if C["actionbar"].bottompetbar ~= true then

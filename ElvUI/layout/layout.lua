@@ -22,6 +22,35 @@ if C["general"].lowerpanel == true then
 	f:CreateShadow("Default")
 end
 
+--LOWER PANEL
+if C["general"].lowerpanel == true then	
+	local infobottom = CreateFrame("Frame", "ElvuiBottomPanel", UIParent)
+	infobottom:SetHeight(E.textbarheight + E.Scale(4))
+	infobottom:SetWidth(UIParent:GetWidth() + (E.mult * 2))
+	infobottom:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", -E.mult, E.mult)
+	infobottom:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", E.mult, E.mult)
+	infobottom:SetFrameStrata("BACKGROUND")
+	infobottom:SetFrameLevel(0)
+	infobottom:SetTemplate("Transparent")
+	infobottom:CreateShadow("Default")
+	
+	local infobottoml = CreateFrame("Frame", "ElvuiStat11Block", ElvuiBottomPanel)
+	infobottoml:SetHeight(E.textbarheight + E.Scale(2))
+	infobottoml:SetWidth(E.minimapsize / 1.5)
+	infobottoml:SetFrameLevel(2)
+	infobottoml:SetTemplate("Default", true)
+	infobottoml:CreateShadow("Default")
+	infobottoml:Point("CENTER", UIParent, "BOTTOM", E.Scale(-57), E.Scale(16))			
+	
+	local infobottomr = CreateFrame("Frame", "ElvuiStat12Block", ElvuiBottomPanel)
+	infobottomr:SetHeight(E.textbarheight + E.Scale(2))
+	infobottomr:SetWidth(E.minimapsize / 1.5)
+	infobottomr:SetFrameLevel(2)
+	infobottomr:SetTemplate("Default", true)
+	infobottomr:CreateShadow("Default")
+	infobottomr:Point("CENTER", UIParent, "BOTTOM", E.Scale(57), E.Scale(16))	
+end
+	
 --TOP PANEL
 if C["general"].upperpanel == true then
 	local f = CreateFrame("Frame", "ElvuiTopPanel", UIParent)
@@ -201,14 +230,14 @@ if C["chat"].showbackdrop == true then
 	chatlbg:SetTemplate("Transparent")
 	chatlbg:SetAllPoints(chatlbgdummy)
 	chatlbg:SetFrameStrata("BACKGROUND")
-
+	
 	local chatltbg = CreateFrame("Frame", nil, chatlbg)
 	chatltbg:SetTemplate("Default", true)
 	chatltbg:SetPoint("BOTTOMLEFT", chatlbg, "TOPLEFT", 0, E.Scale(3))
-	--chatltbg:SetPoint("BOTTOMRIGHT", chatlbg, "TOPRIGHT", -E.textbarheight, E.Scale(3))
-	--chatltbg:SetHeight(E.textbarheight)
+	chatltbg:SetPoint("BOTTOMRIGHT", chatlbg, "TOPRIGHT", -E.textbarheight, E.Scale(3))
+	chatltbg:SetHeight(E.textbarheight)
 	chatltbg:SetFrameStrata("BACKGROUND")
-
+	
 	chatlbg:CreateShadow("Default")
 	chatltbg:CreateShadow("Default")
 end
@@ -223,8 +252,8 @@ if C["chat"].showbackdrop == true then
 	local chatrtbg = CreateFrame("Frame", nil, chatrbg)
 	chatrtbg:SetTemplate("Default", true)
 	chatrtbg:SetPoint("BOTTOMLEFT", chatrbg, "TOPLEFT", 0, E.Scale(3))
-	--chatrtbg:SetPoint("BOTTOMRIGHT", chatrbg, "TOPRIGHT", -E.textbarheight, E.Scale(3))
-	--chatrtbg:SetHeight(E.textbarheight)
+	chatrtbg:SetPoint("BOTTOMRIGHT", chatrbg, "TOPRIGHT", -E.textbarheight, E.Scale(3))
+	chatrtbg:SetHeight(E.textbarheight)
 	chatrtbg:SetFrameStrata("BACKGROUND")
 	chatrbg:CreateShadow("Default")
 	chatrtbg:CreateShadow("Default")
@@ -293,7 +322,8 @@ inforight:SetPoint("BOTTOMRIGHT", chatrbgdummy2, "BOTTOMRIGHT", E.Scale(-17), E.
 	inforightRbutton:FontString(nil, C["media"].font, C["datatext"].fontsize, "THINOUTLINE")
 	inforightRbutton.text:SetText(">")
 	inforightRbutton.text:SetPoint("CENTER")
-	
+
+--[[	
 --INFO BOTTOM
 if C["general"].lowerpanel == true then	
 	local infobottom = CreateFrame("Frame", "ElvuiInfoBottom", UIParent)
@@ -304,6 +334,7 @@ if C["general"].lowerpanel == true then
 	infobottom:SetTemplate("Default", true)
 	infobottom:CreateShadow("Default")
 end
+]]
 	
 TukuiInfoLeft = ElvuiInfoLeft -- conversion
 TukuiInfoRight = ElvuiInfoRight -- conversion	

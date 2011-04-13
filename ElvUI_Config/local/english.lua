@@ -143,6 +143,8 @@ L["Unit Frames"] = true
 		L["Change the frame's border to red when a unit has aggro"] = true
 	L["Autmatically change tracked reputation"] = true
 		L["Change the tracked reputation when the standing with a faction changes"] = true
+	L["Mini-Classbar Theme"] = true
+		L["Make classbars smaller and restyle them"] = true
 	
 L["Frame Sizes"] = true
 	L["Controls the size of the frame"] = true
@@ -156,13 +158,19 @@ L["Frame Sizes"] = true
 	L["Assist/Tank Height"] = true
 
 L["Auras"] = true
-	L["Player Auras"] = true
 		L["Display auras on frame"] = true
-	L["Hide Player's Buffs"] = true
-		L["Don't display player's buffs"] = true
-	L["Target Auras"] = true
+	L["Player Buffs"] = true
+	L["Player Debuffs"] = true
+	L["Target Buffs"] = true
+	L["Target Debuffs"] = true
+	L["Boss Buffs"] = true
+	L["Boss Debuffs"] = true
+	L["Arena Buffs"] = true
+		L["Display important buffs on the arena unit, these may be changed in the filter section of the config"] = true
+	L["Arena Debuffs"] = true
+		L["Display important debuffs on the arena unit, these may be changed in the filter section of the config"] = true
 	L["Player's Debuffs Only"] = true
-		L["Only display debuffs on the targetframe that are from yourself"] = true
+		L["Only display debuffs on the target, targettarget, boss, and arena frames that are from yourself"] = true
 	L["Aura Timer"] = true
 		L["Display aura timer"] = true
 	L["Aura Text Scale"] = true
@@ -185,12 +193,17 @@ L["Castbar"] = true
 	L["Width Player Castbar"] = true
 	L["Width Target Castbar"] = true
 	L["Width Focus Castbar"] = true
+	L["Height Player Castbar"] = true
+	L["Height Target Castbar"] = true
+	L["Height Focus Castbar"] = true
 		L["The size of the castbar"] = true
 	L["Castbar Color"] = true
 	L["Color of the castbar"] = true
 	L["Interrupt Color"] = true
 	L["Color of the castbar when you can't interrupt the cast"] = true
-	
+	L["Castbar Ticks"] = true
+		L["Display ticks on castbar when you cast a spell that is channeled, this list may be modified under filters"] = true
+		
 L["Power Colors"] = true
 	L["Mana"] = true
 	L["Rage"] = true
@@ -238,7 +251,8 @@ L["Raid Frames"] = true
 		L["Glow the unitframe to the unit's Reaction/Class when mouseover'd"] = true
 	L["25 Man Layout Party"] = true
 		L["Use the 25 man layout inside a party group"] = true
-
+	L["Display Debuffs"] = true
+	
 --Classtimer		
 L["Class Timers"] = true
 	L["CLASSTIMER_DESC"] = "Adjust settings for classtimers"
@@ -445,7 +459,7 @@ L["Misc"] = true
 		
 L["Filters"] = true
 L["SPELL_FILTER_DESC"] = "Filter everything from spell names to nameplate names."
-	L["Aura Names"] = true
+	L["Auras"] = true
 	L["Nameplate Names"] = true
 	L["Choose Filter"] = true
 		L["Choose the filter you want to modify."] = true
@@ -455,6 +469,11 @@ L["SPELL_FILTER_DESC"] = "Filter everything from spell names to nameplate names.
 		L["Arena Buffs"] = true
 		L["Target Debuffs (PvP Only)"] = true
 		L["Nameplate Blacklist"] = true
+		L["Raid Buffs (Heal)"] = true
+		L["Raid Buffs (DPS)"] = true
+		L["Pet Buffs"] = true
+		L["Class Timer (Shared)"] = true
+		L["Class Timer (Player)"] = true
 		
 	L["Filter whether or not a nameplate is shown by the name of the nameplate"] = true
 	L["Filter the buffs that get displayed on arena units."] = true
@@ -462,13 +481,42 @@ L["SPELL_FILTER_DESC"] = "Filter everything from spell names to nameplate names.
 	L["These debuffs will always get displayed on the Target Frame, Arena Frames, and Nameplates."] = true
 	L["These debuffs only get displayed on the target unit when the unit happens to be an enemy player."] = true
 	L["These debuffs will be displayed on your raid frames in addition to any debuff that is dispellable."] = true
+	L["These buffs are displayed on the healer raid and party layouts"] = true
+	L["These buffs are displayed on the DPS raid and party layouts"] = true
+	L["These buffs are displayed on the pet frame"] = true
+	L["These buffs are displayed no matter your class you must have a layout enabled that uses trinkets however for them to show"] = true
+	L["These buffs/debuffs are displayed as a classtimer, where they get positioned is based on your layout option choice"] = true
+	L["These spells when cast will display tick marks on the castbar"] = true
+	L["Spells"] = true
 	
 	L["New name"] = true
-		L["Add a new name to the list."] = true
-	L["Remove name"] = true
-		L["Remove a name from the list."] = true
+		L["Add a new spell name / ID to the list."] = true
+	L["Remove ID"] = true
+	L["Remove Name"] = true
+		L["Remove a name or ID from the list."] = true
+	L["New ID"] = true
+	L["Not valid spell id"] = true
+	
 	L["You may only delete spells that you have added. Default spells can be disabled by unchecking the option"] = true
 	L["Spell not found in list"] = true
+	L["Select Spell"] = true
+	L["Enabled"] = true
+	L["Color"] = true
+	L["Position"] = true
+		L["Position where the buff appears on the frame"] = true
+	L["Any Unit"] = true
+		L["Display the buff if cast by anyone?"] = true
+	L["Unit Type"] = true
+		L["Only display on this type of unit"] = true
+		L["All"] = true
+		L["Enemy"] = true
+		L["Friendly"] = true
+	L["Show Ticks"] = true
+		L["Fill only if you want to see line on bar that indicates if its safe to start casting spell and not clip the last tick, also note that this can be different from aura id."] = true
+	L["Procs"] = true
+	L["You must select a filter first"] = true
+	L["To disable set to zero, otherwise set to the amount of times the spell ticks in a cast"] = true
+	
 	
 --Profiles
 L["Profiles"] = true

@@ -1,6 +1,8 @@
 local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 E.client = GetLocale() 
 
+L.core_resowarning = "|cff1784d1ElvUI:|r the current resolution you are using (%s), is not your monitor's native resolution. To fix this problem please press escape go to video settings and set your resolution to %s."
+
 -- localization for enUS and enGB
 L.chat_BATTLEGROUND_GET = "[B]"
 L.chat_BATTLEGROUND_LEADER_GET = "[B]"
@@ -143,10 +145,10 @@ L.chat_invalidtarget = "Invalid Target"
 L.core_autoinv_enable = "Autoinvite ON: invite"
 L.core_autoinv_enable_c = "Autoinvite ON: "
 L.core_autoinv_disable = "Autoinvite OFF"
-L.core_welcome1 = "ElvUI |cff1784d1Edit|r - Version %s"
---"Welcome to |cff1784d1ElvUI Enhanced|r, version %s brought to you by <|cff1784d1New Horizon|r> Kilrogg[EU] http://www.newhorizonwow.com/, Now Recruiting!"
+L.core_welcome1 = "ElvUI |cff1784d1Edit|r version %s"
 L.core_welcome2 = ""
---"Type |cff1784d1/uihelp|r for more info, type |cff1784d1/ec|r or |cff1784d1/elvui|r to config, or visit https://github.com/omega1970/ElvUI/wiki/ElvUI-Enhanced"
+--L.core_welcome1 = "Welcome to |cff1784d1ElvUI Enhanced|r, version %s brought to you by <|cff1784d1New Horizon|r> Kilrogg[EU] http://www.newhorizonwow.com/, Now Recruiting!"
+--L.core_welcome2 = "Type |cff1784d1/uihelp|r for more info, type |cff1784d1/ec|r or |cff1784d1/elvui|r to config, or visit https://github.com/omega1970/ElvUI/wiki/ElvUI-Enhanced"
 
 L.core_uihelp1 = "|cff00ff00General Slash Commands|r"
 L.core_uihelp2 = "|cff1784d1/tracker|r - Elvui Arena Enemy Cooldown Tracker - Low-memory enemy PVP cooldown tracker. (Icon only)"

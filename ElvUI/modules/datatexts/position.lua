@@ -67,9 +67,19 @@ function E.PP(p, obj)
 	end
 	
 	if C["general"].lowerpanel == true then
-		local bottom = ElvuiInfoBottom
-		local bottomHeight = bottom:GetHeight() - E.Scale(4)
+		--local bottom = ElvuiInfoBottom
+		--local bottomHeight = bottom:GetHeight() - E.Scale(4)
 
+		if p == 11 then
+			obj:SetHeight(ElvuiStat11Block:GetHeight())
+			obj:SetPoint("CENTER", ElvuiStat11Block, 0, 0)
+			if t ~= true then obj:SetParent(ElvuiStat11Block) else obj:GetParent():SetParent(ElvuiStat11Block) end
+		elseif p == 12 then
+			obj:SetHeight(ElvuiStat12Block:GetHeight())
+			obj:SetPoint("CENTER", ElvuiStat12Block, 0, 0)
+			if t ~= true then obj:SetParent(ElvuiStat12Block) else obj:GetParent():SetParent(ElvuiStat12Block) end
+		end	
+		--[[
 		if p == 11 then
 			obj:SetHeight(bottomHeight)
 			obj:SetPoint("LEFT", bottom, "LEFT", E.Scale(5), 0)
@@ -89,8 +99,9 @@ function E.PP(p, obj)
 		elseif p == 15 then
 			obj:SetHeight(bottomHeight)
 			obj:SetPoint("RIGHT", bottom, "RIGHT", -E.Scale(5), 0)
-			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end	
+			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
 		end
+		]]
 	end
 end
 
