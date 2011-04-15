@@ -1,3 +1,6 @@
+local E, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
+
+
 local grid
 local boxSize = 128
 
@@ -47,11 +50,7 @@ function Grid_Create()
 
 	for i = 0, boxSize do 
 		local tx = grid:CreateTexture(nil, 'BACKGROUND') 
-		if i == boxSize / 2 then 
-			tx:SetTexture(1, 0, 0, 0.5) 
-		else 
-			tx:SetTexture(1, 0, 0, 0.5) 
-		end 
+		tx:SetTexture(1, 0, 0, 0.5) 
 		tx:SetPoint("TOPLEFT", grid, "TOPLEFT", i*wStep - (size/2), 0) 
 		tx:SetPoint('BOTTOMRIGHT', grid, 'BOTTOMLEFT', i*wStep + (size/2), 0) 
 	end 
