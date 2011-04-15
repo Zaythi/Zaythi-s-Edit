@@ -5,40 +5,48 @@ E.LeftDatatexts = {}
 function E.PP(p, obj)
 	obj:SetHeight(E.Scale(15))
 	local left = ElvuiInfoLeft
-	local leftHeight = left:GetHeight() - E.Scale(4)
 	local right = ElvuiInfoRight
-	local rightHeight = right:GetHeight() - E.Scale(4)
 	local mapleft = ElvuiMinimapStatsLeft
 	local mapright = ElvuiMinimapStatsRight
 	local t
 	if obj:GetParent():GetName() == "TimeDataText" or obj:GetParent():GetName() == "DurabilityDataText" then t = true else t = false end
 	
 	if p == 1 then
-		obj:SetHeight(leftHeight)
-		obj:SetPoint("LEFT", left, "LEFT", E.Scale(5), 0)
+		obj:SetHeight(left:GetHeight())
+		obj:SetPoint("LEFT", left, 15, 0)
+		obj:SetPoint('TOP', left)
+		obj:SetPoint('BOTTOM', left)
 		if t ~= true then obj:SetParent(left) else obj:GetParent():SetParent(left) end
 		tinsert(E.LeftDatatexts, obj)
 	elseif p == 2 then
-		obj:SetHeight(leftHeight)
-		obj:SetPoint("CENTER", left, "CENTER")
+		obj:SetHeight(left:GetHeight())
+		obj:SetPoint('TOP', left)
+		obj:SetPoint('BOTTOM', left)
 		if t ~= true then obj:SetParent(left) else obj:GetParent():SetParent(left) end
 		tinsert(E.LeftDatatexts, obj)
 	elseif p == 3 then
-		obj:SetHeight(leftHeight)
-		obj:SetPoint("RIGHT", left, "RIGHT", -E.Scale(5), 0)
+		obj:SetHeight(left:GetHeight())
+		obj:SetPoint("RIGHT", left, -15, 0)
+		obj:SetPoint('TOP', left)
+		obj:SetPoint('BOTTOM', left)
 		if t ~= true then obj:SetParent(left) else obj:GetParent():SetParent(left) end
 		tinsert(E.LeftDatatexts, obj)
 	elseif p == 4 then
-		obj:SetHeight(rightHeight)
-		obj:SetPoint("LEFT", right, "LEFT", E.Scale(5), 0)
+		obj:SetHeight(right:GetHeight())
+		obj:SetPoint("LEFT", right, 15, 0)
+		obj:SetPoint('TOP', right)
+		obj:SetPoint('BOTTOM', right)
 		if t ~= true then obj:SetParent(right) else obj:GetParent():SetParent(right) end
 	elseif p == 5 then
-		obj:SetHeight(rightHeight)
-		obj:SetPoint("CENTER", right, "CENTER")
+		obj:SetHeight(right:GetHeight())
+		obj:SetPoint('TOP', right)
+		obj:SetPoint('BOTTOM', right)
 		if t ~= true then obj:SetParent(right) else obj:GetParent():SetParent(right) end
 	elseif p == 6 then
-		obj:SetHeight(rightHeight)
-		obj:SetPoint("RIGHT", right, "RIGHT", -E.Scale(5), 0)
+		obj:SetHeight(right:GetHeight())
+		obj:SetPoint("RIGHT", right, -15, 0)
+		obj:SetPoint('TOP', right)
+		obj:SetPoint('BOTTOM', right)
 		if t ~= true then obj:SetParent(right) else obj:GetParent():SetParent(right) end
 	end
 	
@@ -48,8 +56,8 @@ function E.PP(p, obj)
 			obj:SetPoint("CENTER", mapleft, 0, 0)
 			if t ~= true then obj:SetParent(mapleft) else obj:GetParent():SetParent(mapleft) end
 		elseif p == 8 then
-			obj:SetHeight(mapright:GetHeight())
-			obj:SetPoint("CENTER", mapright, 0, 0)
+			obj:SetHeight(ElvuiMinimapStatsRight:GetHeight())
+			obj:SetPoint("CENTER", ElvuiMinimapStatsRight, 0, 0)
 			if t ~= true then obj:SetParent(mapright) else obj:GetParent():SetParent(mapright) end
 		end
 	end
@@ -79,29 +87,6 @@ function E.PP(p, obj)
 			obj:SetPoint("CENTER", ElvuiStat12Block, 0, 0)
 			if t ~= true then obj:SetParent(ElvuiStat12Block) else obj:GetParent():SetParent(ElvuiStat12Block) end
 		end	
-		--[[
-		if p == 11 then
-			obj:SetHeight(bottomHeight)
-			obj:SetPoint("LEFT", bottom, "LEFT", E.Scale(5), 0)
-			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
-		elseif p == 12 then
-			obj:SetHeight(bottomHeight)
-			obj:SetPoint("LEFT", bottom, "LEFT", E.Scale(120), 0)
-			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
-		elseif p == 13 then
-			obj:SetHeight(bottomHeight)
-			obj:SetPoint("CENTER", bottom, "CENTER")
-			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
-		elseif p == 14 then
-			obj:SetHeight(bottomHeight)
-			obj:SetPoint("RIGHT", bottom, "RIGHT", -E.Scale(120), 0)
-			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end	
-		elseif p == 15 then
-			obj:SetHeight(bottomHeight)
-			obj:SetPoint("RIGHT", bottom, "RIGHT", -E.Scale(5), 0)
-			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
-		end
-		]]
 	end
 end
 

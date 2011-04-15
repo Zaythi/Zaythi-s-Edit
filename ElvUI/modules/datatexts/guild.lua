@@ -34,7 +34,7 @@ local guildTable, guildXP, guildMotD = {}, {}, ""
 
 local Stat = CreateFrame("Frame")
 Stat:EnableMouse(true)
-Stat:SetFrameStrata("BACKGROUND")
+Stat:SetFrameStrata("MEDIUM")
 Stat:SetFrameLevel(3)
 
 local Text  = ElvuiInfoLeft:CreateFontString(nil, "OVERLAY")

@@ -6,7 +6,7 @@ local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config
 if not C["datatext"].haste or C["datatext"].haste == 0 then return end
 
 local Stat = CreateFrame("Frame")
-Stat:SetFrameStrata("BACKGROUND")
+Stat:SetFrameStrata("MEDIUM")
 Stat:SetFrameLevel(3)
 
 local Text  = ElvuiInfoLeft:CreateFontString(nil, "LOW")

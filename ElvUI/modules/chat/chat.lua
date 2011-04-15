@@ -38,6 +38,7 @@ _G.CHAT_YELL_GET = "%s:\32"
 _G.CHAT_FLAG_AFK = "|cffFF0000"..L.chat_FLAG_AFK.."|r "
 _G.CHAT_FLAG_DND = "|cffE7E716"..L.chat_FLAG_DND.."|r "
 _G.CHAT_FLAG_GM = "|cff4154F5"..L.chat_FLAG_GM.."|r "
+ 
 
 -- don't replace this with custom colors, since many addons
 -- use these strings to detect if friends come on-line or go off-line 
@@ -73,7 +74,7 @@ local function SetChatStyle(frame)
 	end
 	
 	_G[chat.."TabText"]:SetTextColor(unpack(C["media"].valuecolor))
-	_G[chat.."TabText"]:SetFont(C["media"].font, C["datatext"].fontsize, "THINOUTLINE")
+	_G[chat.."TabText"]:SetFont(C["media"].font,C["datatext"].fontsize,"THINOUTLINE")
 	_G[chat.."TabText"]:SetShadowColor(0, 0, 0, 0.4)
 	_G[chat.."TabText"]:SetShadowOffset(E.mult, -E.mult)
 	_G[chat.."TabText"].SetTextColor = E.dummy
@@ -240,9 +241,9 @@ local function SetupChatFont(self)
 		
 		local _, fontSize = FCF_GetChatWindowInfo(id)
 		
-		--font under fontsize 10 is unreadable.
-		if fontSize < 10 then		
-			FCF_SetChatWindowFontSize(nil, chat, 10)
+		--font under fontsize 12 is unreadable.
+		if fontSize < 12 then		
+			FCF_SetChatWindowFontSize(nil, chat, 12)
 		else
 			FCF_SetChatWindowFontSize(nil, chat, fontSize)
 		end
@@ -297,6 +298,7 @@ ElvuiChat:SetScript("OnUpdate", function(self, elapsed)
 			if ChatRBG then ChatRBG:SetAlpha(0) end
 			E.RightChatWindowID = nil
 		end
+
 		
 		for i = 1, CreatedFrames do
 			chat = _G[format("ChatFrame%d", i)]
@@ -533,6 +535,7 @@ function E.ChatCopyButtons(id)
 		buttontext:SetJustifyH("CENTER")
 		buttontext:SetJustifyV("CENTER")
 		buttontext:SetTextColor(unpack(C["media"].valuecolor))
+		
 		
 		if id == 1 then
 			button:SetScript("OnMouseUp", function(self, btn)

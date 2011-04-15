@@ -30,7 +30,7 @@ L["General Settings"] = true
 	L["Upper Frame"] = true
 		L["Enable a bar accross the top of the screen, doing this will move the location and coords texts to that bar, and also allow for spaces nine and ten of the datatexts to be used."] = true
 	L["Lower Frame"] = true
-		L["Enable the data text bar at the bottom of the screen, adding data text positions 11 through 15."] = true
+		L["Enable a bar accross the bottom of the screen, mostly for decoration."] = true
 		
 --Media
 L["Media"] = true
@@ -141,8 +141,6 @@ L["Unit Frames"] = true
 	L["Display Aggro"] = true
 		L["Enable red glow around the player frame when you have aggro"] = true
 		L["Change the frame's border to red when a unit has aggro"] = true
-	L["Autmatically change tracked reputation"] = true
-		L["Change the tracked reputation when the standing with a faction changes"] = true
 	L["Mini-Classbar Theme"] = true
 		L["Make classbars smaller and restyle them"] = true
 	
@@ -158,7 +156,7 @@ L["Frame Sizes"] = true
 	L["Assist/Tank Height"] = true
 
 L["Auras"] = true
-		L["Display auras on frame"] = true
+	L["Display auras on frame"] = true
 	L["Player Buffs"] = true
 	L["Player Debuffs"] = true
 	L["Target Buffs"] = true
@@ -210,13 +208,7 @@ L["Power Colors"] = true
 	L["Focus"] = true
 	L["Energy"] = true
 	L["Runic Power"] = true
-
-L["GPS Tracking"]=true
-	L["Show target GPS"] = true
-		L["Display a tracker arrow and range on the target frame"] = true
-	L["Show focus GPS"] = true
-		L["Display a tracker arrow and range next to the focus frame"] = true
-
+		
 --Raidframe
 L["Raid Frames"] = true
 	L["Enable Raidframes"] = true
@@ -312,7 +304,8 @@ L["Action Bars"] = true
 --Datatext
 L["Data Texts"] = true
 	L["DATATEXT_DESC"] = "Edit display of informational text on panels"
-	L["DATATEXT_POS"] = "\n\n0 - Disabled\n1 - LEFT PANEL, LEFT\n2 - LEFT PANEL, CENTER\n3 - LEFT PANEL, RIGHT\n4 - RIGHT PANEL, LEFT\n5 - RIGHT PANEL, CENTER\n6 - RIGHT PANEL, RIGHT\n7 - MINIMAP LEFT\n8 - MINIMAP RIGHT\n9 - TOPBAR LEFT\n10 - TOPBAR RIGHT\n11 - 15 BOTTOM CENTER BAR"
+	L["DATATEXT_POS"] = "\n\n0 - Disabled\n1 - LEFT PANEL, LEFT\n2 - LEFT PANEL, CENTER\n3 - LEFT PANEL, RIGHT\n4 - RIGHT PANEL, LEFT\n5 - RIGHT PANEL, CENTER\n6 - RIGHT PANEL, RIGHT\n7 - MINIMAP LEFT\n8 - MINIMAP RIGHT\n11 - BOTTOMBAR LEFT\n12 - BOTTOMBAR RIGHT"
+	L["DATATEXT_POS2"] = "\n\n0 - Disabled\n1 - LEFT PANEL, LEFT\n2 - LEFT PANEL, CENTER\n3 - LEFT PANEL, RIGHT\n4 - RIGHT PANEL, LEFT\n5 - RIGHT PANEL, CENTER\n6 - RIGHT PANEL, RIGHT\n7 - MINIMAP LEFT\n8 - MINIMAP RIGHT\n9 - TOPBAR LEFT\n10 - TOPBAR RIGHT\n11 - BOTTOMBAR LEFT\n12 - BOTTOMBAR RIGHT"
 	L["Text Positions"] = true
 	L["Mastery Spell"] = true
 		L["Display the mastery spell on the mastery datatext"] = true
@@ -350,8 +343,6 @@ L["Data Texts"] = true
 		L["Display current watched items in backpack"] = true
 	L["Talent Spec"] = true	
 		L["Display current spec"] = true
-	L["Target Range"] = true
-		L["Display the range to the current target"] = true
 	L["Mastery"] = true
 		L["Display Mastery Rating"] = true
 	L["Hit Rating"] = true
@@ -362,7 +353,8 @@ L["Data Texts"] = true
 		L["Display Critical Strike Rating"] = true
 	L["Mana Regen"] = true
 		L["Display Mana Regen Rate"] = true
-
+	
+	
 --chat
 L["Chat"] = true
 	L["CHAT_DESC"] = "Adjust chat settings"

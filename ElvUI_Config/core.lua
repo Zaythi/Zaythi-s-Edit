@@ -119,6 +119,10 @@ function ElvuiConfig.GenerateOptionsInternal()
 		timeout = 0,
 		whileDead = 1,
 	}
+
+	if C["general"].upperpanel == true then
+		L["DATATEXT_POS"] = L["DATATEXT_POS2"]
+	end
 	
 	local RaidBuffs = {
 		["HealerBuffIDs"] = true,
@@ -588,12 +592,14 @@ function ElvuiConfig.GenerateOptionsInternal()
 						name = L["Upper Frame"],
 						desc = L["Enable a bar accross the top of the screen, doing this will move the location and coords texts to that bar, and also allow for spaces nine and ten of the datatexts to be used."],
 					},
+					--[[
 					lowerpanel = {
 						order = 11,
 						type = "toggle",
 						name = L["Lower Frame"],
-						desc = L["Enable the data text bar at the bottom of the screen, adding data text positions 11 through 15."],					
+						desc = L["Enable a bar accross the bottom of the screen, mostly for decoration."],					
 					},
+					]]
 				},
 			},
 			media = {
@@ -1089,12 +1095,6 @@ function ElvuiConfig.GenerateOptionsInternal()
 								name = L["Display Aggro"],
 								desc = L["Enable red glow around the player frame when you have aggro"],
 							},
-							autorepchange = {
-								type = "toggle",
-								order = 23,
-								name = L["Autmatically change tracked reputation"],
-								desc = L["Change the tracked reputation when the standing with a faction changes"],
-							},							
 							powerbar_offset = {
 								type = "range",
 								order = 24,
@@ -1399,30 +1399,9 @@ function ElvuiConfig.GenerateOptionsInternal()
 							},
 						},
 					},
-					GPSGroup = {
-						order = 6,
-						type = "group",
-						name = L["GPS Tracking"],
-						guiInline = true,
-						disabled = function() return (not db.unitframes.enable) end,	
-						args = {
-							targetgps = {
-								type = "toggle",
-								order = 1,
-								name = L["Show target GPS"],
-								desc = L["Display a tracker arrow and range on the target frame"],							
-							},						
-							focusgps = {
-								type = "toggle",
-								order = 1,
-								name = L["Show focus GPS"],
-								desc = L["Display a tracker arrow and range next to the focus frame"],						
-							},												
-						},
-					},
 					PowerColors = {
 						type = "group",
-						order = 7,
+						order = 6,
 						name = L["Power Colors"],
 						guiInline = true,
 						get = function(info)
@@ -1951,7 +1930,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 				},
 			},
 			datatext = {
-				order = 8,
+				order = 12,
 				type = "group",
 				name = L["Data Texts"],
 				desc = L["DATATEXT_DESC"],
@@ -2014,133 +1993,126 @@ function ElvuiConfig.GenerateOptionsInternal()
 								type = "range",
 								name = L["Stat #1"],
 								desc = L["Display stat based on your role (Avoidance-Tank, AP-Melee, SP/HP-Caster)"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,
+								min = 0, max = 12, step = 1,
 							},
 							dur = {
 								order = 2,
 								type = "range",
 								name = L["Durability"],
 								desc = L["Display your current durability"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,							
+								min = 0, max = 12, step = 1,							
 							},
 							stat2 = {
 								order = 3,
 								type = "range",
 								name = L["Stat #2"],
 								desc = L["Display stat based on your role (Armor-Tank, Crit-Melee, Crit-Caster)"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,							
+								min = 0, max = 12, step = 1,							
 							},
 							system = {
 								order = 4,
 								type = "range",
 								name = L["System"],
 								desc = L["Display FPS and Latency"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							wowtime = {
 								order = 5,
 								type = "range",
 								name = L["Time"],
 								desc = L["Display current time"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,									
+								min = 0, max = 12, step = 1,									
 							},
 							gold = {
 								order = 6,
 								type = "range",
 								name = L["Gold"],
 								desc = L["Display current gold"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							guild = {
 								order = 7,
 								type = "range",
 								name = L["Guild"],
 								desc = L["Display current online people in guild"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							friends = {
 								order = 8,
 								type = "range",
 								name = L["Friends"],
 								desc = L["Display current online friends"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							bags = {
 								order = 9,
 								type = "range",
 								name = L["Bags"],
 								desc = L["Display ammount of bag space"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							dps_text = {
 								order = 10,
 								type = "range",
 								name = L["DPS"],
 								desc = L["Display ammount of DPS"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							hps_text = {
 								order = 11,
 								type = "range",
 								name = L["HPS"],
 								desc = L["Display ammount of HPS"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							currency = {
 								order = 12,
 								type = "range",
 								name = L["Currency"],
 								desc = L["Display current watched items in backpack"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							specswitch = {
 								order = 13,
 								type = "range",
 								name = L["Talent Spec"],
 								desc = L["Display current spec"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
-							},
-							range = {
-								order = 14,
-								type = "range",
-								name = L["Target Range"],
-								desc = L["Display the range to the current target"]..L["DATATEXT_POS"],
-								min = 0, max = 15, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							mastery = {
 								order = 14,
 								type = "range",
 								name = L["Mastery"],
 								desc = L["Display Mastery Rating"]..L["DATATEXT_POS"],
-								min = 0, max = 8, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							hit = {
 								order = 15,
 								type = "range",
 								name = L["Hit Rating"],
 								desc = L["Display Hit Rating"]..L["DATATEXT_POS"],
-								min = 0, max = 8, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							haste = {
 								order = 16,
 								type = "range",
 								name = L["Haste Rating"],
 								desc = L["Display Haste Rating"]..L["DATATEXT_POS"],
-								min = 0, max = 8, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 							crit = {
 								order = 17,
 								type = "range",
 								name = L["Crit Rating"],
 								desc = L["Display Critical Strike Rating"]..L["DATATEXT_POS"],
-								min = 0, max = 8, step = 1,									
+								min = 0, max = 12, step = 1,									
 							},
 							manaregen = {
 								order = 17,
 								type = "range",
 								name = L["Mana Regen"],
 								desc = L["Display Mana Regen Rate"]..L["DATATEXT_POS"],
-								min = 0, max = 8, step = 1,									
+								min = 0, max = 12, step = 1,									
 							},
 						},
 					},
@@ -2743,7 +2715,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 									["SAY"] = CHAT_MSG_SAY,
 									["PARTY"] = PARTY,
 									["RAID"] = RAID,
-							},
+								},
 							},
 							showthreat = {
 								type = "toggle",
@@ -2762,5 +2734,14 @@ function ElvuiConfig.GenerateOptionsInternal()
 				},		
 			},
 		},
-	}	
+	}
+	
+	if C["general"].upperpanel == true then
+		for _, option in pairs(ElvuiConfig.Options.args.datatext.args.DataGroup.args) do
+			option.max = 10
+		end
+		L["DATATEXT_POS"] = L["DATATEXT_POS2"]
+	end
 end
+
+

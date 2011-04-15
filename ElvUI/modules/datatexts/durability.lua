@@ -13,7 +13,7 @@ local tooltipString = "%d %%"
 
 local Stat = CreateFrame("Frame")
 Stat:EnableMouse(true)
-Stat:SetFrameStrata("BACKGROUND")
+Stat:SetFrameStrata("MEDIUM")
 Stat:SetFrameLevel(3)
 
 local fader = CreateFrame("Frame", "DurabilityDataText", ElvuiInfoLeft)

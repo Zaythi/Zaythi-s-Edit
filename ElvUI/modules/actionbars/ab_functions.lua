@@ -123,12 +123,8 @@ function E.PositionAllPanels()
 	ElvuiActionBarBackground:ClearAllPoints()
 	ElvuiPetActionBarBackground:ClearAllPoints()
 	ElvuiLineToPetActionBarBackground:ClearAllPoints()
-
-	local yOffSet = 0	
-	if C["general"].lowerpanel == true then	
-		yOffSet = E.textbarheight + E.Scale(5)
-	end
 	
+	local yOffSet = E.textbarheight + E.Scale(5)
 	if C["actionbar"].bottompetbar ~= true then
 		ElvuiActionBarBackground:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, E.Scale(4) + yOffSet)
 		if E["actionbar"].rightbars > 0 then

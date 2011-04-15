@@ -99,6 +99,7 @@ L.popup_resetuf = "Do you wish to reset your unitframe positions?"
 
 L.merchant_repairnomoney = "You don't have enough money for repair!"
 L.merchant_repaircost = "Your items have been repaired for"
+L.merchant_guildrepaircost = "Your items have been repaired from |cffff0000guild funds|r for"
 L.merchant_trashsell = "Your vendor trash has been sold and you earned"
 
 L.goldabbrev = "|cffffd700g|r"
@@ -147,8 +148,8 @@ L.core_autoinv_enable_c = "Autoinvite ON: "
 L.core_autoinv_disable = "Autoinvite OFF"
 L.core_welcome1 = "ElvUI |cff1784d1Edit|r version %s"
 L.core_welcome2 = ""
---L.core_welcome1 = "Welcome to |cff1784d1ElvUI Enhanced|r, version %s brought to you by <|cff1784d1New Horizon|r> Kilrogg[EU] http://www.newhorizonwow.com/, Now Recruiting!"
---L.core_welcome2 = "Type |cff1784d1/uihelp|r for more info, type |cff1784d1/ec|r or |cff1784d1/elvui|r to config, or visit https://github.com/omega1970/ElvUI/wiki/ElvUI-Enhanced"
+--L.core_welcome1 = "Welcome to |cff1784d1ElvUI|r, version %s brought to you by <|cff1784d1tys|r> Spirestone[US] http://tys.wowstead.com, Now Recruiting!"
+--L.core_welcome2 = "Type |cff1784d1/uihelp|r for more info, type |cff1784d1/ec|r or |cff1784d1/elvui|r to config, or visit http://www.tukui.org/forums/forum.php?id=84"
 
 L.core_uihelp1 = "|cff00ff00General Slash Commands|r"
 L.core_uihelp2 = "|cff1784d1/tracker|r - Elvui Arena Enemy Cooldown Tracker - Low-memory enemy PVP cooldown tracker. (Icon only)"

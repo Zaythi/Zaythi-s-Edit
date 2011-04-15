@@ -13,8 +13,7 @@ DB["media"] = {
 	["blank"] = "ElvUI Blank",
 	
 	["raidicons"] = [[Interface\AddOns\ElvUI\media\textures\raidicons.blp]], -- new raid icon textures by hankthetank
-	["arrow"] = [[Interface\AddOns\ElvUI\media\textures\arrow.tga]],	-- arrow texture for target and focus gps
-
+	
 	-- sound
 	["whisper"] = "ElvUI Whisper",
 	["warning"] = "ElvUI Warning",
@@ -36,7 +35,7 @@ DB["general"] = {
 	["fontscale"] = 12,					--Master font
 	["resolutionoverride"] = "NONE",		--override lowversion (Low, High)
 	["layoutoverride"] = "NONE",			--ovverride layout (DPS, Healer)
-	["sharpborders"] = false,
+	["sharpborders"] = true,
 	["upperpanel"] = false,
 	["lowerpanel"] = true,
 }
@@ -56,7 +55,7 @@ DB["skin"] = {
 DB["unitframes"] = {
 	-- general options
 	["enable"] = true,                     -- do i really need to explain this?
-	["fontsize"] = 11,						-- default font height for unitframes
+	["fontsize"] = 12,						-- default font height for unitframes
 	["lowThreshold"] = 20,                 -- global low threshold, for low mana warning.
 	["targetpowerplayeronly"] = true,         -- enable power text on pvp target only
 	["showfocustarget"] = false,           -- show focus's target
@@ -81,7 +80,6 @@ DB["unitframes"] = {
 	["arena"] = true,                 -- enable elvui arena unitframes (requirement : Elvui unitframes enabled)	
 	["swing"] = false,
 	["displayaggro"] = true,
-	["autorepchange"] = true,					-- Enable automitic change of reputation tracking on faction standing change
 	
 	--frame sizes
 	["playtarwidth"] = 275,					--width of player/target frame
@@ -111,6 +109,7 @@ DB["unitframes"] = {
 	["playtarbuffperrow"] = 8,				-- buffs/debuffs per row on player/target frames
 	["smallbuffperrow"] = 5,				-- debuffs per row on targettarget/focus frames
 	
+	
 	--castbar
 	["unitcastbar"] = true, -- enable Elvui castbar
 	["cblatency"] = true, -- enable castbar latency
@@ -124,10 +123,6 @@ DB["unitframes"] = {
 	["castfocusheight"] = 20,
 	["castbarcolor"] = DB["media"].bordercolor, -- Color of player castbar
 	["nointerruptcolor"] = {r = 0.78, g = 0.25, b = 0.25}, -- Color of target castbar
-	
-	--GPS Tracker
-	["targetgps"] = false,
-	["focusgps"] = false,
 	
 	["POWER_MANA"] = {r = 0.31, g = 0.45, b = 0.63},
 	["POWER_RAGE"] = {r = 0.78, g = 0.25, b = 0.25},
@@ -229,8 +224,7 @@ DB["datatext"] = {
 	["dps_text"] = 12,						-- show current dps
 	["hps_text"] = 0,						-- show current hps
 	["currency"] = 0,						-- show watched items in backpack
-	["specswitch"] = 5,					-- talent switch and Show current talent tree
-	["range"] = 14,							-- show range to target
+	["specswitch"] = 5,
 	["hit"] = 0,
 	["haste"] = 0,
 	["mastery"] = 0,
@@ -274,6 +268,8 @@ DB["others"] = {
 	["autoacceptinv"] = true,                 -- auto-accept invite from guildmate and friends.
 	["enablemap"] = true,                     -- reskin the map to fit Elvui
 	["enablebag"] = true,                     -- enable an all in one bag mod that fit Elvui perfectly
+	
+
 	["lootframe"] = true,                  -- reskin the loot frame to fit Elvui
 	["rolllootframe"] = true,              -- reskin the roll frame to fit Elvui
 	["autogreed"] = true,                  -- auto-dez or auto-greed item at max level.	
