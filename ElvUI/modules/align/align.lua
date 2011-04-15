@@ -38,7 +38,9 @@ end
 function Grid_Create() 
 	grid = CreateFrame('Frame', nil, UIParent) 
 	grid.boxSize = boxSize 
-	grid:SetAllPoints(UIParent) 
+	grid:SetAllPoints(UIParent)
+	grid:SetFrameLevel(0)
+	grid:SetFrameStrata("BACKGROUND")
 
 	local size = 2 
 	local width = GetScreenWidth()
@@ -50,7 +52,7 @@ function Grid_Create()
 
 	for i = 0, boxSize do 
 		local tx = grid:CreateTexture(nil, 'BACKGROUND') 
-		tx:SetTexture(1, 0, 0, 0.5) 
+		tx:SetTexture(0.5, 0, 0, 0.4)
 		tx:SetPoint("TOPLEFT", grid, "TOPLEFT", i*wStep - (size/2), 0) 
 		tx:SetPoint('BOTTOMRIGHT', grid, 'BOTTOMLEFT', i*wStep + (size/2), 0) 
 	end 
@@ -58,20 +60,20 @@ function Grid_Create()
 	
 	do
 		local tx = grid:CreateTexture(nil, 'BACKGROUND') 
-		tx:SetTexture(1, 0, 0, 0.5)
+		tx:SetTexture(0.5, 0, 0, 0.4)
 		tx:SetPoint("TOPLEFT", grid, "TOPLEFT", 0, -(height/2) + (size/2))
 		tx:SetPoint('BOTTOMRIGHT', grid, 'TOPRIGHT', 0, -(height/2 + size/2))
 	end
 	
 	for i = 1, math.floor((height/2)/hStep) do
 		local tx = grid:CreateTexture(nil, 'BACKGROUND') 
-		tx:SetTexture(1, 0, 0, 0.5)
+		tx:SetTexture(0.5, 0, 0, 0.4)
 		
 		tx:SetPoint("TOPLEFT", grid, "TOPLEFT", 0, -(height/2+i*hStep) + (size/2))
 		tx:SetPoint('BOTTOMRIGHT', grid, 'TOPRIGHT', 0, -(height/2+i*hStep + size/2))
 		
 		tx = grid:CreateTexture(nil, 'BACKGROUND') 
-		tx:SetTexture(1, 0, 0, 0.5)
+		tx:SetTexture(0.5, 0, 0, 0.4)
 		
 		tx:SetPoint("TOPLEFT", grid, "TOPLEFT", 0, -(height/2-i*hStep) + (size/2))
 		tx:SetPoint('BOTTOMRIGHT', grid, 'TOPRIGHT', 0, -(height/2-i*hStep + size/2))
