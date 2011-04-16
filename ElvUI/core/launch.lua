@@ -117,20 +117,26 @@ function E.Install()
 		ChatFrame_AddChannel(ChatFrame3, L.chat_trade)
 
 		
-		if E.myname == "Elv" then
+		if E.myname == "Zaythi" or "Zarlana" or "Ghli" or "Zx" then
 			--keep losing my god damn channels everytime i resetui
-			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "tystank")
-			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "tys")
-			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "crusaderaura")
-			ChangeChatColor("CHANNEL5", 147/255, 112/255, 219/255)
-			ChangeChatColor("CHANNEL6", 139/255, 115/255, 85/255)
-			ChangeChatColor("CHANNEL7", RAID_CLASS_COLORS["PALADIN"].r, RAID_CLASS_COLORS["PALADIN"].g, RAID_CLASS_COLORS["PALADIN"].b)
+			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "SetItToRaid")
+			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "Aggression")
+			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "placeholder7")
+			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "GoG")
+			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "placeholder9")
+			ChatFrame_AddChannel(DEFAULT_CHAT_FRAME, "placeholder10")
+			ChangeChatColor("CHANNEL5", 255/255, 0/255, 144/255)
+			ChangeChatColor("CHANNEL6", RAID_CLASS_COLORS["SHAMAN"].r, RAID_CLASS_COLORS["SHAMAN"].g, RAID_CLASS_COLORS["SHAMAN"].b)
+			ChangeChatColor("CHANNEL7", 0/255, 203/255, 205/255)
+			ChangeChatColor("CHANNEL8", 168/255, 255/255, 0/255)
+			ChangeChatColor("CHANNEL9", 120/255, 116/255, 255/255)
+			ChangeChatColor("CHANNEL10", RAID_CLASS_COLORS["MAGE"].r, RAID_CLASS_COLORS["MAGE"].g, RAID_CLASS_COLORS["MAGE"].b)
 			SetCVar("scriptErrors", 1)
 		end	
 		
 		-- enable classcolor automatically on login and on each character without doing /configure each time.
 		ToggleChatColorNamesByClassGroup(true, "SAY")
-		ToggleChatColorNamesByClassGroup(true, "EMOTE")
+		ToggleChatColorNamesByClassGroup(false, "EMOTE")
 		ToggleChatColorNamesByClassGroup(true, "YELL")
 		ToggleChatColorNamesByClassGroup(true, "GUILD")
 		ToggleChatColorNamesByClassGroup(true, "OFFICER")
@@ -158,11 +164,11 @@ function E.Install()
 		
 		--Adjust Chat Colors
 		--General
-		ChangeChatColor("CHANNEL1", 195/255, 230/255, 232/255)
+		ChangeChatColor("CHANNEL1", 255/255, 192/255, 192/255)
 		--Trade
-		ChangeChatColor("CHANNEL2", 232/255, 158/255, 121/255)
+		ChangeChatColor("CHANNEL2", 255/255, 192/255, 192/255)
 		--Local Defense
-		ChangeChatColor("CHANNEL3", 232/255, 228/255, 121/255)
+		ChangeChatColor("CHANNEL3", 255/255, 192/255, 192/255)
 	end
 		   
 	ElvuiData[E.myrealm][E.myname].installed = true
