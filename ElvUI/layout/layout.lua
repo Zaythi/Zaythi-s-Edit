@@ -201,14 +201,6 @@ chatlbgdummy2:SetWidth(C["chat"].chatwidth)
 chatlbgdummy2:SetHeight(C["chat"].chatheight+6)
 chatlbgdummy2:SetPoint("BOTTOMLEFT", ElvuiBottomPanel, "TOPLEFT", E.Scale(4),  E.Scale(8))
 
---[[
--- CHAT BACKGROUND LEFT (THIS IS TO ADJUST INFO BARS TO)
-local chatlbgdummy3 = CreateFrame("Frame", "ChatLBackground3", ElvuiBottomPanel)
-chatlbgdummy3:SetWidth(C["chat"].chatwidth)
-chatlbgdummy3:SetHeight(C["chat"].chatheight)
-chatlbgdummy3:Point("BOTTOMRIGHT", ElvuiStat11Block, "TOPLEFT", -2, 4)
-]]
-
 -- CHAT BACKGROUND RIGHT (MOVES)
 local chatrbgdummy = CreateFrame("Frame", "ChatRBackground", UIParent)
 chatrbgdummy:SetWidth(C["chat"].chatwidth)
@@ -220,14 +212,6 @@ local chatrbgdummy2 = CreateFrame("Frame", "ChatRBackground2", UIParent)
 chatrbgdummy2:SetWidth(C["chat"].chatwidth)
 chatrbgdummy2:SetHeight(C["chat"].chatheight+6)
 chatrbgdummy2:SetPoint("BOTTOMRIGHT", ElvuiBottomPanel, "TOPRIGHT", E.Scale(-4),  E.Scale(8))
-
---[[
--- CHAT BACKGROUND RIGHT (THIS IS TO ADJUST INFO BARS TO)
-local chatrbgdummy3 = CreateFrame("Frame", "ChatRBackground3", ElvuiBottomPanel)
-chatrbgdummy3:SetWidth(C["chat"].chatwidth)
-chatrbgdummy3:SetHeight(C["chat"].chatheight)
-chatrbgdummy3:Point("BOTTOMLEFT", ElvuiStat12Block, "TOPRIGHT", 2, 4)
-]]
 
 E.ChatRightShown = true
 if C["chat"].showbackdrop == true then
