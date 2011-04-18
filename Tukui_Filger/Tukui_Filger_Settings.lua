@@ -364,6 +364,16 @@ ns.Filger_Spells = {
 			{ spellID = 61295, size = 32, unitId = "target", caster = "player", filter = "BUFF" },
 		},
 		{
+			Name = "COOLDOWN",
+			Direction = "RIGHT",
+			Interval = 4,
+			Mode = "ICON",
+			setPoint = { "CENTER", UIParent, "CENTER", 0, -100 },
+
+			-- Wind Shear
+			{ spellID = 57994, size = 47, filter = "CD" },
+		},
+		{
 			Name = "P_PROC_ICON",
 			Direction = "RIGHT",
 			Interval = 4,
@@ -375,7 +385,7 @@ ns.Filger_Spells = {
 			-- Shamanistic Rage
 			{ spellID = 30823, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Clearcasting
-			{ spellID = 16246, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
+			--{ spellID = 16246, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Tidal Waves
 			--{ spellID = 51562, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Ancestral Fortitude
@@ -393,7 +403,7 @@ ns.Filger_Spells = {
 			-- Storm Strike
 			{ spellID = 17364, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Earth Shock
-			{ spellID = 8042, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
+			--{ spellID = 8042, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Frost Shock
 			{ spellID = 8056, size = 47, unitId = "target", caster = "player", filter = "DEBUFF" },
 			-- Flame Shock
@@ -405,10 +415,12 @@ ns.Filger_Spells = {
 			IconSide = "LEFT",
 			Interval = 4,
 			Mode = "BAR",
-			setPoint = { "LEFT", UIParent, "CENTER", 267, 100 },
+			setPoint = { "LEFT", UIParent, "CENTER", 450, 100 },
 
 			-- Hex
 			{ spellID = 51514, size = 32, barWidth = 200, unitId = "focus", caster = "all", filter = "DEBUFF" },
+			-- Bind Elemental
+			{ spellID = 76780, size = 32, barWidth = 200, unitId = "focus", caster = "all", filter = "DEBUFF" },
 		},
 	},
 	["PALADIN"] = {
