@@ -29,8 +29,6 @@ L["General Settings"] = true
 		L["Enhance the borders on all frames by making a dark outline around the edges. You will probably need to disable this if you do not play in your monitors max resolution."] = true
 	L["Upper Frame"] = true
 		L["Enable a bar accross the top of the screen, doing this will move the location and coords texts to that bar, and also allow for spaces nine and ten of the datatexts to be used."] = true
-	L["Lower Frame"] = true
-		L["Enable a bar accross the bottom of the screen, mostly for decoration."] = true
 		
 --Media
 L["Media"] = true
@@ -429,8 +427,8 @@ L["Misc"] = true
 		L["Automatically sell gray items when visiting a vendor"] = true
 	L["Auto Repair"] = true
 		L["Automatically repair when visiting a vendor"] = true
-	L["Use guild bank for Auto Repair"] = true
-		L["Use the guild bank for auto repair when available."] = true
+	L["Guild Auto Repair"] = true
+		L["Uses guild bank funds for auto repair if possible."] = true
 	L["Combat"] = true
 	L["Buff Reminder"] = true
 		L["Icon at center of screen when you are missing a buff, or you have a buff you shouldn't have"] = true

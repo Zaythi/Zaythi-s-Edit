@@ -2670,15 +2670,15 @@ function ElvuiConfig.GenerateOptionsInternal()
 							},
 							autorepair = {
 								type = "toggle",
-								order = 4,
+								order = 5,
 								name = L["Auto Repair"],
 								desc = L["Automatically repair when visiting a vendor"],							
 							},
 							guildbankrepair = {
 								type = "toggle",
-								order = 4,
-								name = L["Use guild bank for Auto Repair"],
-								desc = L["Use the guild bank for auto repair when available."],							
+								order = 6,
+								name = L["Guild Auto Repair"],
+								desc = L["Uses guild bank funds for auto repair if possible."],							
 							},
 						},
 					},
@@ -2738,7 +2738,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 	
 	if C["general"].upperpanel == true then
 		for _, option in pairs(ElvuiConfig.Options.args.datatext.args.DataGroup.args) do
-			option.max = 10
+			option.max = 12
 		end
 		L["DATATEXT_POS"] = L["DATATEXT_POS2"]
 	end
