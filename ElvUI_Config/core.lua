@@ -2678,7 +2678,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 								type = "toggle",
 								order = 6,
 								name = L["Guild Auto Repair"],
-								desc = L["Uses guild bank funds for auto repair if possible."],							
+								desc = L["Uses guild bank funds for auto repair if possible"],							
 							},
 						},
 					},
