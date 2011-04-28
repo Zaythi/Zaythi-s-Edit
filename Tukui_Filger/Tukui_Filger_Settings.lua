@@ -551,7 +551,7 @@ ns.Filger_Spells = {
 			setPoint = { "RIGHT", UIParent, "CENTER", -267, -190 },
 
 			-- Surge of Light
-			{ spellID = 33151, size = 47, unitId = "player", caster = "all", filter = "BUFF" },
+			{ spellID = 88688, size = 47, unitId = "player", caster = "all", filter = "BUFF" },
 			-- Serendipity
 			{ spellID = 63730, size = 47, unitId = "player", caster = "player", filter = "BUFF" },
 			-- Shadow Weaving
