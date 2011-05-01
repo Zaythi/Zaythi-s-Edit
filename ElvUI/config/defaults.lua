@@ -182,7 +182,7 @@ DB["actionbar"] = {
 	["enable"] = true,
 	["hotkey"] = false,						-- enable hotkey display
 	["rightbarmouseover"] = true,			-- enable right bars on mouseover
-	["shapeshiftmouseover"] = false,			-- enable shapeshift or totembar on mouseover
+	["shapeshiftmouseover"] = false,		-- enable shapeshift or totembar on mouseover
 	["hideshapeshift"] = false,				-- hide shapeshift or totembar
 	["showgrid"] = true,					-- show grid on empty button
 	["bottompetbar"] = false,				-- position petbar below the actionbars instead of the right side
@@ -284,7 +284,7 @@ DB["others"] = {
 	["buffreminder"] = true,				-- buff reminder on the middle of screen about self buffs/weapon imbues
 	["remindersound"] = true,				-- enable warning sound notification for reminder
 	["raidbuffreminder"] = true,			-- buffbar below the minimap
-	["announceinterrupt"] = "NONE",		-- announce in party/raid when you interrupt
+	["announceinterrupt"] = "NONE",			-- announce in party/raid when you interrupt
 	["showthreat"] = true,					-- enable the threat bar anchored to right info panel
 	["minimapauras"] = true,				-- enable minimap auras
 }

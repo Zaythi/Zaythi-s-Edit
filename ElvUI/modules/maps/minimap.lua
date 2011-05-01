@@ -1,4 +1,3 @@
-
 local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
 --------------------------------------------------------------------
@@ -308,8 +307,7 @@ else
 	ElvuiLoc.zone:SetText(strsub(GetMinimapZoneText(),1,23))
 	ElvuiLoc:EnableMouse(true)
 	ElvuiLoc:SetScript("OnMouseDown", function() ToggleFrame(WorldMapFrame) end)
-	
-	
+
 	ElvuiLocX:FontString("coord", C["media"].font, C["datatext"].fontsize, "THINOUTLINE")
 	ElvuiLocX.coord:SetPoint("CENTER", ElvuiLocX, "CENTER")
 	ElvuiLocX.coord:SetText(x)	
@@ -340,5 +338,4 @@ else
 			self.elapsed = (self.elapsed or 0) + elapsed
 		end	
 	end)
-	
 end
