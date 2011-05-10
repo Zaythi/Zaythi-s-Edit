@@ -43,7 +43,7 @@ GOLDSPAM:RegisterEvent("ZONE_CHANGED_INDOORS")
 GOLDSPAM:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 GOLDSPAM:SetScript("OnEvent", GOLDSPAM_FILTER)
 
-if E.myname == "Zaythi" then
+if E.myname == "Elv" then
 	----------------------------------------------------------------------------------
 	-- Trade Chat Stuff
 	----------------------------------------------------------------------------------
