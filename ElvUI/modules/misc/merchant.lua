@@ -24,12 +24,12 @@ f:SetScript("OnEvent", function()
 		end
 	end
 	if not IsShiftKeyDown() then
-		if CanMerchantRepair() and C["merchant"].autorepair then
+		if CanMerchantRepair() and C["others"].autorepair then
 			local cost, possible = GetRepairAllCost()
 			local c = cost%100
 			local s = math.floor((cost%10000)/100)
 			local g = math.floor(cost/10000)
-			if C["merchant"].guildbankrepair then
+			if C["others"].guildbankrepair then
 				if (IsInGuild()) and (CanGuildBankRepair()) then
 					if cost <= GetGuildBankWithdrawMoney() then
 						guildRepairFlag = 1

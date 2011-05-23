@@ -134,7 +134,6 @@ DB["unitframes"] = {
 	["assisttankwidth"] = 120,				-- width of MainTank/MainAssist frames
 	["assisttankheight"] = 27,				-- height of MainTank/MainAssist frames
 	
-<<<<<<< HEAD
 	-- auras
 	["auratimer"] = true,					-- enable timers on buffs/debuffs
 	["auratextscale"] = 11,					-- the font size of buffs/debuffs timers on unitframes
