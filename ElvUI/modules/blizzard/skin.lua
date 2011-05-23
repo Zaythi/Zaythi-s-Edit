@@ -4112,7 +4112,7 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 				QuestLogDetailScrollFrame:Height(QuestLogScrollFrame:GetHeight() - 4)
 				
 				QuestLogScrollFrame:SetTemplate("Default")
-				QuestLogDetailScrollFrame:CreateBackdrop("Default")
+				QuestLogDetailScrollFrame:SetTemplate("Default")
 			end)
 		end
 		
