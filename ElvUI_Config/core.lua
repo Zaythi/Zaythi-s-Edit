@@ -2114,7 +2114,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 								type = "range",
 								name = L["Call to Arms"],
 								desc = L["Display the active roles that will recieve a reward for completing a random dungeon"]..L["DATATEXT_POS"],
-								min = 0, max = 8, step = 1,								
+								min = 0, max = 12, step = 1,								
 							},
 						},
 					},
