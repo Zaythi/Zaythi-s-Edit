@@ -134,6 +134,7 @@ DB["unitframes"] = {
 	["assisttankwidth"] = 120,				-- width of MainTank/MainAssist frames
 	["assisttankheight"] = 27,				-- height of MainTank/MainAssist frames
 	
+<<<<<<< HEAD
 	-- auras
 	["auratimer"] = true,					-- enable timers on buffs/debuffs
 	["auratextscale"] = 11,					-- the font size of buffs/debuffs timers on unitframes
@@ -144,13 +145,18 @@ DB["unitframes"] = {
 	["arenabuffs"] = true,					-- enable buffs on arena unitframes
 	["arenadebuffs"] = true,				-- enable debuffs on arena unitframes
 	["bossbuffs"] = true,					-- enable buffs on boss unitframes
-	["bossdebuffs"] = false,					-- enable debuffs on boss unitframes
+	["bossdebuffs"] = false,				-- enable debuffs on boss unitframes
 	["playershowonlydebuffs"] = true,		-- only show the players debuffs over the player frame, not buffs (playerauras must be true)
 	["playerdebuffsonly"] = true,			-- show the players debuffs on target, and any debuff in the whitelist (see DebuffFilter.lua)
 	["totdebuffs"] = true,					-- enable tot debuffs (high res only)
 	["focusdebuffs"] = true,				-- enable focus debuffs
-	["playtarbuffperrow"] = 8,				-- buffs/debuffs per row on player/target frames
-	["smallbuffperrow"] = 5,				-- debuffs per row on targettarget/focus frames
+	["playeraurasperrow"] = 8,
+	["targetaurasperrow"] = 8,
+	["smallaurasperrow"] = 5,
+	["playernumbuffrows"] = 1,
+	["playernumdebuffrows"] = 1,	
+	["targetnumbuffrows"] = 1,
+	["targetnumdebuffrows"] = 1,
 	
 	-- castbar
 	["unitcastbar"] = true,					-- enable ElvUI castbar
