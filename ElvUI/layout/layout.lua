@@ -184,6 +184,7 @@ if C["actionbar"].enable == true then
 	vbarbg:SetWidth((E.buttonsize * 12) + (E.buttonspacing * 13))
 	vbarbg:SetHeight(E.buttonsize + (E.buttonspacing * 2))
 	vbarbg:CreateShadow("Default")
+	vbarbg:SetFrameLevel(barbg:GetFrameLevel())
 end
 
 -- Adding in a test dummy 3 background
