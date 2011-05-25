@@ -3589,6 +3589,7 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 				if not InCombatLockdown() then
 					WorldMapFrame:SetScale(1)
 					WorldMapFrameSizeDownButton:Show()
+					WorldMapFrame:SetFrameLevel(10)
 				else
 					WorldMapFrameSizeDownButton:Disable()
 					WorldMapFrameSizeUpButton:Disable()
