@@ -7,16 +7,16 @@ DB["media"] = {
 	["dmgfont"] = "ElvUI Combat",			-- general font of dmg / sct
 		
 	-- textures
-	["normTex"] = "Aluminum",				-- texture used for ElvUI healthbar/powerbar/etc
-	["glossTex"] = "Aluminum",
-	["glowTex"] = "ElvUI GlowBorder",
-	["blank"] = "ElvUI Blank",
+	["normTex"] = "Aluminum",				-- normal texture used for ElvUI healthbar/powerbar/etc
+	["glossTex"] = "Aluminum",				-- glossy texture used for ElvUI healthbar/powerbar/etc
+	["glowTex"] = "ElvUI GlowBorder",		-- glow border texture used for ElvUI healthbar/powerbar/etc
+	["blank"] = "ElvUI Blank",				-- 
 	
 	["raidicons"] = [[Interface\AddOns\ElvUI\media\textures\raidicons.blp]],	-- new raid icon textures by hankthetank
 	
 	-- sound
-	["whisper"] = "ElvUI Whisper",
-	["warning"] = "ElvUI Warning",
+	["whisper"] = "ElvUI Whisper",			-- soundfile played upon receiving whisper
+	["warning"] = "ElvUI Warning",			-- soundfile from missing self buff warning
 	["glossyTexture"] = false,				-- use a glossy texture for all frames
 	
 	-- colors
@@ -40,64 +40,65 @@ DB["general"] = {
 }
 
 DB["skin"] = {
-	["enable"] = true,
-		["reforge"] = true,
-		["calendar"] = true,
-		["achievement"] = true,
-		["lfguild"] = true,
-		["inspect"] = true,
-		["binding"] = true,
-		["gbank"] = true,
-		["archaeology"] = true,
-		["guildcontrol"] = true,
-		["guild"] = true,
-		["tradeskill"] = true,
+	["enable"] = true,						-- enable skinning of blizzard frames
+		["reforge"] = true,						-- DK Reforging frame
+		["calendar"] = true,					-- Calendar frame
+		["achievement"] = true,					-- Achievement frame
+		["lfguild"] = true,						-- Looking For Guild frame
+		["inspect"] = true,						-- Inspect frame
+		["binding"] = true,						-- Keybind frame
+		["gbank"] = true,						-- Guild Bank frame
+		["archaeology"] = true,					-- Archaeology frame
+		["guildcontrol"] = true,				-- Guild Control frame
+		["guild"] = true,						-- Guild (Social) frame
+		["tradeskill"] = true,					-- Tradeskill menu
 		["raid"] = true,
-		["talent"] = true,
-		["glyph"] = true,
-		["auctionhouse"] = true,
-		["barber"] = true,
-		["macro"] = true,
+		["talent"] = true,						-- Talent frame
+		["glyph"] = true,						-- Glyph menu
+		["auctionhouse"] = true,				-- Auction House
+		["barber"] = true,						-- Barbershop window
+		["macro"] = true,						-- Macro menu
 		["debug"] = true,
-		["trainer"] = true,
-		["socket"] = true,
-		["achievement_popup"] = true,
-		["bgscore"] = true,
-		["merchant"] = true,
-		["mail"] = true,
-		["help"] = true,
-		["trade"] = true,
+		["trainer"] = true,						-- Trainder menu
+		["socket"] = true,						-- Socket (Gemming)
+		["achievement_popup"] = true,			-- Achievement Popup window
+		["bgscore"] = true,						-- Battleground Score frame
+		["merchant"] = true,					-- Vendor frame
+		["mail"] = true,						-- Mail frame
+		["help"] = true,						-- Help menu
+		["trade"] = true,						-- Trade window
 		["gossip"] = true,
 		["greeting"] = true,
-		["worldmap"] = true,
-		["taxi"] = true,
-		["lfd"] = true,
-		["quest"] = true,
-		["petition"] = true,
-		["dressingroom"] = true,
+		["worldmap"] = true,					-- World Map window
+		["taxi"] = true,						-- Gryphon Master taxi window
+		["lfd"] = true,							-- Looking For Dungeon
+		["quest"] = true,						-- Quest frame
+		["petition"] = true,					-- GM Petition menu
+		["dressingroom"] = true,				-- Dressing Room
 		["pvp"] = true,
 		["nonraid"] = true,
-		["friends"] = true,
-		["spellbook"] = true,
-		["character"] = true,
+		["friends"] = true,						-- Friends (Social) window
+		["spellbook"] = true,					-- Spellbook
+		["character"] = true,					-- Character frame
 		["misc"] = true,
-		["lfr"] = true,
-		["tabard"] = true,
+		["lfr"] = true,							-- Looking For Raid menu
+		["tabard"] = true,						-- Tabard menu
 		["guildregistrar"] = true,
 		["timemanager"] = true,
-	["recount"] = true,
-	["skada"] = true,
-	["omen"] = true,
-	["kle"] = true,
-	["dbm"] = true,
-	["bigwigs"] = true,
+	["recount"] = true,						-- enable skinning of Recount addon
+	["skada"] = true,						-- enable skinning of Skada addon
+	["omen"] = true,						-- enable skinning of Omen addon
+	["kle"] = true,							-- enable skinning of KLE addon
+	["dbm"] = true,							-- enable skinning of DBM addon
+	["bigwigs"] = true,						-- enable skinning of BigWigs addon
 	["hookkleright"] = true,				-- force KLE's top bar anchor to be hooked onto the right chat window
 	["hookbwright"] = true,					-- force BigWig's bar anchor to be hooked onto the right chat window
 	["embedright"] = "NONE",				-- addon to embed to the right frame ("Omen", "Recount", "Skada")
 }
 
 DB["unitframes"] = {
-	["enable"] = true,
+	-- general options
+	["enable"] = true,					-- enable unit frames
 	["fontsize"] = 13,						-- default font size for unitframes
 	["lowThreshold"] = 20,					-- global low mana threshold, for warning
 	["targetpowerplayeronly"] = true,		-- enable power text on pvp target only
@@ -108,6 +109,7 @@ DB["unitframes"] = {
 	["charportrait"] = false,				-- enable character portrait
 	["charportraithealth"] = false,			-- enable character portrait to overlay on healthbar
 	["classcolor"] = false,					-- color unitframes by class
+	["classcolorpower"] = false,			-- color powerbar by class
 	["healthcolor"] = DB["media"].bordercolor,	--color of the unitframe
 	["healthcolorbyvalue"] = false,			-- color health by current health remaining
 	["healthbackdrop"] = false,				-- enable using custom healthbackdrop color
@@ -121,8 +123,10 @@ DB["unitframes"] = {
 	["mini_classbar"] = true,				-- small class bar
 	["showboss"] = true,					-- enable boss unit frames for PVE encounters
 	["arena"] = true,						-- enable ElvUI arena unitframes
-	["swing"] = false,
-	["displayaggro"] = true,
+	["swing"] = false,						-- enable swing timer (melee)
+	["displayaggro"] = true,				-- display aggro on unitframe
+	["powerbar_height"] = 10,				-- height of powerbar
+	["classbar_height"] = 10,				-- height of class bar
 	
 	-- frame sizes
 	["playtarwidth"] = 275,					-- width of player/target frame
@@ -149,13 +153,13 @@ DB["unitframes"] = {
 	["playerdebuffsonly"] = true,			-- show the players debuffs on target, and any debuff in the whitelist (see DebuffFilter.lua)
 	["totdebuffs"] = true,					-- enable tot debuffs (high res only)
 	["focusdebuffs"] = true,				-- enable focus debuffs
-	["playeraurasperrow"] = 8,
-	["targetaurasperrow"] = 8,
-	["smallaurasperrow"] = 5,
-	["playernumbuffrows"] = 1,
-	["playernumdebuffrows"] = 1,	
-	["targetnumbuffrows"] = 1,
-	["targetnumdebuffrows"] = 1,
+	["playeraurasperrow"] = 8,				-- number of player auras per row
+	["targetaurasperrow"] = 8,				-- number of target auras per row
+	["smallaurasperrow"] = 5,				-- number of small auras per row
+	["playernumbuffrows"] = 1,				-- how many rows of player buffs shown on unit frame
+	["playernumdebuffrows"] = 1,			-- how many rows of player debuffs shown on unit frame
+	["targetnumbuffrows"] = 1,				-- how many rows of target buffs shown on unit frame
+	["targetnumdebuffrows"] = 1,			-- how many rows of target debuffs shown on unit frame
 	
 	-- castbar
 	["unitcastbar"] = true,					-- enable ElvUI castbar
@@ -180,7 +184,7 @@ DB["unitframes"] = {
 }
 
 DB["raidframes"] = {
-	["enable"] = true,
+	["enable"] = true,					-- enable raid frames (grid)
 	["fontsize"] = 12,						-- default font height for raidframes
 	["scale"] = 1,							-- scale of raid frame (for smaller, use < 0.99 // for larger, use > 1.00)
 	["showrange"] = true,					-- show range opacity on raidframes
@@ -206,7 +210,7 @@ DB["raidframes"] = {
 }
 
 DB["classtimer"] = {
-	["enable"] = true,
+	["enable"] = true,					-- enable class timers (buff bars above player/target frame)
 	["bar_height"] = 17,					-- class timer bar height
 	["bar_spacing"] = 5,					-- spacing between bars
 	["icon_position"] = 2,					-- icon position (read below for options)
@@ -285,7 +289,7 @@ DB["datatext"] = {
 	["mastery"] = 0,						-- show mastery
 	["crit"] = 0,							-- show crit
 	["manaregen"] = 0,						-- show mana regen
-	["masteryspell"] = false,
+	["masteryspell"] = false,				-- show mastery spell
 	["battleground"] = true,				-- enable stats in battleground
 	["time24"] = false,						-- set time to 24h format
 	["localtime"] = false,					-- set time to local time instead of server time
@@ -294,7 +298,7 @@ DB["datatext"] = {
 }
 
 DB["chat"] = {
-	["enable"] = true,
+	["enable"] = true,					-- enable ElvUI chat
 	["whispersound"] = true,				-- play a sound when receiving whisper
 	["showbackdrop"] = true,				-- show a backdrop on the chat panels
 	["chatwidth"] = 450,					-- width of chat frame
@@ -306,7 +310,7 @@ DB["chat"] = {
 }
 
 DB["tooltip"] = {
-	["enable"] = true,
+	["enable"] = true,					-- enable ElvUI tooltip
 	["hidecombat"] = true,					-- hide docked tooltip when in combat
 	["hidecombatraid"] = true,				-- only hide in combat in a raid instance
 	["hidebuttons"] = false,				-- always hide actionbar buttons tooltip
