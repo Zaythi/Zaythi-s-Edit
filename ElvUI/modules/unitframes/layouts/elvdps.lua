@@ -24,7 +24,7 @@ local NORMTEX = C["media"].normTex
 local POWERTHEME = C["unitframes"].mini_powerbar
 local USE_POWERBAR_OFFSET = C["unitframes"].powerbar_offset ~= 0
 local POWERBAR_OFFSET = C["unitframes"].powerbar_offset
-local MINI_CLASSBAR = C["unitframes"].mini_classbar
+local MINI_CLASSBAR = C["unitframes"].mini_classbar and (E.myclass == "PALADIN" or E.myclass == "SHAMAN" or E.myclass == "DRUID" or E.myclass == "DEATHKNIGHT" or E.myclass == "WARLOCK")
 
 --[[
 	Constuctor Functions (inside uf_functions.lua)
@@ -158,6 +158,26 @@ local function Shared(self, unit)
 		power.value:Point("LEFT", health, "LEFT", 4, 0)
 		self.Power = power
 		
+		--Druid Power Bar
+		if E.myclass == "DRUID" then
+			local dpower = CreateFrame('Frame', nil, self)
+			dpower:SetFrameStrata("LOW")
+			dpower:Point("TOPLEFT", power, "BOTTOMLEFT", -BORDER, -(BORDER+SPACING))
+			dpower:Point("BOTTOMRIGHT", power, "BOTTOMRIGHT", BORDER, -((BORDER+SPACING)+POWERBAR_HEIGHT))
+			dpower:SetTemplate("Default")
+			dpower:SetFrameLevel(dpower:GetFrameLevel() + 1)
+			dpower.ManaBar = CreateFrame('StatusBar', nil, dpower)
+			dpower.ManaBar:SetStatusBarTexture(C["media"].normTex)
+			dpower.ManaBar:Point("TOPLEFT", dpower, "TOPLEFT", BORDER, -BORDER)		
+			dpower.ManaBar:Point("BOTTOMRIGHT", dpower, "BOTTOMRIGHT", -BORDER, BORDER)	
+			dpower.bg = dpower:CreateTexture(nil, "BORDER")
+			dpower.bg:SetAllPoints(dpower.ManaBar)
+			dpower.bg:SetTexture(C["media"].blank)
+			dpower.bg.multiplier = 0.3
+			dpower.colorPower = true
+			self.DruidAltMana = dpower
+		end
+		
 		--Portrait
 		if C["unitframes"].charportrait == true then
 			if C["unitframes"].charportraithealth == true then
@@ -168,12 +188,12 @@ local function Shared(self, unit)
 				self.Portrait = portrait
 				
 				local overlay = CreateFrame("Frame", nil, self)
-				overlay:SetFrameLevel(self:GetFrameLevel() - 2)
+				overlay:SetFrameLevel(self:GetFrameLevel() - 5)
 				
 				health.bg:ClearAllPoints()
 				health.bg:Point('BOTTOMLEFT', health:GetStatusBarTexture(), 'BOTTOMRIGHT')
 				health.bg:Point('TOPRIGHT', health)
-				health.bg:SetDrawLayer("OVERLAY", 7)
+				health.bg:SetDrawLayer("OVERLAY")
 				health.bg:SetParent(overlay)
 			else
 				--Reposition Health
@@ -184,7 +204,7 @@ local function Shared(self, unit)
 				portrait:SetFrameStrata("LOW")
 				portrait.backdrop = CreateFrame("Frame", nil, portrait)
 				portrait.backdrop:SetTemplate("Default")
-				if MINI_CLASSBAR and C["unitframes"].classbar == true and (E.myclass == "PALADIN" or E.myclass == "SHAMAN" or E.myclass == "DRUID" or E.myclass == "DEATHKNIGHT" or E.myclass == "WARLOCK") then
+				if MINI_CLASSBAR and C["unitframes"].classbar == true then
 					portrait.backdrop:Point("TOPLEFT", self, "TOPLEFT", 0, -((CLASSBAR_HEIGHT/2)))
 				else
 					portrait.backdrop:SetPoint("TOPLEFT", self, "TOPLEFT")
@@ -210,9 +230,9 @@ local function Shared(self, unit)
 			if C["unitframes"].charportrait == true and not C["unitframes"].charportraithealth == true then
 				self.shadow:Point("BOTTOMLEFT", self.Portrait.backdrop, "BOTTOMLEFT", -4, -4)
 			else
-				self.shadow:Point("BOTTOMLEFT", health, "BOTTOMLEFT", -4, -4)
+				self.shadow:Point("BOTTOMLEFT", health, "BOTTOMLEFT", -5, -5)
 			end
-			self.shadow:Point("BOTTOMRIGHT", health, "BOTTOMRIGHT", 4, -4)
+			self.shadow:Point("BOTTOMRIGHT", health, "BOTTOMRIGHT", 5, -5)
 		end				
 				
 		--Auras
@@ -392,6 +412,12 @@ local function Shared(self, unit)
 			experience:Point("TOPRIGHT", self, "BOTTOMRIGHT", -BORDER, -(BORDER*2+BORDER))
 			experience:SetFrameStrata("LOW")
 			
+			if C["unitframes"].combat == true then
+				experience:HookScript("OnEnter", function(self) E.Fader(self:GetParent(), true) end)
+				experience:HookScript("OnLeave", function(self) E.Fader(self:GetParent(), false) end)
+			end
+
+			
 			experience.Rested = CreateFrame('StatusBar', nil, experience)
 			experience.Rested:SetStatusBarTexture(NORMTEX)
 			experience.Rested:SetStatusBarColor(1, 0, 1, 0.2)
@@ -425,7 +451,10 @@ local function Shared(self, unit)
 			reputation:SetFrameStrata("LOW")
 
 			reputation.Tooltip = true
-
+			if C["unitframes"].combat == true then
+				reputation:HookScript("OnEnter", function(self) E.Fader(self:GetParent(), true) end)
+				reputation:HookScript("OnLeave", function(self) E.Fader(self:GetParent(), false) end)
+			end
 
 			reputation.backdrop = CreateFrame("Frame", nil, reputation)
 			reputation.backdrop:SetTemplate("Default")
@@ -778,14 +807,16 @@ local function Shared(self, unit)
 		
 		--Incoming Heals
 		if C["raidframes"].healcomm == true then
-			local mhpb = CreateFrame('StatusBar', nil, health)
+			local mhpb = CreateFrame('StatusBar', nil, self)
+			mhpb:SetFrameLevel(self:GetFrameLevel() - 2)
 			mhpb:SetPoint('BOTTOMLEFT', health:GetStatusBarTexture(), 'BOTTOMRIGHT')
 			mhpb:SetPoint('TOPLEFT', health:GetStatusBarTexture(), 'TOPRIGHT')	
 			mhpb:SetWidth(POWERBAR_WIDTH)
 			mhpb:SetStatusBarTexture(C["media"].blank)
 			mhpb:SetStatusBarColor(0, 1, 0.5, 0.25)
 			
-			local ohpb = CreateFrame('StatusBar', nil, health)
+			local ohpb = CreateFrame('StatusBar', nil, self)
+			ohpb:SetFrameLevel(self:GetFrameLevel() - 2)
 			ohpb:SetPoint('BOTTOMLEFT', mhpb:GetStatusBarTexture(), 'BOTTOMRIGHT', 0, 0)
 			ohpb:SetPoint('TOPLEFT', mhpb:GetStatusBarTexture(), 'TOPRIGHT', 0, 0)		
 			ohpb:SetWidth(mhpb:GetWidth())
@@ -884,12 +915,12 @@ local function Shared(self, unit)
 				self.Portrait = portrait
 				
 				local overlay = CreateFrame("Frame", nil, self)
-				overlay:SetFrameLevel(self:GetFrameLevel() - 2)
+				overlay:SetFrameLevel(self:GetFrameLevel() - 5)
 				
 				health.bg:ClearAllPoints()
 				health.bg:Point('BOTTOMLEFT', health:GetStatusBarTexture(), 'BOTTOMRIGHT')
 				health.bg:Point('TOPRIGHT', health)
-				health.bg:SetDrawLayer("OVERLAY", 7)
+				health.bg:SetDrawLayer("OVERLAY")
 				health.bg:SetParent(overlay)
 			else
 				--Reposition Health
@@ -1011,7 +1042,7 @@ local function Shared(self, unit)
 				
 		--Combo Bar
 		local combo = CreateFrame("Frame", nil, self)
-		if MINI_CLASSBAR then
+		if C["unitframes"].mini_classbar then
 			CLASSBAR_WIDTH = CLASSBAR_WIDTH * 4/5
 			combo:Point("CENTER", health.backdrop, "TOP", -(BORDER*3 + 6), 0)
 			combo:SetFrameStrata("MEDIUM")
@@ -1028,7 +1059,7 @@ local function Shared(self, unit)
 			combo[i]:SetStatusBarTexture(NORMTEX)
 			combo[i]:GetStatusBarTexture():SetHorizTile(false)
 			
-			if MINI_CLASSBAR then
+			if C["unitframes"].mini_classbar then
 				combo[i].backdrop = CreateFrame("Frame", nil, combo)
 				combo[i].backdrop:SetTemplate("Default")
 				combo[i].backdrop:Point("TOPLEFT", combo[i], "TOPLEFT", -BORDER, BORDER)
@@ -1039,7 +1070,7 @@ local function Shared(self, unit)
 			if i == 1 then
 				combo[i]:SetPoint("LEFT", combo)
 			else
-				if MINI_CLASSBAR then
+				if C["unitframes"].mini_classbar then
 					combo[i]:Point("LEFT", combo[i-1], "RIGHT", SPACING+(BORDER*2)+2, 0)
 				else
 					combo[i]:Point("LEFT", combo[i-1], "RIGHT", SPACING, 0)
@@ -1056,7 +1087,7 @@ local function Shared(self, unit)
 		combo[5]:SetStatusBarColor(0.33, 0.59, 0.33)
 		
 		
-		if not MINI_CLASSBAR then
+		if not C["unitframes"].mini_classbar then
 			combo.backdrop = CreateFrame("Frame", nil, combo)
 			combo.backdrop:SetTemplate("Default")
 			combo.backdrop:Point("TOPLEFT", -BORDER, BORDER)
@@ -1121,14 +1152,16 @@ local function Shared(self, unit)
 		
 		--Incoming Heals
 		if C["raidframes"].healcomm == true then
-			local mhpb = CreateFrame('StatusBar', nil, health)
+			local mhpb = CreateFrame('StatusBar', nil, self)
+			mhpb:SetFrameLevel(self:GetFrameLevel() - 2)
 			mhpb:SetPoint('BOTTOMLEFT', health:GetStatusBarTexture(), 'BOTTOMRIGHT')
 			mhpb:SetPoint('TOPLEFT', health:GetStatusBarTexture(), 'TOPRIGHT')	
 			mhpb:SetWidth(POWERBAR_WIDTH)
 			mhpb:SetStatusBarTexture(C["media"].blank)
 			mhpb:SetStatusBarColor(0, 1, 0.5, 0.25)
 			
-			local ohpb = CreateFrame('StatusBar', nil, health)
+			local ohpb = CreateFrame('StatusBar', nil, self)
+			ohpb:SetFrameLevel(self:GetFrameLevel() - 2)
 			ohpb:SetPoint('BOTTOMLEFT', mhpb:GetStatusBarTexture(), 'BOTTOMRIGHT', 0, 0)
 			ohpb:SetPoint('TOPLEFT', mhpb:GetStatusBarTexture(), 'TOPRIGHT', 0, 0)		
 			ohpb:SetWidth(mhpb:GetWidth())
@@ -1144,7 +1177,7 @@ local function Shared(self, unit)
 					if self.otherBar:GetValue() == 0 then self.otherBar:SetAlpha(0) else self.otherBar:SetAlpha(1) end
 				end
 			}
-		end				
+		end					
 	end
 	
 	------------------------------------------------------------------------
@@ -1499,7 +1532,7 @@ local function LoadDPSLayout()
 		for i = 1, 5 do
 			arena[i] = oUF:Spawn("arena"..i, "ElvDPSArena"..i)
 			if i == 1 then
-				arena[i]:Point("BOTTOMLEFT", ChatRBackground2, "TOPLEFT", -80, 185)
+				arena[i]:Point("BOTTOMLEFT", ChatRBackground, "TOPLEFT", -80, 185)
 			else
 				arena[i]:Point("BOTTOM", arena[i-1], "TOP", 0, 25)
 			end
@@ -1512,7 +1545,7 @@ local function LoadDPSLayout()
 		for i = 1, MAX_BOSS_FRAMES do
 			boss[i] = oUF:Spawn("boss"..i, "ElvDPSBoss"..i)
 			if i == 1 then
-				boss[i]:Point("BOTTOMLEFT", ChatRBackground2, "TOPLEFT", -80, 185)
+				boss[i]:Point("BOTTOMLEFT", ChatRBackground, "TOPLEFT", -80, 185)
 			else
 				boss[i]:Point('BOTTOM', boss[i-1], 'TOP', 0, 25)             
 			end

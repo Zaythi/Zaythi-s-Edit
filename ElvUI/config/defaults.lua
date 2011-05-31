@@ -91,8 +91,8 @@ DB["skin"] = {
 	["kle"] = true,							-- enable skinning of KLE addon
 	["dbm"] = true,							-- enable skinning of DBM addon
 	["bigwigs"] = true,						-- enable skinning of BigWigs addon
-	["hookkleright"] = true,				-- force KLE's top bar anchor to be hooked onto the right chat window
-	["hookbwright"] = true,					-- force BigWig's bar anchor to be hooked onto the right chat window
+	["hookkleright"] = false,				-- force KLE's top bar anchor to be hooked onto the right chat window
+	["hookbwright"] = false,					-- force BigWig's bar anchor to be hooked onto the right chat window
 	["embedright"] = "NONE",				-- addon to embed to the right frame ("Omen", "Recount", "Skada")
 }
 
@@ -128,15 +128,15 @@ DB["unitframes"] = {
 	["powerbar_height"] = 10,				-- height of powerbar
 	["classbar_height"] = 10,				-- height of class bar
 	
-	-- frame sizes
-	["playtarwidth"] = 275,					-- width of player/target frame
-	["playtarheight"] = 55,					-- height of player/target frame
-	["smallwidth"] = 130,					-- width of TargetTarget, focus, FocusTarget, pet frames
-	["smallheight"] = 35,					-- height of TargetTarget, focus, FocusTarget, pet frames
-	["arenabosswidth"] = 212,				-- width of arena/boss frames
-	["arenabossheight"] = 43,				-- height of arena/boss frames
-	["assisttankwidth"] = 120,				-- width of MainTank/MainAssist frames
-	["assisttankheight"] = 27,				-- height of MainTank/MainAssist frames
+	--frame sizes
+	["playtarwidth"] = 275,					--width of player/target frame
+	["playtarheight"] = 55,					--height of player/target frame
+	["smallwidth"] = 130,					--Width of TargetTarget, Focus, FocusTarget, Player's Pet frames
+	["smallheight"] = 35,					--Height of TargetTarget, Focus, FocusTarget, Player's Pet frames
+	["arenabosswidth"] = 212,				--Width of Arena/Boss Frames
+	["arenabossheight"] = 43,				--Height of Arena/Boss Frames
+	["assisttankwidth"] = 120,				--Width of MainTank/MainAssist frames
+	["assisttankheight"] = 27,				--Height of MainTank/MainAssist frames
 	
 	-- auras
 	["auratimer"] = true,					-- enable timers on buffs/debuffs
