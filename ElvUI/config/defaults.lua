@@ -89,10 +89,12 @@ DB["skin"] = {
 	["skada"] = true,						-- enable skinning of Skada addon
 	["omen"] = true,						-- enable skinning of Omen addon
 	["kle"] = true,							-- enable skinning of KLE addon
+	["dxe"] = true,							-- enable skinning of DXE addon
 	["dbm"] = true,							-- enable skinning of DBM addon
 	["bigwigs"] = true,						-- enable skinning of BigWigs addon
 	["hookkleright"] = false,				-- force KLE's top bar anchor to be hooked onto the right chat window
-	["hookbwright"] = false,					-- force BigWig's bar anchor to be hooked onto the right chat window
+	["hookbwright"] = false,				-- force BigWig's bar anchor to be hooked onto the right chat window
+	["hookdxeright"] = false,				-- force DXE's top bar anchor to be hooked onto the right chat window
 	["embedright"] = "NONE",				-- addon to embed to the right frame ("Omen", "Recount", "Skada")
 }
 
