@@ -92,6 +92,7 @@ DB["skin"] = {
 	["dxe"] = true,							-- enable skinning of DXE addon
 	["dbm"] = true,							-- enable skinning of DBM addon
 	["bigwigs"] = true,						-- enable skinning of BigWigs addon
+	["auctionator"] = true,					-- enable skinning of Auctionator addon
 	["hookkleright"] = false,				-- force KLE's top bar anchor to be hooked onto the right chat window
 	["hookbwright"] = false,				-- force BigWig's bar anchor to be hooked onto the right chat window
 	["hookdxeright"] = false,				-- force DXE's top bar anchor to be hooked onto the right chat window
