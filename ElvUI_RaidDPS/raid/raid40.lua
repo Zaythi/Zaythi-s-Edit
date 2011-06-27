@@ -4,7 +4,7 @@ assert(oUF, "ElvUI was unable to locate oUF.")
 
 if not C["raidframes"].enable == true then return end
 
-local RAID_WIDTH = ((ChatLBackground:GetWidth() / 5) - 2.5)*C["raidframes"].scale
+local RAID_WIDTH = (((ChatLBGDummy:GetWidth() - (3*4)) / 5))*C["raidframes"].scale
 local RAID_HEIGHT = E.Scale(32)*C["raidframes"].scale
 
 local BORDER = 2
@@ -41,10 +41,11 @@ local function Shared(self, unit)
 
 	if C["raidframes"].role == true then
 		local LFDRole = self:CreateTexture(nil, "OVERLAY")
-		LFDRole:Size(6, 6)
+		LFDRole:Size(17, 17)
 		LFDRole:Point("TOP", self.Name, "BOTTOM", 0, -1)
-		LFDRole:SetTexture("Interface\\AddOns\\ElvUI\\media\\textures\\lfdicons.blp")
-		self.LFDRole = LFDRole
+		LFDRole.Override = E.RoleIconUpdate
+		self:RegisterEvent("UNIT_CONNECTION", E.RoleIconUpdate)
+		self.LFDRole = LFDRole		
 	end
 	
 	--Aggro Glow
@@ -87,6 +88,20 @@ local function Shared(self, unit)
 	if C["raidframes"].raidunitbuffwatch == true then
 		E.createAuraWatch(self,unit)
     end
+	
+	--Resurrect Indicator
+	if E.IsPTRVersion() then
+		local Resurrect = CreateFrame('Frame', nil, self)
+		Resurrect:SetFrameLevel(20)
+
+		local ResurrectIcon = Resurrect:CreateTexture(nil, "OVERLAY")
+		ResurrectIcon:Point(health.value:GetPoint())
+		ResurrectIcon:Size(30, 25)
+		ResurrectIcon:SetDrawLayer('OVERLAY', 7)
+
+		self.ResurrectIcon = ResurrectIcon
+	end	
+	
 	
 	if C["raidframes"].mouseglow == true then
 		self:CreateShadow("Default")
@@ -154,7 +169,7 @@ oUF:Factory(function(self)
 		"columnSpacing", 3,
 		"columnAnchorPoint", "TOP"		
 	)		
-	raid:Point("BOTTOMLEFT", ChatLBackground, "TOPLEFT", 1, 35)
+	raid:Point("BOTTOMLEFT", ChatLBGDummy, "TOPLEFT", 0, 10)
 
 	local raidToggle = CreateFrame("Frame")
 	raidToggle:RegisterEvent("PLAYER_ENTERING_WORLD")

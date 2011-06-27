@@ -10,7 +10,7 @@ DB["media"] = {
 	["normTex"] = "Aluminum",				-- normal texture used for ElvUI healthbar/powerbar/etc
 	["glossTex"] = "Aluminum",				-- glossy texture used for ElvUI healthbar/powerbar/etc
 	["glowTex"] = "ElvUI GlowBorder",		-- glow border texture used for ElvUI healthbar/powerbar/etc
-	["blank"] = "ElvUI Blank",				-- 
+	["blank"] = "ElvUI Blank",
 	
 	["raidicons"] = [[Interface\AddOns\ElvUI\media\textures\raidicons.blp]],	-- new raid icon textures by hankthetank
 	
@@ -35,12 +35,13 @@ DB["general"] = {
 	["resolutionoverride"] = "Low",			-- override (Low, High)
 	["layoutoverride"] = "NONE",			-- override layout (DPS, Healer, NONE)
 	["sharpborders"] = true,				-- sharp borders
-	["upperpanel"] = false,					-- upper panel (datatexts 9 and 10)
-	["lowerpanel"] = true,					-- lower panel KEEP ENABLED!
+	["upperpanel"] = false,					-- upper panel
+	["lowerpanel"] = true,					-- lower panel
 }
 
 DB["skin"] = {
 	["enable"] = true,						-- enable skinning of blizzard frames
+		["bags"] = true,						-- Individual bags
 		["reforge"] = true,						-- DK Reforging frame
 		["calendar"] = true,					-- Calendar frame
 		["achievement"] = true,					-- Achievement frame
@@ -83,7 +84,7 @@ DB["skin"] = {
 		["misc"] = true,
 		["lfr"] = true,							-- Looking For Raid menu
 		["tabard"] = true,						-- Tabard menu
-		["guildregistrar"] = true,
+		["guildregistrar"] = true,				-- Guild Registrat frame
 		["timemanager"] = true,
 	["recount"] = true,						-- enable skinning of Recount addon
 	["skada"] = true,						-- enable skinning of Skada addon
@@ -93,10 +94,13 @@ DB["skin"] = {
 	["dbm"] = true,							-- enable skinning of DBM addon
 	["bigwigs"] = true,						-- enable skinning of BigWigs addon
 	["auctionator"] = true,					-- enable skinning of Auctionator addon
+	["clcret"] = true,						-- enable skinning of CLCRet addon
+	["clcprot"] = true,						-- enable skinning of CLCProt addon
 	["hookkleright"] = false,				-- force KLE's top bar anchor to be hooked onto the right chat window
 	["hookbwright"] = false,				-- force BigWig's bar anchor to be hooked onto the right chat window
 	["hookdxeright"] = false,				-- force DXE's top bar anchor to be hooked onto the right chat window
 	["embedright"] = "NONE",				-- addon to embed to the right frame ("Omen", "Recount", "Skada")
+	["embedrighttoggle"] = false,
 }
 
 DB["unitframes"] = {
@@ -113,6 +117,7 @@ DB["unitframes"] = {
 	["charportraithealth"] = false,			-- enable character portrait to overlay on healthbar
 	["classcolor"] = false,					-- color unitframes by class
 	["classcolorpower"] = false,			-- color powerbar by class
+	["classcolorbackdrop"] = false,
 	["healthcolor"] = DB["media"].bordercolor,	--color of the unitframe
 	["healthcolorbyvalue"] = false,			-- color health by current health remaining
 	["healthbackdrop"] = false,				-- enable using custom healthbackdrop color
@@ -132,14 +137,14 @@ DB["unitframes"] = {
 	["classbar_height"] = 10,				-- height of class bar
 	
 	--frame sizes
-	["playtarwidth"] = 275,					--width of player/target frame
-	["playtarheight"] = 55,					--height of player/target frame
-	["smallwidth"] = 130,					--Width of TargetTarget, Focus, FocusTarget, Player's Pet frames
-	["smallheight"] = 35,					--Height of TargetTarget, Focus, FocusTarget, Player's Pet frames
-	["arenabosswidth"] = 212,				--Width of Arena/Boss Frames
-	["arenabossheight"] = 43,				--Height of Arena/Boss Frames
-	["assisttankwidth"] = 120,				--Width of MainTank/MainAssist frames
-	["assisttankheight"] = 27,				--Height of MainTank/MainAssist frames
+	["playtarwidth"] = 275,					-- width of player/target frame
+	["playtarheight"] = 55,					-- height of player/target frame
+	["smallwidth"] = 130,					-- width of TargetTarget, Focus, FocusTarget, Player's Pet frames
+	["smallheight"] = 35,					-- height of TargetTarget, Focus, FocusTarget, Player's Pet frames
+	["arenabosswidth"] = 212,				-- width of Arena/Boss Frames
+	["arenabossheight"] = 43,				-- height of Arena/Boss Frames
+	["assisttankwidth"] = 120,				-- width of MainTank/MainAssist frames
+	["assisttankheight"] = 27,				-- height of MainTank/MainAssist frames
 	
 	-- auras
 	["auratimer"] = true,					-- enable timers on buffs/debuffs
@@ -169,9 +174,9 @@ DB["unitframes"] = {
 	["cblatency"] = true,					-- enable castbar latency
 	["cbicons"] = true, 					-- enable icons on castbar
 	["cbticks"] = true,						-- enable cast bar ticks
-	["castplayerwidth"] = 275,				-- width of player castbar
+	["castplayerwidth"] = 276,				-- width of player castbar
 	["castplayerheight"] = 20,				-- height of player castbar
-	["casttargetwidth"] = 275,				-- width of target castbar
+	["casttargetwidth"] = 276,				-- width of target castbar
 	["casttargetheight"] = 20,				-- height of target castbar
 	["castfocuswidth"] = 350,				-- width of focus castbar
 	["castfocusheight"] = 25,				-- height of focus castbar
@@ -206,6 +211,7 @@ DB["raidframes"] = {
 	["mouseglow"] = true,					-- glow the class/reaction color of the unit that you mouseover
 	["raidunitbuffwatch"] = true,			-- track important spell to watch in pve for grid mode
 	["buffindicatorsize"] = 6,				-- size of the buff indicator on raid/party frames
+	["buffindicatorcoloricons"] = true,
 	["debuffs"] = true,						-- raid debuffs
 	["displayaggro"] = true,				-- show aggro
 	["mini_powerbar"] = true,				-- mini powerbar (rage, mana, focus, etc)
@@ -262,18 +268,21 @@ DB["actionbar"] = {
 
 DB["nameplate"] = {
 	["enable"] = true,
+	["showlevel"] = true,					-- show level next to nameplate
+	["width"] = 105,						-- default width of nameplate
 	["showhealth"] = false,					-- show health text on nameplate
 	["enhancethreat"] = true,				-- threat features based on if your a tank or not
 	["combat"] = false,						-- only show enemy nameplates in-combat
 	["goodcolor"] = {r = 75/255,  g = 175/255, b = 76/255},			-- good threat color (tank shows this with threat, everyone else without)
 	["badcolor"] = {r = 0.78, g = 0.25, b = 0.25},					-- bad threat color (opposite of above)
-	["transitioncolor"] = {r = 218/255, g = 197/255, b = 92/255},	-- threat color when gaining threat
+	["goodtransitioncolor"] = {r = 218/255, g = 197/255, b = 92/255},	-- threat color when gaining threat
+	["badtransitioncolor"] = {r = 240/255, g = 154/255, b = 17/255}, 	-- threat color when losing threat
 	["trackauras"] = false,					-- track players debuffs only (debuff list derived from classtimer spell list)
 	["trackccauras"] = true,				-- track all CC debuffs
 }
 
 DB["datatext"] = {
-	["stat1"] = 11,							-- stat based on your role (avoidance = tank // AP = melee // SP/HP = caster)
+	["stat1"] = 10,							-- stat based on your role (avoidance = tank // AP = melee // SP/HP = caster)
 	["dur"] = 2,							-- show your equipment durability
 	["stat2"] = 0,							-- stat based on your role (armor = tank // crit = melee // crit = caster)
 	["system"] = 4,							-- show fps and ms, and total addon memory in tooltip
@@ -283,11 +292,12 @@ DB["datatext"] = {
 	["friends"] = 3,						-- show number of friends online
 	["calltoarms"] = 0,						-- show current call to arms 
 	["bags"] = 7,							-- show amount of bag space available
-	["dps_text"] = 12,						-- show current dps
+	["dps_text"] = 11,						-- show current dps
 	["hps_text"] = 0,						-- show current hps
 	["currency"] = 0,						-- show watched items in backpack
 	["specswitch"] = 5,						-- show current spec
 	["hit"] = 0,							-- show hit
+	["expertise"] = 0,						-- show expertise
 	["haste"] = 0,							-- show haste
 	["mastery"] = 0,						-- show mastery
 	["crit"] = 0,							-- show crit
@@ -308,7 +318,7 @@ DB["chat"] = {
 	["chatheight"] = 120,					-- height of chat frame
 	["fadeoutofuse"] = true,				-- fade chat text when out of use
 	["sticky"] = true,						-- when opening the chat edit box resort to previous channel
-	["combathide"] = "NONE",				-- Set to "Left", "Right", "Both", or "NONE"
+	["combathide"] = "NONE",				-- set to "Left", "Right", "Both", or "NONE"
 	["bubbles"] = true,						-- skin blizzard chat bubbles
 }
 
@@ -329,6 +339,9 @@ DB["others"] = {
 	["errorenable"] = true,					-- red error text on screen (true = hide // false = show)
 	["autoacceptinv"] = true,				-- auto-accept invite from guildmate and friends
 	["enablebag"] = true,					-- enable an all-in-one bag mod
+	["bagbar"] = false,						-- enable bag bar
+	["bagbardirection"] = "VERTICAL",		-- bag bar direction
+	["bagbarmouseover"] = true,				-- bar bar shown on mouseover only
 	
 	["lootframe"] = true,					-- reskin the loot frame
 	["rolllootframe"] = true,				-- reskin the roll frame
@@ -339,7 +352,7 @@ DB["others"] = {
 	
 	["buffreminder"] = true,				-- buff reminder on the middle of screen about self buffs/weapon imbues
 	["remindersound"] = true,				-- enable warning sound notification for reminder
-	["raidbuffreminder"] = true,			-- buffbar below the minimap
+	["raidbuffreminder"] = true,			-- buffbar next to the minimap
 	["announceinterrupt"] = "NONE",			-- announce in party/raid when you interrupt
 	["showthreat"] = true,					-- enable the threat bar anchored to right info panel
 	["minimapauras"] = true,				-- enable minimap auras

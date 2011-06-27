@@ -1,3 +1,4 @@
+
 local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
 --------------------------------------------------------------------
@@ -5,34 +6,56 @@ local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config
 --------------------------------------------------------------------
 
 Minimap:ClearAllPoints()
-Minimap:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", E.Scale(-5), E.Scale(-5))
+Minimap:Point("TOPRIGHT", UIParent, "TOPRIGHT", -25, -5)
 Minimap:SetSize(E.minimapsize - E.Scale(4), E.minimapsize - E.Scale(4))
 
 function E.PostMinimapMove(frame)
 	local point, _, _, _, _ = frame:GetPoint()
-	if E.Movers[frame:GetName()]["moved"] ~= true then
+	if E.Movers and E.Movers[frame:GetName()] == nil or E.Movers == nil then
 		point, _, _, _, _ = Minimap:GetPoint()
 		frame:ClearAllPoints()
-		frame:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", E.Scale(-6), E.Scale(-6))
+		if RaidBuffReminder then
+			frame:Point("TOPRIGHT", UIParent, "TOPRIGHT", -(6 + RaidBuffReminder:GetWidth()), -6)
+		else
+			frame:Point("TOPRIGHT", UIParent, "TOPRIGHT", -6, -6)
+		end
 	end
 	
-	if point:match("TOP") then
-		ElvuiMinimapStatsLeft:ClearAllPoints()
-		ElvuiMinimapStatsLeft:Point("TOPLEFT", ElvuiMinimap, "BOTTOMLEFT", 0, -3)
-		ElvuiMinimapStatsRight:ClearAllPoints()
-		ElvuiMinimapStatsRight:Point("TOPRIGHT", ElvuiMinimap, "BOTTOMRIGHT", 0, -3)
-		if RaidBuffReminder then
-			RaidBuffReminder:ClearAllPoints()
-			RaidBuffReminder:Point("TOPLEFT", ElvuiMinimapStatsLeft, "BOTTOMLEFT", 0, -3)
+	local playerFrame
+	local bar
+	if ElvDPS_player then
+		playerFrame = ElvDPS_player
+	elseif ElvHeal_player then
+		playerFrame = ElvHeal_player
+	end
+	
+	if playerFrame then
+		if E.level ~= MAX_PLAYER_LEVEL then
+			bar = playerFrame.Experience
+		else
+			bar = playerFrame.Reputation
 		end	
+	end
+	
+	if point:match("BOTTOM") then
+		ElvuiMinimapStatsLeft:ClearAllPoints()
+		ElvuiMinimapStatsLeft:Point("BOTTOMLEFT", ElvuiMinimap, "TOPLEFT", 0, 1)
+		ElvuiMinimapStatsRight:ClearAllPoints()
+		ElvuiMinimapStatsRight:Point("BOTTOMRIGHT", ElvuiMinimap, "TOPRIGHT", 0, 1)	
+		
+		if bar then
+			bar:ClearAllPoints()
+			bar:Point("BOTTOMLEFT", ElvuiMinimapStatsLeft, "TOPLEFT", 2, 3)
+		end
 	else
 		ElvuiMinimapStatsLeft:ClearAllPoints()
-		ElvuiMinimapStatsLeft:Point("BOTTOMLEFT", ElvuiMinimap, "TOPLEFT", 0, 3)
+		ElvuiMinimapStatsLeft:Point("TOPLEFT", ElvuiMinimap, "BOTTOMLEFT", 0, -1)
 		ElvuiMinimapStatsRight:ClearAllPoints()
-		ElvuiMinimapStatsRight:Point("BOTTOMRIGHT", ElvuiMinimap, "TOPRIGHT", 0, 3)	
-		if RaidBuffReminder then
-			RaidBuffReminder:ClearAllPoints()
-			RaidBuffReminder:Point("BOTTOMLEFT", ElvuiMinimapStatsLeft, "TOPLEFT", 0, 3)
+		ElvuiMinimapStatsRight:Point("TOPRIGHT", ElvuiMinimap, "BOTTOMRIGHT", 0, -1)
+		
+		if bar then
+			bar:ClearAllPoints()
+			bar:Point("TOPLEFT", ElvuiMinimapStatsLeft, "BOTTOMLEFT", 2, -3)
 		end		
 	end
 end
@@ -372,7 +395,8 @@ else
 	ElvuiLoc.zone:SetText(strsub(GetMinimapZoneText(),1,23))
 	ElvuiLoc:EnableMouse(true)
 	ElvuiLoc:SetScript("OnMouseDown", function() ToggleFrame(WorldMapFrame) end)
-
+	
+	
 	ElvuiLocX:FontString("coord", C["media"].font, C["datatext"].fontsize, "THINOUTLINE")
 	ElvuiLocX.coord:SetPoint("CENTER", ElvuiLocX, "CENTER")
 	ElvuiLocX.coord:SetText(x)	
@@ -403,4 +427,5 @@ else
 			self.elapsed = (self.elapsed or 0) + elapsed
 		end	
 	end)
+	
 end

@@ -257,7 +257,7 @@ local function Shared(self, unit)
 			buffs["growth-x"] = "RIGHT"
 			buffs.PostCreateIcon = E.PostCreateAura
 			buffs.PostUpdateIcon = E.PostUpdateAura
-			self.Buffs = buffs	
+			self.Buffs = buffs
 		end
 		
 		if C["unitframes"].playerdebuffs == true then
@@ -408,9 +408,14 @@ local function Shared(self, unit)
 			local experience = CreateFrame("StatusBar", nil, self)
 			experience:SetStatusBarTexture(NORMTEX)
 			experience:SetStatusBarColor(0, 0.4, 1, .8)
-			experience:Size(PLAYER_WIDTH -(BORDER*2), POWERBAR_HEIGHT -(BORDER*2))
-			experience:Point("TOPRIGHT", self, "BOTTOMRIGHT", -BORDER, -(BORDER*2+BORDER))
-			experience:SetFrameStrata("LOW")
+			if C["others"].raidbuffreminder == true then
+				experience:Size((E.minimapsize - 4) + 1 + (((E.minimapsize - 9) / 6)) + 4, 10)
+			else
+				experience:Size((E.minimapsize - 4), 10)
+			end
+			experience:Point("TOPLEFT", ElvuiMinimapStatsLeft, "BOTTOMLEFT", 2, -3)
+			experience:SetFrameLevel(Minimap:GetFrameLevel() + 1)
+			experience:SetFrameStrata(Minimap:GetFrameStrata())
 			
 			if C["unitframes"].combat == true then
 				experience:HookScript("OnEnter", function(self) E.Fader(self:GetParent(), true) end)
@@ -439,30 +444,44 @@ local function Shared(self, unit)
 			experience.backdrop:Point("TOPLEFT", experience, "TOPLEFT", -2, 2)
 			experience.backdrop:Point("BOTTOMRIGHT", experience, "BOTTOMRIGHT", 2, -2)
 			experience.backdrop:SetFrameLevel(experience:GetFrameLevel() - 1)
+			experience.backdrop:CreateShadow("Default")
+			experience.backdrop.shadow:SetFrameLevel(0)
+			experience.PostUpdate = E.ReputationPositionUpdate
+			experience:SetScript('OnShow', E.ReputationPositionUpdate)
+			experience:SetScript('OnHide', E.ReputationPositionUpdate)
 			self.Experience = experience
 		end
-		
-		if E.level == MAX_PLAYER_LEVEL then
-			local reputation = CreateFrame("StatusBar", nil, self)
-			reputation:SetStatusBarTexture(NORMTEX)
-			reputation:SetStatusBarColor(0, 0.4, 1, .8)
-			reputation:Size(PLAYER_WIDTH -(BORDER*2), POWERBAR_HEIGHT -(BORDER*2))
-			reputation:Point("TOPRIGHT", self, "BOTTOMRIGHT", -BORDER, -(BORDER*2+BORDER))
-			reputation:SetFrameStrata("LOW")
 
-			reputation.Tooltip = true
-			if C["unitframes"].combat == true then
-				reputation:HookScript("OnEnter", function(self) E.Fader(self:GetParent(), true) end)
-				reputation:HookScript("OnLeave", function(self) E.Fader(self:GetParent(), false) end)
-			end
-
-			reputation.backdrop = CreateFrame("Frame", nil, reputation)
-			reputation.backdrop:SetTemplate("Default")
-			reputation.backdrop:Point("TOPLEFT", reputation, "TOPLEFT", -2, 2)
-			reputation.backdrop:Point("BOTTOMRIGHT", reputation, "BOTTOMRIGHT", 2, -2)
-			reputation.backdrop:SetFrameLevel(reputation:GetFrameLevel() - 1)
-			self.Reputation = reputation
+		local reputation = CreateFrame("StatusBar", nil, self)
+		reputation:SetStatusBarTexture(NORMTEX)
+		reputation:SetStatusBarColor(0, 1, 0.2, 1)
+		reputation.color = true
+		if C["others"].raidbuffreminder == true then
+			reputation:Size((E.minimapsize - 4) + 1 + (((E.minimapsize - 9) / 6)) + 4, 10)
+		else
+			reputation:Size((E.minimapsize - 4), 10)
 		end
+		reputation:Point("TOPLEFT", ElvuiMinimapStatsLeft, "BOTTOMLEFT", 2, -3)
+		reputation:SetFrameLevel(Minimap:GetFrameLevel() + 1)
+		reputation:SetFrameStrata(Minimap:GetFrameStrata())
+		
+		reputation.Tooltip = true
+		if C["unitframes"].combat == true then
+			reputation:HookScript("OnEnter", function(self) E.Fader(self:GetParent(), true) end)
+			reputation:HookScript("OnLeave", function(self) E.Fader(self:GetParent(), false) end)
+		end
+
+		reputation.backdrop = CreateFrame("Frame", nil, reputation)
+		reputation.backdrop:SetTemplate("Default")
+		reputation.backdrop:Point("TOPLEFT", reputation, "TOPLEFT", -2, 2)
+		reputation.backdrop:Point("BOTTOMRIGHT", reputation, "BOTTOMRIGHT", 2, -2)
+		reputation.backdrop:SetFrameLevel(reputation:GetFrameLevel() - 1)
+		reputation.backdrop:CreateShadow("Default")
+		reputation.backdrop.shadow:SetFrameLevel(0)		
+		reputation.PostUpdate = E.ReputationPositionUpdate
+		self:RegisterEvent("DISABLE_XP_GAIN", E.ReputationPositionUpdate)
+		self:RegisterEvent("ENABLE_XP_GAIN", E.ReputationPositionUpdate)		
+		self.Reputation = reputation
 
 		--Class Resource Bars
 		if C["unitframes"].classbar == true and (E.myclass == "PALADIN" or E.myclass == "SHAMAN" or E.myclass == "DRUID" or E.myclass == "DEATHKNIGHT" or E.myclass == "WARLOCK") then
@@ -1098,7 +1117,7 @@ local function Shared(self, unit)
 			the combobar is movable with the /moveele command, this should make it work correctly only 
 			after a reloadui.]]
 			combo:HookScript("OnShow", function()		
-				if ElementsPos and DPSComboBar and ElementsPos["DPSComboBar"]["moved"] == true and E.CreatedMoveEleFrames["DPSComboBar"] then return end
+				if E["elements"] and DPSComboBar and E["elements"]["DPSComboBar"] and E.CreatedMoveEleFrames["DPSComboBar"] then return end
 				combo:ClearAllPoints()
 				combo:Point("BOTTOMLEFT", health.backdrop, "TOPLEFT", BORDER, BORDER+SPACING)
 				
@@ -1109,7 +1128,7 @@ local function Shared(self, unit)
 			end)
 		else
 			combo:HookScript("OnShow", function()
-				if ElementsPos and DPSComboBar and ElementsPos["DPSComboBar"]["moved"] == true and E.CreatedMoveEleFrames["DPSComboBar"] then return end
+				if E["elements"] and DPSComboBar and E["elements"]["DPSComboBar"] and E.CreatedMoveEleFrames["DPSComboBar"] then return end
 				combo:ClearAllPoints()
 				combo:Point("CENTER", health.backdrop, "TOP", -(BORDER*3 + 6), 0)
 
@@ -1532,7 +1551,7 @@ local function LoadDPSLayout()
 		for i = 1, 5 do
 			arena[i] = oUF:Spawn("arena"..i, "ElvDPSArena"..i)
 			if i == 1 then
-				arena[i]:Point("BOTTOMLEFT", ChatRBackground, "TOPLEFT", -80, 185)
+				arena[i]:Point("BOTTOMLEFT", ChatRBGDummy, "TOPLEFT", -80, 185)
 			else
 				arena[i]:Point("BOTTOM", arena[i-1], "TOP", 0, 25)
 			end
@@ -1545,7 +1564,7 @@ local function LoadDPSLayout()
 		for i = 1, MAX_BOSS_FRAMES do
 			boss[i] = oUF:Spawn("boss"..i, "ElvDPSBoss"..i)
 			if i == 1 then
-				boss[i]:Point("BOTTOMLEFT", ChatRBackground, "TOPLEFT", -80, 185)
+				boss[i]:Point("BOTTOMLEFT", ChatRBGDummy, "TOPLEFT", -80, 185)
 			else
 				boss[i]:Point('BOTTOM', boss[i-1], 'TOP', 0, 25)             
 			end

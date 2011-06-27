@@ -117,10 +117,13 @@ local function Shared(self, unit)
 		end
 		
 		local LFDRole = self:CreateTexture(nil, "OVERLAY")
-		LFDRole:Size(6, 6)
+		LFDRole:Size(17, 17)
 		LFDRole:Point("TOPRIGHT", health, "TOPRIGHT", -2, -2)
-		LFDRole:SetTexture("Interface\\AddOns\\ElvUI\\media\\textures\\lfdicons.blp")
+		LFDRole.Override = E.RoleIconUpdate
+		self:RegisterEvent("UNIT_CONNECTION", E.RoleIconUpdate)
 		self.LFDRole = LFDRole		
+		
+		
 		
 		--Raid Icon
 		local RaidIcon = self:CreateTexture(nil, "OVERLAY")
@@ -172,6 +175,19 @@ local function Shared(self, unit)
 
 		if C["raidframes"].raidunitbuffwatch == true then
 			E.createAuraWatch(self,unit)
+		end
+		
+		--Resurrect Indicator
+		if E.IsPTRVersion() then
+			local Resurrect = CreateFrame('Frame', nil, self)
+			Resurrect:SetFrameLevel(20)
+
+			local ResurrectIcon = Resurrect:CreateTexture(nil, "OVERLAY")
+			ResurrectIcon:Point(health.value:GetPoint())
+			ResurrectIcon:Size(30, 25)
+			ResurrectIcon:SetDrawLayer('OVERLAY', 7)
+
+			self.ResurrectIcon = ResurrectIcon
 		end
 	end
 	
@@ -264,7 +280,7 @@ oUF:Factory(function(self)
 			'template', 'DPSPartyTarget'
 		)	
 	end
-	party:SetPoint("BOTTOMLEFT", ChatLBackground, "TOPLEFT", E.Scale(2), E.Scale(40))
+	party:Point("BOTTOMLEFT", ChatLBGDummy, "TOPLEFT", 0, 10)
 	
 	
 	local partyToggle = CreateFrame("Frame")

@@ -132,8 +132,7 @@ E.ReminderBuffs = {
 				6307, -- Blood Pact
 				90364, -- Qiraji Fortitude
 				72590, -- Drums of fortitude
-				21562, -- Fortitude
-				6673, -- Battle Shout
+				21562, -- Fortitude				
 			},
 			["combat"] = true,
 			["role"] = "Tank",

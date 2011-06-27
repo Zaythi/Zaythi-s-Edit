@@ -206,7 +206,22 @@ local function LoadSkin()
 
 	RolePollPopup:SetTemplate("Transparent")
 	RolePollPopup:CreateShadow("Default")
-
+	
+	InterfaceOptionsFrame:SetClampedToScreen(true)
+	InterfaceOptionsFrame:SetMovable(true)
+	InterfaceOptionsFrame:EnableMouse(true)
+	InterfaceOptionsFrame:RegisterForDrag("LeftButton", "RightButton")
+	InterfaceOptionsFrame:SetScript("OnDragStart", function(self) 
+		if InCombatLockdown() then return end
+		
+		if IsShiftKeyDown() then
+			self:StartMoving() 
+		end
+	end)
+	InterfaceOptionsFrame:SetScript("OnDragStop", function(self) 
+		self:StopMovingOrSizing()
+	end)
+	
 	-- mac menu/option panel, made by affli.
 	if IsMacClient() then
 		-- Skin main frame and reposition the header
@@ -263,6 +278,106 @@ local function LoadSkin()
 	OpacityFrame:StripTextures()
 	OpacityFrame:SetTemplate("Transparent")	
 	E.SkinCloseButton(WatchFrameCollapseExpandButton)
+	
+	--Chat Config
+	local StripAllTextures = {
+		"ChatConfigFrame",
+		"ChatConfigBackgroundFrame",
+		"ChatConfigCategoryFrame",
+		"ChatConfigChatSettingsClassColorLegend",
+		"ChatConfigChatSettingsLeft",
+		"ChatConfigChannelSettingsLeft",
+		"ChatConfigChannelSettingsClassColorLegend",
+		"ChatConfigOtherSettingsCombat",
+		"ChatConfigOtherSettingsPVP",
+		"ChatConfigOtherSettingsSystem",
+		"ChatConfigOtherSettingsCreature",
+		"ChatConfigCombatSettingsFilters",
+		"CombatConfigMessageSourcesDoneBy",
+		"CombatConfigMessageSourcesDoneTo",
+		"CombatConfigColorsUnitColors",
+		"CombatConfigColorsHighlighting",
+		"CombatConfigColorsColorizeUnitName",
+		"CombatConfigColorsColorizeSpellNames",
+		"CombatConfigColorsColorizeDamageNumber",
+		"CombatConfigColorsColorizeDamageSchool",
+		"CombatConfigColorsColorizeEntireLine",
+	}
+			
+	for _, object in pairs(StripAllTextures) do
+		_G[object]:StripTextures()
+	end
+			
+	ChatConfigFrame:SetTemplate("Transparent")
+	ChatConfigBackgroundFrame:SetTemplate("Transparent")
+	ChatConfigCategoryFrame:SetTemplate("Transparent")
+	ChatConfigCombatSettingsFilters:SetTemplate("Transparent")
+	ChatConfigChannelSettingsClassColorLegend:SetTemplate("Transparent")
+	ChatConfigChatSettingsClassColorLegend:SetTemplate("Transparent")
+	
+	local chatbuttons = {
+		"ChatConfigFrameDefaultButton",
+		"ChatConfigFrameOkayButton",
+		"CombatLogDefaultButton",
+		"ChatConfigCombatSettingsFiltersCopyFilterButton",
+		"ChatConfigCombatSettingsFiltersAddFilterButton",
+		"ChatConfigCombatSettingsFiltersDeleteButton",
+		"CombatConfigSettingsSaveButton",
+		"ChatConfigFrameCancelButton",
+	}
+			
+	for i = 1, #chatbuttons do
+		E.SkinButton(_G[chatbuttons[i]], true)
+	end	
+	
+	ChatConfigFrameOkayButton:Point("RIGHT", ChatConfigFrameCancelButton, "RIGHT", -11, -1)
+	ChatConfigCombatSettingsFiltersDeleteButton:Point("TOPRIGHT", ChatConfigCombatSettingsFilters, "BOTTOMRIGHT", 0, -1)
+	ChatConfigCombatSettingsFiltersAddFilterButton:Point("RIGHT", ChatConfigCombatSettingsFiltersDeleteButton, "LEFT", -1, 0)
+	ChatConfigCombatSettingsFiltersCopyFilterButton:Point("RIGHT", ChatConfigCombatSettingsFiltersAddFilterButton, "LEFT", -1, 0)
+	
+	for i=1, 5 do
+		local tab = _G["CombatConfigTab"..i]
+		tab:StripTextures()
+	end
+	
+	E.SkinEditBox(CombatConfigSettingsNameEditBox)
+	
+	--This isn't worth the effort
+	--[[local function SkinChannelFrame(frame)
+		frame:StripTextures()
+		frame:SetTemplate("Default")
+		if _G[frame:GetName().."Check"] then
+			E.SkinCheckBox(_G[frame:GetName().."Check"])
+		end
+		
+		if _G[frame:GetName().."ColorClasses"] then
+			E.SkinCheckBox(_G[frame:GetName().."ColorClasses"])
+		end
+	end
+	
+	local x = CreateFrame("Frame")
+	x:RegisterEvent("PLAYER_ENTERING_WORLD")
+	x:SetScript("OnEvent", function(self, event)
+		for i=1, #CHAT_CONFIG_CHAT_LEFT do
+			local frame = _G["ChatConfigChatSettingsLeftCheckBox"..i]
+			SkinChannelFrame(frame)
+			
+			if i > 1 then
+				local point, anchor, point2, x, y = frame:GetPoint()
+				frame:SetPoint(point, anchor, point2, x, y-2)
+			end
+		end	
+		
+		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+	end)]]
+	
+	--DROPDOWN MENU
+	hooksecurefunc("UIDropDownMenu_InitializeHelper", function(frame)
+		for i = 1, UIDROPDOWNMENU_MAXLEVELS do
+			_G["DropDownList"..i.."Backdrop"]:SetTemplate("Default", true)
+			_G["DropDownList"..i.."MenuBackdrop"]:SetTemplate("Default", true)
+		end
+	end)	
 end
 
 tinsert(E.SkinFuncs["ElvUI"], LoadSkin)

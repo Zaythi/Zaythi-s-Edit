@@ -5,11 +5,11 @@ local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config
 ------------------------------------------------------------------------
 E.ToggleSlideChatL = function()
 	if E.ChatLIn == true then
-		ChatLBackground:Hide()
+		ChatLBG:Hide()
 		E.ChatLIn = false
 		ElvuiInfoLeftLButton.text:SetTextColor(unpack(C["media"].valuecolor))
 	else
-		ChatLBackground:Show()
+		ChatLBG:Show()
 		E.ChatLIn = true
 		ElvuiInfoLeftLButton.text:SetTextColor(1,1,1,1)
 	end
@@ -18,14 +18,14 @@ end
 E.ToggleSlideChatR = function()
 	if E.RightChat ~= true then return end
 	if E.ChatRIn == true then
-		ChatRBackground:Hide()	
-		E.ChatRIn = false
 		E.ChatRightShown = false
+		ChatRBG:Hide()	
+		E.ChatRIn = false
 		ElvuiInfoRightRButton.text:SetTextColor(unpack(C["media"].valuecolor))
 	else
-		ChatRBackground:Show()
-		E.ChatRIn = true
 		E.ChatRightShown = true
+		ChatRBG:Show()
+		E.ChatRIn = true
 		ElvuiInfoRightRButton.text:SetTextColor(1,1,1,1)
 	end
 end

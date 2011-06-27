@@ -123,7 +123,7 @@ TRINKET_FILTER = {
 	CreateSpellEntry( 74245), -- Landslide
 	CreateSpellEntry( 74221), -- Hurricane	
 	CreateSpellEntry( 91320 ), -- Inner Eye (Jar of Ancient Remedies)
-	CreateSpellEntry( 91329 ), -- Inner Eye (H Jar of Ancient Remedies)
+	CreateSpellEntry( 92329 ), -- Inner Eye (H Jar of Ancient Remedies)
 	CreateSpellEntry( 74224 ), -- Heartsong
 	CreateSpellEntry( 74225 ), -- Heartsong
 	CreateSpellEntry( 91011 ), -- Bell of Enraging Resonance
@@ -141,10 +141,8 @@ TRINKET_FILTER = {
 	CreateSpellEntry( 62618, true ), --Power Word: Barrier
 	CreateSpellEntry( 70940, true), -- Divine Guardian 
 	
-	-- Gift of the Naaru
-	CreateSpellEntry( 59545 ), CreateSpellEntry( 59543 ), CreateSpellEntry( 59548 ), CreateSpellEntry( 59542 ), CreateSpellEntry( 59544 ), CreateSpellEntry( 59547 ), CreateSpellEntry( 28880 ),
-	-- Lifeblood
-	CreateSpellEntry( 74497 ), CreateSpellEntry( 55503 ), CreateSpellEntry( 55502 ), CreateSpellEntry( 55501 ), CreateSpellEntry( 55500 ), CreateSpellEntry( 55480 ), CreateSpellEntry( 55428 ), CreateSpellEntry( 81708 ),
+	CreateSpellEntry( 59545 ), CreateSpellEntry( 59543 ), CreateSpellEntry( 59548 ), CreateSpellEntry( 59542 ), CreateSpellEntry( 59544 ), CreateSpellEntry( 59547 ), CreateSpellEntry( 28880 ), -- Gift of the Naaru
+	CreateSpellEntry( 74497 ), CreateSpellEntry( 55503 ), CreateSpellEntry( 55502 ), CreateSpellEntry( 55501 ), CreateSpellEntry( 55500 ), CreateSpellEntry( 55480 ), CreateSpellEntry( 55428 ), CreateSpellEntry( 81708 ), -- Lifeblood
 }
 
 CLASS_FILTERS = {
@@ -356,12 +354,12 @@ CLASS_FILTERS = {
 			CreateSpellEntry( 53563 ), -- Beacon of Light
 			CreateSpellEntry( 31821 ), -- Aura Mastery
 			CreateSpellEntry( 54428 ), -- Divine Plea
-			CreateSpellEntry( 86659 ), -- Guardian of Ancient Kings (Prot)
-			CreateSpellEntry( 86669 ), -- Guardian of Ancient Kings (Holy)
-			CreateSpellEntry( 86698 ), -- Guardian of Ancient Kings (Ret)
-			CreateSpellEntry( 85510 ), -- Denounce
-			CreateSpellEntry( 88063 ), -- Guarded by the light
-			CreateSpellEntry( 82327	), -- Holy Radiance
+			CreateSpellEntry( 86659 ), --Guardian of Ancient Kings (Prot)
+			CreateSpellEntry( 86669 ), --Guardian of Ancient Kings (Holy)
+			CreateSpellEntry( 86698 ), --Guardian of Ancient Kings (Ret)
+			CreateSpellEntry( 85510 ), --Denounce
+			CreateSpellEntry( 88063 ), --Guarded by the light
+			CreateSpellEntry( 82327	), --Holy Radiance
 		},
 		procs = {
 			CreateSpellEntry( 59578 ), -- The Art of War
@@ -570,8 +568,6 @@ CLASS_FILTERS = {
 			CreateSpellEntry( 12964 ), -- Battle Trance
 			CreateSpellEntry( 14202 ), --Enrage
 			CreateSpellEntry( 12292 ), --Death Wish
-			CreateSpellEntry( 86627 ), --Incite
-			CreateSpellEntry( 12964 ), --Battle Trance
 		},
 		procs = {
 			CreateSpellEntry( 65156 ), -- Juggernaut

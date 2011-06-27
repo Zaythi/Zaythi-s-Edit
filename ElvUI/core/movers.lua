@@ -13,52 +13,46 @@ local function CreateMover(parent, name, text, overlay, postdrag)
 	
 	if overlay == nil then overlay = true end
 	
-	if ElvuiData == nil then ElvuiData = {} end
-	if ElvuiData[E.myrealm] == nil then ElvuiData[E.myrealm] = {} end
-	if ElvuiData[E.myrealm][E.myname] == nil then ElvuiData[E.myrealm][E.myname] = {} end
-	if ElvuiData[E.myrealm][E.myname]["movers"] == nil then ElvuiData[E.myrealm][E.myname]["movers"] = {} end
-	if ElvuiData[E.myrealm][E.myname]["movers"][name] == nil then ElvuiData[E.myrealm][E.myname]["movers"][name] = {} end
-	ElvuiData["Movers"] = nil -- old
-	
-	E.Movers = ElvuiData[E.myrealm][E.myname]["movers"]
-	
 	local p, p2, p3, p4, p5 = parent:GetPoint()
 	
+	E.Movers = E.SavePath["movers"]
 	
-	if E.Movers[name]["moved"] == nil or E.Movers[name]["moved"] == false then 
-		E.Movers[name]["p"] = nil
-		E.Movers[name]["p2"] = nil
-		E.Movers[name]["p3"] = nil
-		E.Movers[name]["p4"] = nil
+	if E.Movers == {} then E.Movers = nil end
+	if E.Movers and E.Movers[name] == {} or (E.Movers and E.Movers[name] and E.Movers[name]["moved"] == false) then 
+		E.Movers[name] = nil
 	end
 	
-	local f = CreateFrame("Frame", nil, UIParent)
-	f:SetPoint(p, p2, p3, p4, p5)
+	local f = CreateFrame("Button", name, UIParent)
+	f:SetFrameLevel(parent:GetFrameLevel() + 1)
 	f:SetWidth(parent:GetWidth())
 	f:SetHeight(parent:GetHeight())
-
-	local f2 = CreateFrame("Button", name, UIParent)
-	f2:SetFrameLevel(parent:GetFrameLevel() + 1)
-	f2:SetWidth(parent:GetWidth())
-	f2:SetHeight(parent:GetHeight())
+	
 	if overlay == true then
-		f2:SetFrameStrata("DIALOG")
+		f:SetFrameStrata("DIALOG")
 	else
-		f2:SetFrameStrata("BACKGROUND")
+		f:SetFrameStrata("BACKGROUND")
 	end
-	f2:SetPoint("CENTER", f, "CENTER")
-	f2:SetTemplate("Default", true)
-	f2:RegisterForDrag("LeftButton", "RightButton")
-	f2:SetScript("OnDragStart", function(self) 
+	if E["Movers"] and E["Movers"][name] then
+		f:SetPoint(E["Movers"][name]["p"], UIParent, E["Movers"][name]["p2"], E["Movers"][name]["p3"], E["Movers"][name]["p4"])
+	else
+		f:SetPoint(p, p2, p3, p4, p5)
+	end
+	f:SetTemplate("Default", true)
+	f:RegisterForDrag("LeftButton", "RightButton")
+	f:SetScript("OnDragStart", function(self) 
 		if InCombatLockdown() then print(ERR_NOT_IN_COMBAT) return end
 		self:StartMoving() 
 	end)
 	
-	f2:SetScript("OnDragStop", function(self) 
+	f:SetScript("OnDragStop", function(self) 
 		if InCombatLockdown() then print(ERR_NOT_IN_COMBAT) return end
 		self:StopMovingOrSizing()
-
-		E.Movers[name]["moved"] = true
+		
+		if not E.SavePath["movers"] then E.SavePath["movers"] = {} end
+		
+		E.Movers = E.SavePath["movers"]
+		
+		E.Movers[name] = {}
 		local p, _, p2, p3, p4 = self:GetPoint()
 		E.Movers[name]["p"] = p
 		E.Movers[name]["p2"] = p2
@@ -68,45 +62,42 @@ local function CreateMover(parent, name, text, overlay, postdrag)
 		if postdrag ~= nil and type(postdrag) == 'function' then
 			postdrag(self)
 		end
+		
+		self:SetUserPlaced(false)
 	end)	
 	
 	parent:ClearAllPoints()
-	parent:SetPoint(p3, f2, p3, 0, 0)
+	parent:SetPoint(p3, f, p3, 0, 0)
 	parent.ClearAllPoints = E.dummy
 	parent.SetAllPoints = E.dummy
 	parent.SetPoint = E.dummy
-	
-	if E.Movers[name]["moved"] == true then
-		f:ClearAllPoints()
-		f:SetPoint(E.Movers[name]["p"], UIParent, E.Movers[name]["p3"], E.Movers[name]["p4"], E.Movers[name]["p5"])
-	end
-	
-	local fs = f2:CreateFontString(nil, "OVERLAY")
+
+	local fs = f:CreateFontString(nil, "OVERLAY")
 	fs:SetFont(C["media"].font, C["general"].fontscale, "THINOUTLINE")
 	fs:SetShadowOffset(E.mult*1.2, -E.mult*1.2)
 	fs:SetJustifyH("CENTER")
 	fs:SetPoint("CENTER")
 	fs:SetText(text or name)
 	fs:SetTextColor(unpack(C["media"].valuecolor))
-	f2:SetFontString(fs)
-	f2.text = fs
+	f:SetFontString(fs)
+	f.text = fs
 	
-	f2:SetScript("OnEnter", function(self) 
+	f:SetScript("OnEnter", function(self) 
 		self.text:SetTextColor(1, 1, 1)
 		self:SetBackdropBorderColor(unpack(C["media"].valuecolor))
 	end)
-	f2:SetScript("OnLeave", function(self)
+	f:SetScript("OnLeave", function(self)
 		self.text:SetTextColor(unpack(C["media"].valuecolor))
 		self:SetTemplate("Default", true)
 	end)
 	
-	f2:SetMovable(true)
-	f2:Hide()	
+	f:SetMovable(true)
+	f:Hide()	
 	
 	if postdrag ~= nil and type(postdrag) == 'function' then
 		f:RegisterEvent("PLAYER_ENTERING_WORLD")
 		f:SetScript("OnEvent", function(self, event)
-			postdrag(f2)
+			postdrag(f)
 			self:UnregisterAllEvents()
 		end)
 	end	
@@ -154,12 +145,9 @@ function E.ResetMovers(arg)
 			_G[name]:ClearAllPoints()
 			_G[name]:SetPoint(E.CreatedMovers[name]["p"], E.CreatedMovers[name]["p2"], E.CreatedMovers[name]["p3"], E.CreatedMovers[name]["p4"], E.CreatedMovers[name]["p5"])
 			
-			E.Movers[name]["moved"] = nil
 			
-			E.Movers[name]["p"] = nil
-			E.Movers[name]["p2"] = nil
-			E.Movers[name]["p3"] = nil
-			E.Movers[name]["p4"] = nil	
+			E.Movers = nil
+			E.SavePath["movers"] = E.Movers
 			
 			for key, value in pairs(E.CreatedMovers[name]) do
 				if key == "postdrag" and type(value) == 'function' then
@@ -176,13 +164,11 @@ function E.ResetMovers(arg)
 						_G[name]:ClearAllPoints()
 						_G[name]:SetPoint(E.CreatedMovers[name]["p"], E.CreatedMovers[name]["p2"], E.CreatedMovers[name]["p3"], E.CreatedMovers[name]["p4"], E.CreatedMovers[name]["p5"])						
 						
-						E.Movers[name]["moved"] = nil
+						if E.Movers then
+							E.Movers[name] = nil
+						end
+						E.SavePath["movers"] = E.Movers
 						
-						E.Movers[name]["p"] = nil
-						E.Movers[name]["p2"] = nil
-						E.Movers[name]["p3"] = nil
-						E.Movers[name]["p4"] = nil	
-
 						if E.CreatedMovers[name]["postdrag"] ~= nil and type(E.CreatedMovers[name]["postdrag"]) == 'function' then
 							E.CreatedMovers[name]["postdrag"](_G[name])
 						end

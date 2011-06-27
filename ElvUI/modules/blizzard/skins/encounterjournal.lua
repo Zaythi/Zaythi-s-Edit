@@ -1,5 +1,5 @@
 local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
-if C["skin"].enable ~= true then return end
+if C["skin"].enable ~= true or not C["skin"].encounterjournal == true then return end
 if not E.IsPTRVersion() then return end
 
 local function LoadSkin()
@@ -90,8 +90,20 @@ local function LoadSkin()
 		
 		EncounterJournalEncounterFrameInfoBossTab:SetScale(0.75)
 		EncounterJournalEncounterFrameInfoLootTab:SetScale(0.75)
+		
+		EncounterJournalEncounterFrameInfoLootScrollFrameFilter:SetScript("OnShow", function()
+			EncounterJournalEncounterFrameInfoBossTab:ClearAllPoints()
+			EncounterJournalEncounterFrameInfoBossTab:Point("LEFT", EncounterJournalEncounterFrameInfoLootScrollFrameFilter, "RIGHT", 0, 0)	
+			EncounterJournalEncounterFrameInfoEncounterTile:Hide()
+		end)
+
+		EncounterJournalEncounterFrameInfoLootScrollFrameFilter:SetScript("OnHide", function()
+			EncounterJournalEncounterFrameInfoBossTab:ClearAllPoints()
+			EncounterJournalEncounterFrameInfoBossTab:Point("LEFT", EncounterJournalEncounterFrameInfoEncounterTile, "RIGHT", -10, 4)	
+			EncounterJournalEncounterFrameInfoEncounterTile:Show()
+		end)		
 	end)
-	
+		
 	E.SkinScrollBar(EncounterJournalInstanceSelectScrollFrameScrollBar)
 
 	EncounterJournalEncounterFrameInfoBossTab:GetNormalTexture():SetTexture(nil)

@@ -8,7 +8,15 @@ function E.PP(p, obj)
 	local right = ElvuiInfoRight
 	local mapleft = ElvuiMinimapStatsLeft
 	local mapright = ElvuiMinimapStatsRight
-	local t
+	local t, x, bottom, bottomleft, bottomright
+	
+	if ElvUILowerStatPanel then
+		bottom = ElvUILowerStatPanel
+		bottomleft = ElvUILowerStatPanelLeft
+		bottomright = ElvUILowerStatPanelRight
+		x = ElvUILowerStatPanel:GetWidth()/3
+	end
+	
 	if obj:GetParent():GetName() == "TimeDataText" or obj:GetParent():GetName() == "DurabilityDataText" then t = true else t = false end
 	
 	if p == 1 then
@@ -62,7 +70,7 @@ function E.PP(p, obj)
 		end
 	end
 	
-	if C["general"].upperpanel == true then
+	if C["general"].upperpanel == true and C["general"].lowerpanel == true then
 		if p == 9 then
 			obj:SetHeight(ElvuiStat9Block:GetHeight())
 			obj:SetPoint("CENTER", ElvuiStat9Block, 0, 0)
@@ -71,23 +79,56 @@ function E.PP(p, obj)
 			obj:SetHeight(ElvuiStat10Block:GetHeight())
 			obj:SetPoint("CENTER", ElvuiStat10Block, 0, 0)
 			if t ~= true then obj:SetParent(ElvuiStat10Block) else obj:GetParent():SetParent(ElvuiStat10Block) end
-		end	
+		elseif p == 11 then
+			obj:SetHeight(bottomleft:GetHeight())
+			obj:SetPoint('CENTER', bottomleft, 'CENTER')
+			if t ~= true then obj:SetParent(bottomleft) else obj:GetParent():SetParent(bottomleft) end
+		elseif p == 12 then
+			obj:SetHeight(bottom:GetHeight())
+			obj:SetPoint('CENTER', bottom, 'LEFT', x, 0)
+			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
+		elseif p == 13 then
+			obj:SetHeight(bottom:GetHeight())
+			obj:SetPoint('CENTER', bottom, 'RIGHT', -x, 0)
+			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
+		elseif p == 14 then
+			obj:SetHeight(bottomright:GetHeight())
+			obj:SetPoint('CENTER', bottomright, 'CENTER')
+			if t ~= true then obj:SetParent(bottomright) else obj:GetParent():SetParent(bottomright) end
+		end		
 	end
 	
-	if C["general"].lowerpanel == true then
-		--local bottom = ElvuiInfoBottom
-		--local bottomHeight = bottom:GetHeight() - E.Scale(4)
-
-		if p == 11 then
-			obj:SetHeight(ElvuiStat11Block:GetHeight())
-			obj:SetPoint("CENTER", ElvuiStat11Block, 0, 0)
-			if t ~= true then obj:SetParent(ElvuiStat11Block) else obj:GetParent():SetParent(ElvuiStat11Block) end
+	if C["general"].lowerpanel == true and C["general"].upperpanel ~= true then
+		if p == 9 then
+			obj:SetHeight(bottomleft:GetHeight())
+			obj:SetPoint('CENTER', bottomleft, 'CENTER')
+			if t ~= true then obj:SetParent(bottomleft) else obj:GetParent():SetParent(bottomleft) end
+		elseif p == 10 then
+			obj:SetHeight(bottom:GetHeight())
+			obj:SetPoint('CENTER', bottom, 'LEFT', x, 0)
+			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
+		elseif p == 11 then
+			obj:SetHeight(bottom:GetHeight())
+			obj:SetPoint('CENTER', bottom, 'RIGHT', -x, 0)
+			if t ~= true then obj:SetParent(bottom) else obj:GetParent():SetParent(bottom) end
 		elseif p == 12 then
-			obj:SetHeight(ElvuiStat12Block:GetHeight())
-			obj:SetPoint("CENTER", ElvuiStat12Block, 0, 0)
-			if t ~= true then obj:SetParent(ElvuiStat12Block) else obj:GetParent():SetParent(ElvuiStat12Block) end
+			obj:SetHeight(bottomright:GetHeight())
+			obj:SetPoint('CENTER', bottomright, 'CENTER')
+			if t ~= true then obj:SetParent(bottomright) else obj:GetParent():SetParent(bottomright) end
 		end	
-	end
+	end	
+	
+	if C["general"].lowerpanel ~= true and C["general"].upperpanel == true then
+		if p == 9 then
+			obj:SetHeight(ElvuiStat9Block:GetHeight())
+			obj:SetPoint("CENTER", ElvuiStat9Block, 0, 0)
+			if t ~= true then obj:SetParent(ElvuiStat9Block) else obj:GetParent():SetParent(ElvuiStat9Block) end
+		elseif p == 10 then
+			obj:SetHeight(ElvuiStat10Block:GetHeight())
+			obj:SetPoint("CENTER", ElvuiStat10Block, 0, 0)
+			if t ~= true then obj:SetParent(ElvuiStat10Block) else obj:GetParent():SetParent(ElvuiStat10Block) end
+		end
+	end		
 end
 
 E.DataTextTooltipAnchor = function(self)

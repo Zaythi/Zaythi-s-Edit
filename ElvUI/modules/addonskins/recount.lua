@@ -68,9 +68,37 @@ if C["skin"].embedright == "Recount" then
 		self = nil
 
 		Recount_MainWindow:ClearAllPoints()
-		Recount_MainWindow:SetPoint("TOPLEFT", ChatRBackground,"TOPLEFT", 0, 7)
-		Recount_MainWindow:SetPoint("BOTTOMRIGHT", ChatRBackground,"BOTTOMRIGHT", 0, 0)
-		Recount.db.profile.FrameStrata = "4-HIGH"
+		Recount_MainWindow:SetPoint("TOPLEFT", ChatRPlaceHolder,"TOPLEFT", 0, 7)
+		Recount_MainWindow:SetPoint("BOTTOMRIGHT", ChatRPlaceHolder,"BOTTOMRIGHT", 0, 0)
+		Recount.db.profile.FrameStrata = "3-MEDIUM"
 		Recount.db.profile.MainWindowWidth = (C["chat"].chatwidth - 4)	
 	end)
+	
+	if ChatRBGTab then
+		local button = CreateFrame('Button', 'RecountToggleSwitch', ChatRBGTab)
+		button:Width(90)
+		button:Height(ChatRBGTab:GetHeight() - 4)
+		button:Point("RIGHT", ChatRBGTab, "RIGHT", -2, 0)
+		
+		button.tex = button:CreateTexture(nil, 'OVERLAY')
+		button.tex:SetTexture([[Interface\AddOns\ElvUI\media\textures\vehicleexit.tga]])
+		button.tex:Point('TOPRIGHT', -2, -2)
+		button.tex:Height(button:GetHeight() - 4)
+		button.tex:Width(16)
+		
+		button:FontString(nil, C["media"].font, 12, 'THINOUTLINE')
+		button.text:SetPoint('RIGHT', button.tex, 'LEFT')
+		button.text:SetTextColor(unpack(C["media"].valuecolor))
+		
+		button:SetScript('OnEnter', function(self) button.text:SetText(L.addons_toggle..' Recount') end)
+		button:SetScript('OnLeave', function(self) self.tex:Point('TOPRIGHT', -2, -2); button.text:SetText(nil) end)
+		button:SetScript('OnMouseDown', function(self) self.tex:Point('TOPRIGHT', -4, -4) end)
+		button:SetScript('OnMouseUp', function(self) self.tex:Point('TOPRIGHT', -2, -2) end)
+		button:SetScript('OnClick', function(self) ToggleFrame(Recount_MainWindow) end)
+	end	
+	
+	if C["skin"].embedrighttoggle == true then
+		ChatRBG:HookScript("OnShow", function() Recount_MainWindow:Hide() end)
+		ChatRBG:HookScript("OnHide", function() Recount_MainWindow:Show() end)
+	end	
 end

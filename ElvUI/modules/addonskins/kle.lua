@@ -141,16 +141,12 @@ local function PositionKLEAnchor()
 	KLEAlertsTopStackAnchor:ClearAllPoints()
 	if E.CheckAddOnShown() == true then
 		if C["chat"].showbackdrop == true and E.ChatRightShown == true then
-			if E.RightChat == true then
-				KLEAlertsTopStackAnchor:Point("BOTTOM", ChatRBackground, "TOP", 13, 14)	
-			else
-				KLEAlertsTopStackAnchor:Point("BOTTOM", ChatRBackground, "TOP", 13, -9)
-			end
+			KLEAlertsTopStackAnchor:Point("TOP", ChatRBGDummy, "TOP", 16, 4)	
 		else
-			KLEAlertsTopStackAnchor:Point("BOTTOM", ChatRBackground, "TOP", 13, -9)	
+			KLEAlertsTopStackAnchor:Point("TOP", ChatRBGDummy, "TOP", 16, -28)
 		end	
 	else
-		KLEAlertsTopStackAnchor:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -41, 14)		
+		KLEAlertsTopStackAnchor:Point("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -49, 25)		
 	end
 end
 
@@ -195,11 +191,11 @@ if C["skin"].hookkleright == true then
 	KLE_Skin:RegisterEvent("PLAYER_REGEN_ENABLED")
 	KLE_Skin:RegisterEvent("PLAYER_REGEN_DISABLED")
 
-	ChatRBackground:HookScript("OnHide", function(self)
+	ChatRBG:HookScript("OnHide", function(self)
 		PositionKLEAnchor()
 	end)
 	
-	ChatRBackground:HookScript("OnShow", function(self)
+	ChatRBG:HookScript("OnShow", function(self)
 		PositionKLEAnchor()
 	end)	
 end

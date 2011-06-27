@@ -1,6 +1,5 @@
 local E, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
-
 local f = CreateFrame("Frame")
 f:SetScript("OnEvent", function()
 	if C["others"].sellgrays then

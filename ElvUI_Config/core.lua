@@ -119,10 +119,14 @@ function ElvuiConfig.GenerateOptionsInternal()
 		timeout = 0,
 		whileDead = 1,
 	}
-
-	if C["general"].upperpanel == true then
+	
+	if C["general"].upperpanel == true and C["general"].lowerpanel == true then
+		L["DATATEXT_POS"] = L["DATATEXT_POS3"]	
+	elseif C["general"].upperpanel == true and C["general"].lowerpanel ~= true then
 		L["DATATEXT_POS"] = L["DATATEXT_POS2"]
-	end
+	elseif C["general"].lowerpanel == true and C["general"].upperpanel ~= true then
+		L["DATATEXT_POS"] = L["DATATEXT_POS4"]		
+	end	
 	
 	local RaidBuffs = {
 		["HealerBuffIDs"] = true,
@@ -420,9 +424,17 @@ function ElvuiConfig.GenerateOptionsInternal()
 								get = function(info) return db.spellfilter[tab][E.myclass][i]["anyUnit"] end,
 								set = function(info, value) db.spellfilter[tab][E.myclass][i]["anyUnit"] = value; StaticPopup_Show("CFG_RELOAD") end,									
 							},
+							onlyShowMissing = {
+								type = "toggle",
+								order = 4,
+								name = L["Display when missing"],
+								desc = L["Only display the icon when the unit doesn't have the buff."],
+								get = function(info) return db.spellfilter[tab][E.myclass][i]["onlyShowMissing"] end,
+								set = function(info, value) db.spellfilter[tab][E.myclass][i]["onlyShowMissing"] = value; StaticPopup_Show("CFG_RELOAD") end,								
+							},
 							Color = {
 								type = "color",
-								order = 4,
+								order = 5,
 								name = L["Color"],
 								hasAlpha = false,
 								get = function(info)
@@ -435,7 +447,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 									t.r, t.g, t.b = r, g, b
 									StaticPopup_Show("CFG_RELOAD")
 								end,																	
-							},					
+							},
 						},
 					}
 				end
@@ -592,14 +604,12 @@ function ElvuiConfig.GenerateOptionsInternal()
 						name = L["Upper Frame"],
 						desc = L["Enable a bar accross the top of the screen, doing this will move the location and coords texts to that bar, and also allow for spaces nine and ten of the datatexts to be used."],
 					},
-					--[[
 					lowerpanel = {
 						order = 11,
 						type = "toggle",
 						name = L["Lower Frame"],
-						desc = L["Enable a bar accross the bottom of the screen, mostly for decoration."],					
+						desc = L["Enable a bar accross the bottom of the screen, doing this will allow for four extra datatext positions."],					
 					},
-					]]
 				},
 			},
 			media = {
@@ -846,9 +856,24 @@ function ElvuiConfig.GenerateOptionsInternal()
 								name = L["Track CC Debuffs"],
 								desc = L["Tracks CC debuffs on nameplates from you or a friendly player"],										
 							},
+							width = {
+								type = "range",
+								order = 6,
+								name = L["Width"],
+								desc = L["Controls the width of the nameplate"],
+								type = "range",
+								min = 50, max = 150, step = 1,		
+								set = function(info, value) db.nameplate[ info[#info] ] = value; C.nameplate[ info[#info] ] = value end,
+							},
+							showlevel = {
+								type = "toggle",
+								order = 7,
+								name = L["Display Level"],
+								desc = L["Display level text on nameplate for nameplates that belong to units that aren't your level."],	
+							},
 							Colors = {
 								type = "group",
-								order = 6,
+								order = 8,
 								name = L["Colors"],
 								guiInline = true,	
 								get = function(info)
@@ -877,13 +902,20 @@ function ElvuiConfig.GenerateOptionsInternal()
 										desc = L["This is displayed when you don't have threat as a tank, if you do have threat it is displayed as a DPS/Healer"],
 										hasAlpha = false,
 									},
-									transitioncolor = {
+									goodtransitioncolor = {
 										type = "color",
 										order = 3,
-										name = L["Transition Color"],
-										desc = L["This color is displayed when gaining/losing threat"],
+										name = L["Good Transition Color"],
+										desc = L["This color is displayed when gaining/losing threat, for a tank it would be displayed when gaining threat, for a dps/healer it would be displayed when losing threat"],
 										hasAlpha = false,									
 									},
+									badtransitioncolor = {
+										type = "color",
+										order = 4,
+										name = L["Bad Transition Color"],
+										desc = L["This color is displayed when gaining/losing threat, for a tank it would be displayed when losing threat, for a dps/healer it would be displayed when gaining threat"],
+										hasAlpha = false,									
+									},									
 								},
 							},
 						},
@@ -988,9 +1020,16 @@ function ElvuiConfig.GenerateOptionsInternal()
 								name = L["Class Colored Powerbars"],
 								desc = L["Color powerbars by class"],						
 							},
+							classcolorbackdrop = {
+								type = "toggle",
+								order = 11,
+								name = L["Class Colored Backdrop"],
+								desc = L["Color backdrops by class"],
+								disabled = function() return (not db.unitframes.enable or db.unitframes.healthbackdrop) end,
+							},
 							healthcolor = {
 								type = "color",
-								order = 11,
+								order = 12,
 								name = L["Health Color"],
 								desc = L["Color of the healthbar"],
 								hasAlpha = false,
@@ -1008,19 +1047,19 @@ function ElvuiConfig.GenerateOptionsInternal()
 							},
 							healthcolorbyvalue = {
 								type = "toggle",
-								order = 12,
+								order = 13,
 								name = L["Color Health by Value"],
 								desc = L["Color the health frame by current ammount of hp remaining"],							
 							},
 							healthbackdrop = {
 								type = "toggle",
-								order = 13,
+								order = 14,
 								name = L["Custom Backdrop Color"],
 								desc = L["Enable using the custom backdrop color, otherwise 20% of the current health color gets used"],
 							},
 							healthbackdropcolor = {
 								type = "color",
-								order = 14,
+								order = 15,
 								name = L["Health Backdrop Color"],
 								desc = L["Color of the healthbar's backdrop"],
 								hasAlpha = false,
@@ -1038,81 +1077,81 @@ function ElvuiConfig.GenerateOptionsInternal()
 							},
 							combatfeedback = {
 								type = "toggle",
-								order = 15,
+								order = 16,
 								name = L["Combat Feedback"],
 								desc = L["Enable displaying incoming damage/healing on player/target frame"],							
 							},
 							debuffhighlight = {
 								type = "toggle",
-								order = 16,
+								order = 17,
 								name = L["Debuff Highlighting"],
 								desc = L["Enable highlighting unitframes when there is a debuff you can dispel"],							
 							},
 							classbar = {
 								type = "toggle",
-								order = 17,
+								order = 18,
 								name = L["ClassBar"],
 								desc = L["Display class specific bar (runebar/totembar/holypowerbar/soulshardbar/eclipsebar)"],							
 							},
 							combat = {
 								type = "toggle",
-								order = 18,
+								order = 19,
 								name = L["Combat Fade"],
 								desc = L["Fade main unitframes out when not in combat, unless you cast or mouseover the frame"],								
 							},
 							mini_powerbar = {
 								type = "toggle",
-								order = 19,
+								order = 20,
 								name = L["Mini-Powerbar Theme"],
 								desc = L["Style the unitframes with a smaller powerbar"],		
 								disabled = function() return not db.unitframes.enable or db.unitframes.powerbar_offset ~= 0 end,	
 							},
 							mini_classbar = {
 								type = "toggle",
-								order = 20,
+								order = 21,
 								name = L["Mini-Classbar Theme"],
 								desc = L["Make classbars smaller and restyle them"],
 							},
 							arena = {
 								type = "toggle",
-								order = 21,
+								order = 22,
 								name = L["Arena Frames"],							
 							},
 							showboss = {
 								type = "toggle",
-								order = 22,
+								order = 23,
 								name = L["Boss Frames"],							
 							},
 							swing = {
 								type = "toggle",
-								order = 23,
+								order = 24,
 								name = L["Swing Bar"],
 								desc = L["Bar that displays time between melee attacks"],
 								disabled = function() return (not db.unitframes.enable or not (IsAddOnLoaded("ElvUI_RaidDPS") or db.general.layoutoverride == "DPS")) end,	
 							},
 							displayaggro = {
 								type = "toggle",
-								order = 24,
+								order = 25,
 								name = L["Display Aggro"],
 								desc = L["Enable red glow around the player frame when you have aggro"],
 							},
 							powerbar_offset = {
 								type = "range",
-								order = 25,
+								order = 26,
 								name = L["Powerbar Offset"],
 								desc = L["Detach and offset the power bar on the main unitframes"],
 								min = 0, max = 12, step = 1,	
 							},
 							powerbar_height = {
 								type = "range",
-								order = 26,
+								order = 27,
 								name = L["Powerbar Height"],
 								desc = L["Set the height of the powerbar, this is void if you don't have powerbar offset set to zero."],
 								min = 5, max = 25, step = 1,								
 							},
 							classbar_height = {
 								type = "range",
-								order = 27,
+								order = 28,
 								name = L["Classbar Height"],
 								desc = L["Set the height of the classbar."],
 								min = 5, max = 25, step = 1,								
@@ -1669,11 +1708,17 @@ function ElvuiConfig.GenerateOptionsInternal()
 							buffindicatorsize = {
 								type = "range",
 								order = 22,
-								name = L["Raid Buff Display Size"],
+								name = L["Buff Icon Size"],
 								desc = L["Size of the buff icon on raidframes"],
 								disabled = function() return not db.raidframes.enable and not db.unitframes.enable end,
 								type = "range",
-								min = 3, max = 9, step = 1,									
+								min = 3, max = 18, step = 1,									
+							},
+							buffindicatorcoloricons = {
+								type = "toggle",
+								order = 23,
+								name = L["Color Buff Icons"],
+								desc = L["If turned off the buff icon on raid/party frames will be displayed as the actual texture of the icon instead of a color icon"],
 							},
 						},
 					},
@@ -1985,7 +2030,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 				},
 			},
 			datatext = {
-				order = 12,
+				order = 8,
 				type = "group",
 				name = L["Data Texts"],
 				desc = L["DATATEXT_DESC"],
@@ -2048,133 +2093,140 @@ function ElvuiConfig.GenerateOptionsInternal()
 								type = "range",
 								name = L["Stat #1"],
 								desc = L["Display stat based on your role (Avoidance-Tank, AP-Melee, SP/HP-Caster)"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,
+								min = 0, max = 8, step = 1,
 							},
 							dur = {
 								order = 2,
 								type = "range",
 								name = L["Durability"],
 								desc = L["Display your current durability"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,							
+								min = 0, max = 8, step = 1,							
 							},
 							stat2 = {
 								order = 3,
 								type = "range",
 								name = L["Stat #2"],
 								desc = L["Display stat based on your role (Armor-Tank, Crit-Melee, Crit-Caster)"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,							
+								min = 0, max = 8, step = 1,							
 							},
 							system = {
 								order = 4,
 								type = "range",
 								name = L["System"],
 								desc = L["Display FPS and Latency"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							wowtime = {
 								order = 5,
 								type = "range",
 								name = L["Time"],
 								desc = L["Display current time"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,									
+								min = 0, max = 8, step = 1,									
 							},
 							gold = {
 								order = 6,
 								type = "range",
 								name = L["Gold"],
 								desc = L["Display current gold"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							guild = {
 								order = 7,
 								type = "range",
 								name = L["Guild"],
 								desc = L["Display current online people in guild"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							friends = {
 								order = 8,
 								type = "range",
 								name = L["Friends"],
 								desc = L["Display current online friends"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							bags = {
 								order = 9,
 								type = "range",
 								name = L["Bags"],
 								desc = L["Display ammount of bag space"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							dps_text = {
 								order = 10,
 								type = "range",
 								name = L["DPS"],
 								desc = L["Display ammount of DPS"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							hps_text = {
 								order = 11,
 								type = "range",
 								name = L["HPS"],
 								desc = L["Display ammount of HPS"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							currency = {
 								order = 12,
 								type = "range",
 								name = L["Currency"],
 								desc = L["Display current watched items in backpack"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							specswitch = {
 								order = 13,
 								type = "range",
 								name = L["Talent Spec"],
 								desc = L["Display current spec"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							mastery = {
 								order = 14,
 								type = "range",
 								name = L["Mastery"],
 								desc = L["Display Mastery Rating"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							hit = {
 								order = 15,
 								type = "range",
 								name = L["Hit Rating"],
 								desc = L["Display Hit Rating"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
-							haste = {
+							expertise = {
 								order = 16,
+								type = "range",
+								name = L["Expertise Rating"],
+								desc = L["Display Expertise Rating"]..L["DATATEXT_POS"],
+								min = 0, max = 8, step = 1,								
+							},							
+							haste = {
+								order = 17,
 								type = "range",
 								name = L["Haste Rating"],
 								desc = L["Display Haste Rating"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 							crit = {
-								order = 17,
+								order = 18,
 								type = "range",
 								name = L["Crit Rating"],
 								desc = L["Display Critical Strike Rating"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,									
+								min = 0, max = 8, step = 1,									
 							},
 							manaregen = {
-								order = 17,
+								order = 19,
 								type = "range",
 								name = L["Mana Regen"],
 								desc = L["Display Mana Regen Rate"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,									
+								min = 0, max = 8, step = 1,									
 							},
 							calltoarms = {
-								order = 18,
+								order = 20,
 								type = "range",
 								name = L["Call to Arms"],
 								desc = L["Display the active roles that will recieve a reward for completing a random dungeon"]..L["DATATEXT_POS"],
-								min = 0, max = 12, step = 1,								
+								min = 0, max = 8, step = 1,								
 							},
 						},
 					},
@@ -2369,6 +2421,12 @@ function ElvuiConfig.GenerateOptionsInternal()
 						guiInline = true,
 						disabled = function() return not db.skin.enable end,	
 						args = {
+							encounterjournal = {
+								type = "toggle",
+								name = L["Encounter Journal"],
+								desc = L["TOGGLESKIN_DESC"],
+								disabled = function() return not db.skin.enable or not E.IsPTRVersion() end,
+							},
 							reforge = {
 								type = "toggle",
 								name = L["Reforge Frame"],
@@ -2588,7 +2646,12 @@ function ElvuiConfig.GenerateOptionsInternal()
 								type = "toggle",
 								name = L["Guild Registrar"],
 								desc = L["TOGGLESKIN_DESC"],								
-							},									
+							},		
+							bags = {
+								type = "toggle",
+								name = L["Bags"],
+								desc = L["TOGGLESKIN_DESC"],									
+							},
 						},
 					},					
 					embedright = {
@@ -2603,8 +2666,15 @@ function ElvuiConfig.GenerateOptionsInternal()
 							["Skada"] = "Skada",
 						},						
 					},
-					AddOnSkins = {
+					embedrighttoggle = {
 						order = 5,
+						type = "toggle",
+						name = L["Toggle Embedded with right chat"],
+						desc = L["When the right chat gets shown the embedded addon will hide, when the right chat gets hidden the embedded addon will show."],
+						disabled = function() return db.skin.embedright == "NONE" end,
+					},
+					AddOnSkins = {
+						order = 6,
 						type = "group",
 						name = L["Addon Skins"],
 						guiInline = true,
@@ -2628,53 +2698,65 @@ function ElvuiConfig.GenerateOptionsInternal()
 								desc = L["Enable this skin"],
 							},		
 							kle = {
-								order = 5,
+								order = 9,
 								type = "toggle",
 								name = "KLE",
 								desc = L["Enable this skin"],
 							},
 							hookkleright = {
-								order = 6,
+								order = 10,
 								type = "toggle",
 								name = L["Hook KLE Bars"],
 								desc = L["Attach KLE's Bars to the right window"],
 							},	
 							dxe = {
-								order = 9,
+								order = 7,
 								type = "toggle",
 								name = "DXE",
 								desc = L["Enable this skin"],
 							},
 							hookdxeright = {
-								order = 10,
+								order = 8,
 								type = "toggle",
 								name = L["Hook DXE Bars"],
 								desc = L["Attach DXE's Bars to the right window"],
 							},								
 							dbm = {
-								order = 4,
+								order = 13,
 								type = "toggle",
 								name = "DBM",
 								desc = L["Enable this skin"],
 							},		
+							clcret = {
+								order = 5,
+								type = "toggle",
+								name = "CLCRet",
+								desc = L["Enable this skin"],							
+							},
+							clcprot = {
+								order = 6,
+								type = "toggle",
+								name = "CLCProt",
+								desc = L["Enable this skin"],							
+							},							
 							bigwigs = {
-								order = 7,
+								order = 11,
 								type = "toggle",
 								name = "BigWigs",
 								desc = L["Enable this skin"],
 							},
 							hookbwright = {
-								order = 8,
+								order = 12,
 								type = "toggle",
 								name = L["Hook BigWigs Bars"],
 								desc = L["Attach BigWigs's Bars to the right window"],
 							},
 							auctionator = {
-								order = 11,
+								order = 4,
 								type = "toggle",
 								name = "Auctionator",
-								desc = L["Enable this skin"],
-							},
+								desc = L["Enable this skin"],							
+							},							
 						},
 					},
 				},
@@ -2911,7 +2993,29 @@ function ElvuiConfig.GenerateOptionsInternal()
 								order = 4,
 								name = L["All-In-One Bag"],
 								desc = L["Enable/Disable the All-In-One Bag, you must disable this if you wish to run another bag addon"],										
-							},						
+							},		
+							bagbar = {
+								type = "toggle",
+								order = 5,
+								name = L["Bag Bar"],
+								desc = L["Enable a clickable bar of buttons that allow you to click which bag you wish to open"],
+							},
+							bagbardirection = {
+								type = "select",
+								order = 6,
+								name = L["Bar Bar Direction"],
+								desc = L["Set the direction you want the bag bar to grow"],
+								values = {
+									["VERTICAL"] = L["Vertical"],
+									["HORIZONTAL"] = L["Horizontal"],
+								},								
+							},
+							bagbarmouseover = {
+								type = "toggle",
+								order = 7,
+								name = L["Bag Bar on mouseover"],
+								desc = L["Only show the bag bar when you mouseover it"],
+							},
 						},
 					},
 					LootGroup = {
@@ -2945,7 +3049,7 @@ function ElvuiConfig.GenerateOptionsInternal()
 							},
 							autorepair = {
 								type = "toggle",
-								order = 5,
+								order = 4,
 								name = L["Auto Repair"],
 								desc = L["Automatically repair when visiting a vendor"],							
 							},
@@ -3010,12 +3114,18 @@ function ElvuiConfig.GenerateOptionsInternal()
 			},
 		},
 	}
-	
-	if C["general"].upperpanel == true then
+	if C["general"].upperpanel == true and C["general"].lowerpanel == true then
+		for _, option in pairs(ElvuiConfig.Options.args.datatext.args.DataGroup.args) do
+			option.max = 14
+		end
+	elseif C["general"].upperpanel == true and C["general"].lowerpanel ~= true then
+		for _, option in pairs(ElvuiConfig.Options.args.datatext.args.DataGroup.args) do
+			option.max = 10
+		end
+	elseif C["general"].lowerpanel == true and C["general"].upperpanel ~= true then
 		for _, option in pairs(ElvuiConfig.Options.args.datatext.args.DataGroup.args) do
 			option.max = 12
-		end
-		L["DATATEXT_POS"] = L["DATATEXT_POS2"]
+		end	
 	end
 end
 
