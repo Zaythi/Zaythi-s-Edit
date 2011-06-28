@@ -20,16 +20,16 @@ local function CreateFrameOverlay(parent, name)
 		E["elements"][name] = nil
 	end	
 
-	local f2 = CreateFrame("Frame", nil, UIParent)
+	local f2 = CreateFrame("Frame", nil, E.UIParent)
 	if E["elements"] and E["elements"][name] then
-		f2:SetPoint(E["elements"][name]["p"], UIParent, E["elements"][name]["p2"], E["elements"][name]["p3"], E["elements"][name]["p4"])
+		f2:SetPoint(E["elements"][name]["p"], E.UIParent, E["elements"][name]["p2"], E["elements"][name]["p3"], E["elements"][name]["p4"])
 	else
 		f2:SetPoint(p, p2, p3, p4, p5)
 	end
 	f2:SetWidth(parent:GetWidth())
 	f2:SetHeight(parent:GetHeight())
 	
-	local f = CreateFrame("Frame", name, UIParent)
+	local f = CreateFrame("Frame", name, E.UIParent)
 	f:SetFrameLevel(parent:GetFrameLevel() + 1)
 	f:SetWidth(parent:GetWidth())
 	f:SetHeight(parent:GetHeight())
@@ -109,6 +109,7 @@ function E.LoadMoveElements(layout)
 	CreateFrameOverlay(_G["Elv"..layout.."_focus"].Debuffs, layout.."FocusDebuffs")
 	CreateFrameOverlay(_G["Elv"..layout.."_targettarget"].Debuffs, layout.."TargetTargetDebuffs")	
 	CreateFrameOverlay(_G["Elv"..layout.."_player"].Swing, layout.."SwingBar")	
+	CreateFrameOverlay(_G["Elv"..layout.."_player"].AltPowerBar, layout.."AltPowerBar")
 end
 
 local function ShowCBOverlay()

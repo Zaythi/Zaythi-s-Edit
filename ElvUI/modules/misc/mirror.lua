@@ -13,9 +13,9 @@ local _DEFAULTS = {
 	texture = C["media"].normTex,
 
 	position = {
-		["BREATH"] = 'TOP#UIParent#TOP#0#-96';
-		["EXHAUSTION"] = 'TOP#UIParent#TOP#0#-119';
-		["FEIGNDEATH"] = 'TOP#UIParent#TOP#0#-142';
+		["BREATH"] = 'TOP#ElvUIParent#TOP#0#-96';
+		["EXHAUSTION"] = 'TOP#ElvUIParent#TOP#0#-119';
+		["FEIGNDEATH"] = 'TOP#ElvUIParent#TOP#0#-142';
 	};
 
 	colors = {
@@ -69,7 +69,7 @@ do
 
 	function Spawn(type)
 		if(barPool[type]) then return barPool[type] end
-		local frame = CreateFrame('StatusBar', nil, UIParent)
+		local frame = CreateFrame('StatusBar', nil, E.UIParent)
 
 		frame:SetScript("OnUpdate", OnUpdate)
 

@@ -97,7 +97,7 @@ end
 
 
 local function CreateRollFrame()
-	local frame = CreateFrame("Frame", nil, UIParent)
+	local frame = CreateFrame("Frame", nil, E.UIParent)
 	frame:SetWidth(E.Scale(328))
 	frame:SetHeight(E.Scale(22))
 	frame:SetBackdrop(backdrop)
@@ -189,7 +189,7 @@ local function CreateRollFrame()
 end
 
 
-local anchor = CreateFrame("Button", nil, UIParent)
+local anchor = CreateFrame("Button", nil, E.UIParent)
 anchor:SetWidth(E.Scale(300)) 
 anchor:SetHeight(E.Scale(22))
 anchor:SetBackdrop(backdrop)
@@ -385,8 +385,8 @@ anchor:SetScript("OnEvent", function(frame, event, addon)
 
 	anchor:SetScript("OnEvent", function(frame, event, ...) if event == "CHAT_MSG_LOOT" then return CHAT_MSG_LOOT(...) else return START_LOOT_ROLL(...) end end)
 	
-	local anchorholder = CreateFrame("Frame", "AnchorHolder", UIParent)
-	anchorholder:SetPoint("TOP", UIParent, "TOP", 0, -200)
+	local anchorholder = CreateFrame("Frame", "AnchorHolder", E.UIParent)
+	anchorholder:SetPoint("TOP", E.UIParent, "TOP", 0, -200)
 	anchorholder:SetWidth(anchor:GetWidth())
 	anchorholder:SetHeight(anchor:GetHeight())
 	
