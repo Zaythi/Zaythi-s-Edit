@@ -160,7 +160,7 @@ local function restorePosition(obj)
 	-- damn it Blizzard, _how_ did you manage to get the input of this function
 	-- reversed. Any sane person would implement this as: split(str, dlm, lim);
 	local point, parentName, x, y = string.split('\031', _DB[style][identifier])
-	SetPoint(target, point, parentName, point, x / scale, y / scale)
+	SetPoint(target, point, _G[parentName], point, x / scale, y / scale)
 end
 
 local saveDefaultPosition = function(obj)
