@@ -312,7 +312,8 @@ DB["datatext"] = {
 
 DB["chat"] = {
 	["enable"] = true,					-- enable ElvUI chat
-	["whispersound"] = true,				-- play a sound when receiving whisper
+	["style"] = "ElvUI",
+	["whispersound"] = true,               -- play a sound when receiving whisper
 	["showbackdrop"] = true,				-- show a backdrop on the chat panels
 	["chatwidth"] = 450,					-- width of chat frame
 	["chatheight"] = 120,					-- height of chat frame
