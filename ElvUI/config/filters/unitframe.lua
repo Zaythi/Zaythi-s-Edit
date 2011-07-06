@@ -6,7 +6,7 @@ local function SpellName(id)
 end
 
 --[[
-		This file is for adding of deleting a spellID.
+		This file is for adding or deleting a spellID.
 		
 		The best way to add or delete spell is to go at www.wowhead.com, search for a spell :
 		Example : Incinerate Flesh from Lord Jaraxxus -> http://www.wowhead.com/?spell=67049
@@ -263,6 +263,7 @@ E.RaidDebuffs = {
 	
 	--Baleroc
 	[SpellName(99403)] = true, -- Tormented
+	[SpellName(99256)] = true, -- Torment
 	
 	--Lord Rhyolith
 		--<< NONE KNOWN YET >>
