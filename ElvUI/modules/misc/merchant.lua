@@ -30,7 +30,7 @@ f:SetScript("OnEvent", function()
 			local g = math.floor(cost/10000)
 			if C["others"].guildbankrepair then
 				if (IsInGuild()) and (CanGuildBankRepair()) then
-					if cost <= GetGuildBankWithdrawMoney() then
+					if cost <= GetGuildBankWithdrawMoney() or GetGuildBankWithdrawMoney() == -1 then
 						guildRepairFlag = 1
 					end
 				end
