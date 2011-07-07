@@ -8,10 +8,7 @@ E.buttonspacing = E.Scale(C["actionbar"].buttonspacing)
 E.minimapsize = E.Scale(165)
 E.textbarheight = E.Scale(C.datatext.fontsize + 6)
 
---
-
 --BOTTOM PANEL
-
 local f = CreateFrame("Frame", "ElvuiBottomPanel", E.UIParent)
 f:SetHeight(23)
 f:SetWidth(E.UIParent:GetWidth() + (E.mult * 2))
