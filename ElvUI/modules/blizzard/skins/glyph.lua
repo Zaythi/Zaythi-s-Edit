@@ -12,6 +12,11 @@ local function LoadSkin()
 	GlyphFrameBackground:SetParent(GlyphFrameSparkleFrame)
 	GlyphFrameBackground:SetPoint("TOPLEFT", 4, -4)
 	GlyphFrameBackground:SetPoint("BOTTOMRIGHT", -4, 4)
+
+	GlyphFrame.levelOverlay1:SetParent(GlyphFrameSparkleFrame)
+	GlyphFrame.levelOverlayText1:SetParent(GlyphFrameSparkleFrame)
+	GlyphFrame.levelOverlay2:SetParent(GlyphFrameSparkleFrame)
+	GlyphFrame.levelOverlayText2:SetParent(GlyphFrameSparkleFrame)
 	
 	for i=1, 9 do
 		_G["GlyphFrameGlyph"..i]:SetFrameLevel(_G["GlyphFrameGlyph"..i]:GetFrameLevel() + 5)
@@ -49,7 +54,7 @@ local function LoadSkin()
 	GlyphFrameClearInfoFrame:StyleButton()
 	GlyphFrameClearInfoFrame:Size(25, 25)
 	
-	E.SkinScrollBar(GlyphFrameScrollFrameScrollBar)
+	E.SkinScrollBar(GlyphFrameScrollFrameScrollBar, 5)
 
 	local StripAllTextures = {
 		"GlyphFrameScrollFrame",

@@ -10,8 +10,8 @@ local function LoadSkin()
 	WorldMapDetailFrame.backdrop:SetFrameLevel(WorldMapDetailFrame:GetFrameLevel() - 2)
 
 	E.SkinCloseButton(WorldMapFrameCloseButton)
-	E.SkinCloseButton(WorldMapFrameSizeDownButton)
-	E.SkinCloseButton(WorldMapFrameSizeUpButton)
+	E.SkinCloseButton(WorldMapFrameSizeDownButton, nil, '-')
+	E.SkinCloseButton(WorldMapFrameSizeUpButton, nil, '+')
 							
 	E.SkinDropDownBox(WorldMapLevelDropDown)
 	E.SkinDropDownBox(WorldMapZoneMinimapDropDown)
@@ -198,6 +198,11 @@ local function LoadSkin()
 			DropDownList1:SetScale(UIParent:GetScale())
 		end
 	end)	
+	
+	WorldMapZoneDropDownButton:HookScript('OnClick', function(self) 
+		DropDownList1:ClearAllPoints()
+		DropDownList1:Point("TOPRIGHT", self, "BOTTOMRIGHT", -17, -4)
+	end)
 end
 
 tinsert(E.SkinFuncs["ElvUI"], LoadSkin)
